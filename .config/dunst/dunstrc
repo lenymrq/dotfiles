@@ -1,0 +1,28 @@
+[global]
+frame_width = 2
+frame_color = "#51A2DA"
+separator_color = frame
+
+origin = top-center
+alignment = center
+
+height = (150, 300)
+width = (240, 960)
+
+font = "Inter 12"
+
+[urgency_low]
+background = "#222222DD"
+foreground = "#CDD6F4"
+timeout = 5
+
+[urgency_normal]
+background = "#222222EE"
+foreground = "#FFFFFF"
+timeout = 10
+
+[urgency_critical]
+background = "#222222FF"
+foreground = "#FFFFFF"
+frame_color = "#EC69A0"
+timeout = 0
