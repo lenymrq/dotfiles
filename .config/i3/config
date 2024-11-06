@@ -240,5 +240,6 @@ exec --no-startup-id ~/.fehbg
 exec --no-startup-id unclutter --timeout 0.75
 
 # Assignements
+assign [class="Code"] $ws1
 assign [window_role="browser"] $ws2
 assign [class="discord"] $ws4
