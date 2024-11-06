@@ -217,7 +217,6 @@ bar {
 default_border pixel 2
 default_floating_border pixel 2
 
-
 # Gaps
 gaps inner 8
 smart_gaps on
@@ -239,3 +238,7 @@ bindsym $mod+Escape exec --no-startup-id dunstctl close
 # Execs
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id unclutter --timeout 0.75
+
+# Assignements
+assign [window_role="browser"] $ws2
+assign [class="discord"] $ws4
