@@ -1,10 +1,10 @@
 configuration {
   display-drun: "drun";
   drun-display-format: "{icon}\t{name}";
-  font: "Inter 10";
+  font: "Noto Sans 10";
   modi: "drun";
   show-icons: true;
-  icon-theme: "Papirus-Dark";
+  icon-theme: "WhiteSur-dark";
 }
 
 @theme "/dev/null"
