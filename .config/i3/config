@@ -228,10 +228,10 @@ bindsym $mod+x exec i3lock
 bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
-bindsym --release Print exec maim '~/Pictures/$(date +%s).png'
-bindsym --release Shift+Print exec maim -s '~/Pictures/$(date +%s).png'
-bindsym --release $mod+Print exec maim | xclip -selection clipboard -t image/png
-bindsym --release $mod+Shift+Print exec maim -s | xclip -selection clipboard -t image/png
+bindsym --release Print exec maim ~/Pictures/$(date +%s).png && notify-send -u low "Screenshot saved to ~/Pictures/$(date +%s).png"
+bindsym --release Shift+Print exec maim -s ~/Pictures/$(date +%s).png && notify-send -u low "Screenshot saved to ~/Pictures/$(date +%s).png"
+bindsym --release $mod+Print exec maim | xclip -selection clipboard -t image/png && notify-send -u low "Screenshot saved to clipboard"
+bindsym --release $mod+Shift+Print exec maim -s | xclip -selection clipboard -t image/png && notify-send -u low "Screenshot saved to clipboard"
 
 bindsym $mod+Escape exec --no-startup-id dunstctl close
 
@@ -241,5 +241,5 @@ exec --no-startup-id unclutter --timeout 0.75
 
 # Assignements
 assign [class="Code"] $ws1
-assign [window_role="browser"] $ws2
+assign [class="^discord" window_role="browser"] $ws2
 assign [class="discord"] $ws4
