@@ -4,7 +4,7 @@ configuration {
   font: "Noto Sans 10";
   modi: "drun";
   show-icons: true;
-  icon-theme: "WhiteSur-dark";
+  icon-theme: "Papirus-dark";
 }
 
 @theme "/dev/null"
