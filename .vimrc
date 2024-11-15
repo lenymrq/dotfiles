@@ -78,6 +78,9 @@ set wildmode=list:longest
 " Set clipboard to be shared with system clipboard
 set clipboard=unnamedplus
 
+" Show whitespaces
+set list listchars=tab:❘-,lead:·,trail:·,extends:»,precedes:«,nbsp:×
+
 " PLUGINS ---------------------------------------------------------------- {{{
 
 " Plugin code goes here.
