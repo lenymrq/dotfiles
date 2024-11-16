@@ -1,0 +1,14 @@
+- Fedora 40
+- i3
+- dunst
+- picom
+- kitty
+- zsh
+- nm-applet
+- blueman
+- pactl
+- brightnessctl
+- maim
+- unclutter (optional)
+- gvim
+- vim-plug
