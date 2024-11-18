@@ -81,6 +81,9 @@ set clipboard=unnamedplus
 " Show whitespaces
 set list listchars=tab:❘-,lead:·,trail:·,extends:»,precedes:«,nbsp:×
 
+" Prevent swapfile creation
+set noswapfile
+
 " PLUGINS ---------------------------------------------------------------- {{{
 
 " Plugin code goes here.
