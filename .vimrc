@@ -92,6 +92,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'dense-analysis/ale'
   Plug 'alonfnt/gvim-zoom'
+  Plug 'Raimondi/delimitMate'
 
 call plug#end()
 
