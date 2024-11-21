@@ -21,6 +21,8 @@ set cursorline
 
 " Highlight cursor line underneath the cursor vertically.
 " set cursorcolumn
+" Enforced to 1 by preservim/vim-indent-guides, fix:
+let g:cursorcolumn = 0
 
 " Set shift width to 4 spaces.
 set shiftwidth=4
@@ -38,7 +40,7 @@ set nobackup
 set scrolloff=10
 
 " Do not wrap lines. Allow long lines to extend as far as the line goes.
-set nowrap
+" set nowrap
 
 " While searching though a file incrementally highlight matching characters as you type.
 set incsearch
@@ -79,10 +81,13 @@ set wildmode=list:longest
 set clipboard=unnamedplus
 
 " Show whitespaces
-set list listchars=tab:❘-,lead:·,trail:·,extends:»,precedes:«,nbsp:×
+set list listchars=trail:·
 
 " Prevent swapfile creation
 set noswapfile
+
+" Show indent guides (from preservim/vim-indent-guides)
+let g:indent_guides_enable_on_vim_startup = 1
 
 " PLUGINS ---------------------------------------------------------------- {{{
 
@@ -93,6 +98,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'dense-analysis/ale'
   Plug 'alonfnt/gvim-zoom'
   Plug 'Raimondi/delimitMate'
+  Plug 'preservim/vim-indent-guides'
 
 call plug#end()
 
