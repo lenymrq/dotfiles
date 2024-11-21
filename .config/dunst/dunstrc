@@ -1,7 +1,10 @@
 [global]
 frame_width = 2
-frame_color = "#51A2DA"
+frame_color = "#4C7899"
 separator_color = frame
+
+background = "#222222"
+foreground = "#B2C2CE"
 
 origin = top-center
 alignment = center
@@ -12,17 +15,11 @@ width = (240, 960)
 font = "Inter 12"
 
 [urgency_low]
-background = "#222222"
-foreground = "#CDD6F4"
 timeout = 5
 
 [urgency_normal]
-background = "#222222"
-foreground = "#FFFFFF"
 timeout = 10
 
 [urgency_critical]
-background = "#222222"
-foreground = "#FFFFFF"
 frame_color = "#EC69A0"
 timeout = 0
