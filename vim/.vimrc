@@ -89,6 +89,9 @@ set noswapfile
 " Show indent guides (from preservim/vim-indent-guides)
 let g:indent_guides_enable_on_vim_startup = 1
 
+" Enable completion where available.
+let g:ale_completion_enabled = 1
+
 " PLUGINS ---------------------------------------------------------------- {{{
 
 " Plugin code goes here.
