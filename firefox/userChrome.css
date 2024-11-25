@@ -1,0 +1,39 @@
+:root {
+  --corner-radius: 16px;
+}
+
+.tab-close-button {
+  border-radius: var(--corner-radius) !important;
+}
+
+#tabs-newtab-button > .toolbarbutton-icon {
+  border-radius: var(--corner-radius) !important;
+}
+
+#urlbar-background {
+  border-radius: var(--corner-radius) !important;
+}
+
+/*? rounded buttons inside urlbar (firefox logo on about pages, padlock, trans, etc.) */
+#identity-box > box,
+#tracking-protection-icon-container,
+#page-action-buttons > *,
+#urlbar-revert-button-container,
+#urlbar-searchmode-switcher {
+  border-radius: var(--corner-radius) !important;
+}
+
+/*? centered text when urlbar not in use */
+#urlbar:not(:is([breakout-extend])) #urlbar-input {
+  text-align: center !important;
+}
+
+/*? rounded results */
+.urlbarView-row {
+  border-radius: var(--corner-radius) !important;
+}
+
+/*? tab rounded corners */
+.tab-background {
+  border-radius: var(--corner-radius) !important;
+}
