@@ -1,8 +1,9 @@
+My setup:
 - Fedora 40
-- i3
 - dunst
-- picom
+- i3
 - kitty
+- picom
 - zsh
 - nm-applet
 - blueman
@@ -11,4 +12,7 @@
 - maim
 - unclutter (optional)
 - gvim
-- vim-plug
+- stow
+
+`stow package` for each package.<br>
+For example `stow dunst i3 kitty local picom shell vim` to `stow` everything.
