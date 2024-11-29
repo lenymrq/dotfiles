@@ -1,0 +1,17 @@
+general.import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+[font]
+normal = { family = "IosevkaTerm Nerd Font Mono", style = "Regular" }
+size = 12
+
+[window]
+padding = { x = 5, y = 5 }
+
+[terminal]
+shell = "zsh"
+
+[cursor]
+style = { shape = "Beam" }
+thickness = 0.2
