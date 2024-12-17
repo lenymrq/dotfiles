@@ -1,5 +1,12 @@
-/* background transition for everything while keeping newtab animation */
-*:not(.tabbrowser-tab, menupopup) {
-  transition: background 0.2s;
+.tab-background {
+    transition: background 0.15s;
+}
+
+#urlbar-input {
+    text-align: center !important;
+}
+
+#urlbar[focused] #urlbar-input {
+    text-align: left !important;
 }
 
