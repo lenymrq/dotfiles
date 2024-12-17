@@ -1,5 +1,0 @@
-/* background transition for everything while keeping newtab animation */
-*:not(.tabbrowser-tab, menupopup) {
-  transition: background 0.2s;
-}
-
