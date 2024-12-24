@@ -19,16 +19,11 @@ set number
 " Highlight cursor line underneath the cursor horizontally.
 set cursorline
 
-" Highlight cursor line underneath the cursor vertically.
-" set cursorcolumn
-" Enforced to 1 by preservim/vim-indent-guides, fix:
-let g:cursorcolumn = 0
-
 " Set shift width to 4 spaces.
 set shiftwidth=4
 
 " Set tab width to 4 columns.
-" set tabstop=4
+set tabstop=4
 
 " Use space characters instead of tabs.
 set expandtab
@@ -65,7 +60,7 @@ set showmatch
 set hlsearch
 
 " Set the commands to save in history default number is 20.
-set history=512
+set history=64
 
 " Enable auto completion menu after pressing TAB.
 set wildmenu
@@ -86,50 +81,22 @@ set list listchars=trail:·
 " Prevent swapfile creation
 set noswapfile
 
-" Show indent guides (from preservim/vim-indent-guides)
-let g:indent_guides_enable_on_vim_startup = 1
-
 " Enable completion where available.
 let g:ale_completion_enabled = 1
 
-" PLUGINS ---------------------------------------------------------------- {{{
 
-" Plugin code goes here.
+" PLUGINS ----------------------------------------------------------------
 
 call plug#begin('~/.vim/plugged')
 
+  Plug 'sheerun/vim-polyglot'
   Plug 'dense-analysis/ale'
-  Plug 'alonfnt/gvim-zoom'
   Plug 'Raimondi/delimitMate'
 
 call plug#end()
 
-" }}}
 
-
-" MAPPINGS --------------------------------------------------------------- {{{
-
-" Mappings code goes here.
-
-" }}}
-
-
-" VIMSCRIPT -------------------------------------------------------------- {{{
-
-" This will enable code folding.
-" Use the marker method of folding.
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-" You can split a window into sections by typing `:split` or `:vsplit`.
-" Display cursorline and cursorcolumn ONLY in active window.
-augroup cursor_off
-    autocmd!
-    autocmd WinLeave * set nocursorline nocursorcolumn
-    autocmd WinEnter * set cursorline cursorcolumn
-augroup END
+" VIMSCRIPT --------------------------------------------------------------
 
 " If GUI version of Vim is running set these options.
 if has('gui_running')
@@ -162,14 +129,8 @@ if has('gui_running')
 
 endif
 
-" More Vimscripts code goes here.
 
-" }}}
-
-
-" STATUS LINE ------------------------------------------------------------ {{{
-
-" Status bar code goes here.
+" STATUS LINE ------------------------------------------------------------
 
 " Clear status line when vimrc is reloaded.
 set statusline=
@@ -181,9 +142,7 @@ set statusline+=\ %F\ %M\ %Y\ %R
 set statusline+=%=
 
 " Status line right side.
-set statusline+=ascii:\ %b\ row:\ %l\ col:\ %c\ percent:\ %p%%\ 
+set statusline+=row:\ %l\ col:\ %c\ percent:\ %p%%\ 
 
 " Show the status on the second to last line.
 set laststatus=2
-
-" }}}
