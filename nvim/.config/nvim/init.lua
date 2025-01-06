@@ -959,9 +959,3 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
--- Neovide specific configuration
-if vim.g.neovide then
-  vim.o.guifont = "JetBrains Mono:h12"
-  vim.g.neovide_cursor_animation_length = 0
-end
