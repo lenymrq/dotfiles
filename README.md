@@ -14,5 +14,4 @@ Setup:
 - unclutter (optional)
 - stow (optional: to synchronize config files)
 
-`stow <package>` for each package.<br>
-For example `stow dunst i3 alacritty backgrounds picom shell vim` to `stow` everything.
+Simply `stow <package> <package>...` for each package you want.
