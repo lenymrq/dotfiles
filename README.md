@@ -1,8 +1,9 @@
-My setup:
-- Fedora 40
+I'm using Fedora 40.
+
+Setup:
 - dunst
 - i3
-- kitty
+- alacritty / kitty
 - picom
 - zsh
 - nm-applet
@@ -11,8 +12,7 @@ My setup:
 - brightnessctl
 - maim
 - unclutter (optional)
-- gvim
-- stow
+- stow (optional: to synchronize config files)
 
-`stow package` for each package.<br>
-For example `stow dunst i3 kitty local picom shell vim` to `stow` everything.
+`stow <package>` for each package.<br>
+For example `stow dunst i3 alacritty backgrounds picom shell vim` to `stow` everything.
