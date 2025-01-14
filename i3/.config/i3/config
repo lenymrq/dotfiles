@@ -227,6 +227,8 @@ bindsym --release $mod+Shift+Print exec maim -s | xclip -selection clipboard -t 
 
 bindsym $mod+Escape exec --no-startup-id dunstctl close
 
+bindsym $mod+Shift+s sticky toggle
+
 # Execs
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id picom
