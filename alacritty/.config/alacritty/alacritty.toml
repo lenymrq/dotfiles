@@ -4,7 +4,7 @@ general.import = [
 
 [font]
 normal = { family = "IosevkaTerm Nerd Font Mono", style = "Regular" }
-size = 12
+size = 14
 
 [window]
 padding = { x = 5, y = 5 }
