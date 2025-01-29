@@ -239,3 +239,4 @@ exec --no-startup-id oneko
 assign [class="Code"] $ws1
 assign [class="Chromium-browser|org.mozilla.firefox"] $ws2
 assign [class="vesktop|discord|Slack"] $ws4
+assign [class="spotify|Spotify"] $ws5
