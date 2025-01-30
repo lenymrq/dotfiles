@@ -2,9 +2,9 @@ I'm using Fedora 40.
 
 Setup:
 - dunst
-- i3
+- i3 / awesome
 - alacritty / kitty
-- picom
+- picom (optional)
 - zsh
 - nm-applet
 - blueman
