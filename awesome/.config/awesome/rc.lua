@@ -17,6 +17,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+-- Additional widgets
+local deficient = require("deficient")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -42,6 +44,19 @@ do
     end)
 end
 -- }}}
+
+-- Autorun programs
+autorun = true
+autorunApps =
+{
+    "nm-applet",
+    "blueman-applet",
+}
+if autorun then
+   for app = 1, #autorunApps do
+       awful.util.spawn(autorunApps[app])
+   end
+end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
@@ -109,6 +124,8 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
+mybattery = deficient.battery_widget {}
+mybrightness = deficient.brightness {step=10, timeout=0}
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -211,9 +228,11 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
+            mybattery,
+            mybrightness.widget,
+            -- mykeyboardlayout,
             mytextclock,
+            wibox.widget.systray(),
             s.mylayoutbox,
         },
     }
@@ -326,12 +345,20 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    awful.key({ modkey }, "d", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
     -- Custom
-    awful.key({ modkey }, "d", function() awful.util.spawn("dmenu_run -l 8") end,
-              {description = "dmenu launch app", group = "launcher"})
+    awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run -l 8") end,
+              {description = "dmenu launch app", group = "launcher"}),
+
+    awful.key({}, "#232", function() awful.util.spawn("brightnessctl set 10%-") end),
+    awful.key({}, "#233", function() awful.util.spawn("brightnessctl set 10%+") end),
+
+    awful.key({}, "XF86AudioRaiseVolume", function() awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%") end),
+    awful.key({}, "XF86AudioLowerVolume", function() awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%") end),
+    awful.key({}, "XF86AudioMute", function() awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle") end),
+    awful.key({}, "XF86AudioMicMute", function() awful.util.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle") end)
 )
 
 clientkeys = gears.table.join(
@@ -510,7 +537,7 @@ client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     if not awesome.startup then
-	    awful.client.setslave(c)
+        awful.client.setslave(c)
     end
 
     c.shape = function (cr, w, h) gears.shape.rounded_rect(cr, w, h, 6) end
