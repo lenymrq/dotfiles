@@ -61,7 +61,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.init("~/.config/awesome/themes/xresources/theme.lua")
+beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -124,8 +124,44 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
-mybattery = deficient.battery_widget {}
+
+-- Create a battery widget
+mybattery = deficient.battery_widget {ac_prefix = "CHR:", battery_prefix = "BAT:"}
+
+-- Separator
+myseparator = wibox.widget.textbox(" | ")
+
+-- Create a brightness widget
 mybrightness = deficient.brightness {step=10, timeout=0}
+
+-- Create a volume widget {{{
+volume_widget = wibox.widget.textbox()
+function update_volume(widget)
+        local fd = io.popen("amixer sget Master")
+        local status = fd:read("*all")
+        fd:close()
+        local volume = tonumber(string.match(status, "(%d?%d?%d)%%")) / 100
+        status = string.match(status, "%[(o[^%]]*)%]")
+        local volstring = ""
+        local volint = volume * 100
+        if string.find(status, "on", 1, true) then
+                volstring = "VOL: " .. volint .. "%"
+        else
+                volstring = "MUT: " .. volint .. "%"
+        end
+        return volstring
+end
+update_volume()
+
+volume_widget_timer = timer({timeout = 0})
+volume_widget_timer:connect_signal(
+        "timeout",
+        function()
+                volume_widget:set_text(update_volume())
+        end
+)
+volume_widget_timer:start()
+-- }}}
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -228,10 +264,14 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            volume_widget,
+            myseparator,
             mybattery,
+            myseparator,
             mybrightness.widget,
-            -- mykeyboardlayout,
+            myseparator,
             mytextclock,
+            myseparator,
             wibox.widget.systray(),
             s.mylayoutbox,
         },
@@ -485,7 +525,8 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+                     size_hints_honor = false
      }
     },
 
@@ -542,6 +583,9 @@ client.connect_signal("manage", function (c)
 
     c.shape = function (cr, w, h) gears.shape.rounded_rect(cr, w, h, 6) end
 
+    if awesome.startup then
+        c.maximized = false
+    end
     if awesome.startup
       and not c.size_hints.user_position
       and not c.size_hints.program_position then
