@@ -149,6 +149,7 @@ function update_volume(widget)
     local status = fd:read("*all")
     fd:close()
     local volume = tonumber(string.match(status, "(%d?%d?%d)%%")) / 100
+    if not volume then volume = 0 end
     status = string.match(status, "%[(o[^%]]*)%]")
     local volstring = ""
     local volint = volume * 100
@@ -393,11 +394,11 @@ globalkeys = gears.table.join(
         end,
         { description = "lua execute prompt", group = "awesome" }),
     -- Menubar
-    awful.key({ modkey }, "d", function() menubar.show() end,
+    awful.key({ modkey }, "p", function() menubar.show() end,
         { description = "show the menubar", group = "launcher" }),
 
     -- Custom
-    awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run -l 8") end,
+    awful.key({ modkey }, "d", function() awful.util.spawn("rofi -modes 'run' -show run") end,
         { description = "dmenu launch app", group = "launcher" }),
     awful.key({}, "#232", function() awful.util.spawn("brightnessctl set 10%-") end),
     awful.key({}, "#233", function() awful.util.spawn("brightnessctl set 10%+") end),
