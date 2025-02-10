@@ -7,7 +7,7 @@ configuration {
 @theme "/dev/null"
 
 * {
-    font: "sans 12";
+    font: "monospace 12";
     background-color: #222222;
     text-color: #888888;
 }
