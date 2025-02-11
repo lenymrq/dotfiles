@@ -49,19 +49,8 @@ do
 end
 -- }}}
 
--- Autorun programs
-autorun = true
-autorunApps =
-{
-    "nm-applet",
-    "blueman-applet",
-    "picom",
-}
-if autorun then
-    for app = 1, #autorunApps do
-        awful.util.spawn(autorunApps[app])
-    end
-end
+local i3lock = "i3lock -i ~/.local/share/backgrounds/frieren-2.png"
+awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
@@ -93,7 +82,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
+    -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -383,7 +372,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
         { description = "run prompt", group = "launcher" }),
 
-    awful.key({ modkey }, "x",
+    --[[     awful.key({ modkey }, "x",
         function()
             awful.prompt.run {
                 prompt       = "Run Lua code: ",
@@ -392,14 +381,15 @@ globalkeys = gears.table.join(
                 history_path = awful.util.get_cache_dir() .. "/history_eval"
             }
         end,
-        { description = "lua execute prompt", group = "awesome" }),
+        { description = "lua execute prompt", group = "awesome" }), ]]
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
         { description = "show the menubar", group = "launcher" }),
 
     -- Custom
     awful.key({ modkey }, "d", function() awful.util.spawn("rofi -modes 'run' -show run") end,
-        { description = "dmenu launch app", group = "launcher" }),
+        { description = "rofi launch app", group = "launcher" }),
+    awful.key({ modkey }, "x", function() awful.spawn.with_shell(i3lock) end),
     awful.key({}, "#232", function() awful.util.spawn("brightnessctl set 10%-") end),
     awful.key({}, "#233", function() awful.util.spawn("brightnessctl set 10%+") end),
     awful.key({}, "XF86AudioRaiseVolume", function() awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%") end),
