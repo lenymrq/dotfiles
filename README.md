@@ -1,17 +1,17 @@
-I'm using Fedora 40.
+I'm using Fedora 40 i3 Spin.
 
-Setup:
+My setup:
 - dunst
 - i3 / awesome
-- alacritty / kitty
-- picom (optional)
+- alacritty
+- picom
 - zsh
 - nm-applet
 - blueman
 - pactl
 - brightnessctl
 - maim
-- unclutter (optional)
-- stow (optional: to synchronize config files)
+- unclutter
+- stow
 
-Simply `stow <package> <package>...` for each package you want.
+`stow <package> <package>...` for each package you want.
