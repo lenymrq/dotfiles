@@ -395,7 +395,9 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86AudioRaiseVolume", function() awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%") end),
     awful.key({}, "XF86AudioLowerVolume", function() awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%") end),
     awful.key({}, "XF86AudioMute", function() awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle") end),
-    awful.key({}, "XF86AudioMicMute", function() awful.util.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle") end)
+    awful.key({}, "XF86AudioMicMute", function() awful.util.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle") end),
+    awful.key({}, "Print", function() awful.spawn.with_shell("exec maim | xclip -selection clipboard -t image/png") end),
+    awful.key({ modkey }, "Print", function() awful.spawn.with_shell("exec maim -s | xclip -selection clipboard -t image/png") end)
 )
 
 clientkeys = gears.table.join(
