@@ -3,8 +3,8 @@ general.import = [
 ]
 
 [font]
-normal = { family = "IosevkaTerm Nerd Font Mono", style = "Regular" }
-size = 14
+normal = { family = "ComicShannsMono Nerd Font Mono", style = "Regular" }
+size = 15
 
 [window]
 padding = { x = 5, y = 5 }
