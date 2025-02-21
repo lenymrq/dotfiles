@@ -15,3 +15,5 @@ My setup:
 - stow
 
 `stow <package> <package>...` for each package you want.
+
+awesome config is a modified version of [gwileful](https://github.com/Gwynsav/gwileful).

@@ -1,33 +1,121 @@
-local awful = require('awful')
-local wibox = require('wibox')
+local require = require
 
+local awful     = require('awful')
+local beautiful = require('beautiful')
+local wibox     = require('wibox')
+
+local dpi = beautiful.xresources.apply_dpi
+
+local color  = require(beautiful.colorscheme)
 local module = require(... .. '.module')
 
 return function(s)
-   s.mypromptbox = awful.widget.prompt() -- Create a promptbox.
+   -- Left widgets.
+   local left = wibox.widget({
+      layout = wibox.layout.fixed.horizontal,
+      {
+         widget  = wibox.container.margin,
+         margins = {
+            top = dpi(6), bottom = dpi(6),
+            right = dpi(16)
+         },
+         {
+            layout  = wibox.layout.fixed.horizontal,
+            spacing = dpi(12),
+            {
+               layout = wibox.layout.fixed.horizontal,
+               module.layoutbox(s),
+               module.taglist(s)
+            },
+            module.launcher(s)
+         }
+      },
+      {
+         widget = wibox.container.background,
+         bg     = color.bg3,
+         forced_width = dpi(1)
+      }
+   })
+
+   -- Middle widgets.
+   local center = wibox.widget({
+      widget = wibox.container.background,
+      bg     = color.bg1 .. '80',
+      {
+         widget  = wibox.container.margin,
+         margins = {
+            left = dpi(9), right = dpi(9),
+            top = dpi(6), bottom = dpi(6)
+         },
+         module.tasklist(s)
+      }
+   })
+
+   -- Right widgets.
+   local right = wibox.widget({
+      layout = wibox.layout.fixed.horizontal,
+      {
+         widget = wibox.container.background,
+         bg     = color.bg3,
+         forced_width = dpi(1)
+      },
+      {
+         widget  = wibox.container.margin,
+         margins = { left = dpi(12) },
+         {
+            layout  = wibox.layout.fixed.horizontal,
+            spacing = dpi(12),
+            {
+               widget  = wibox.container.margin,
+               margins = {
+                  top = dpi(6), bottom = dpi(6)
+               },
+               module.systray()
+            },
+            awful.widget.keyboardlayout(),
+            {
+               widget = wibox.container.margin,
+               margins = {
+                  top = dpi(6), bottom = dpi(6)
+               },
+               {
+                  layout  = wibox.layout.fixed.horizontal,
+                  spacing = dpi(12),
+                  module.status(),
+                  module.clock(s),
+                  module.dash(s)
+               }
+            }
+         }
+      }
+   })
 
    -- Create the wibox
-   s.mywibox = awful.wibar({
+   return awful.wibar({
       position = 'top',
+      height   = dpi(36),
       screen   = s,
       widget   = {
-         layout = wibox.layout.align.horizontal,
-         -- Left widgets.
+         widget = wibox.container.background,
+         bg     = color.bg3,
          {
-            layout = wibox.layout.fixed.horizontal,
-            module.launcher(),
-            module.taglist(s),
-            s.mypromptbox
-         },
-         -- Middle widgets.
-         module.tasklist(s),
-         -- Right widgets.
-         {
-            layout = wibox.layout.fixed.horizontal,
-            awful.widget.keyboardlayout(), -- Keyboard map indicator and switcher.
-            wibox.widget.systray(),
-            wibox.widget.textclock(), -- Create a textclock widget.
-            module.layoutbox(s)
+            widget = wibox.container.margin,
+            margins = { bottom = dpi(1) },
+            {
+               widget = wibox.container.background,
+               bg     = color.bg0,
+               {
+                  widget  = wibox.container.margin,
+                  margins = { left = dpi(16), right = dpi(16) },
+                  {
+                     layout = wibox.layout.align.horizontal,
+                     expand = 'outer',
+                     left,
+                     center,
+                     right
+                  }
+               }
+            }
          }
       }
    })

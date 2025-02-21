@@ -7,7 +7,7 @@ configuration {
 @theme "/dev/null"
 
 * {
-    font: "sans 12";
+    font: "monospace 12";
 
     bg: #191724;
     bg-alt: #403d52;
@@ -26,9 +26,8 @@ configuration {
 }
 
 window {
-  border: 2px;
+  border: 1px;
   border-color: @pur;
-  border-radius: 8px;
   padding: 8px;
   width: 25%;
 }
@@ -53,7 +52,6 @@ element {
   children: [ element-icon, element-text ];
   padding: 8px;
   spacing: 8px;
-  border-radius: 8px;
   background-color: transparent;
 }
 
