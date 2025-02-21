@@ -7,14 +7,27 @@ configuration {
 @theme "/dev/null"
 
 * {
-    font: "monospace 12";
-    background-color: #222222;
-    text-color: #888888;
+    font: "sans 12";
+
+    bg: #191724;
+    bg-alt: #403d52;
+    cur: #1f1d2e;
+    fgd: #e0def4;
+    cmt: #6e6a86;
+    cya: #9ccfd8;
+    grn: #31748f;
+    ora: #ebbcba;
+    pur: #c4a7e7;
+    red: #eb6f92;
+    yel: #f6c177;
+
+    text-color: @fgd;
+    background-color: @bg;
 }
 
 window {
   border: 2px;
-  border-color: #4c7899;
+  border-color: @pur;
   border-radius: 8px;
   padding: 8px;
   width: 25%;
@@ -26,8 +39,8 @@ listview {
 
 entry {
   placeholder: "Search";
-  placeholder-color: #888888;
-  text-color: #FFFFFF;
+  placeholder-color: @cmt;
+  text-color: @fgd;
   padding: 8px;
 }
 
@@ -50,12 +63,12 @@ element-icon {
 }
 
 element selected normal, element-text selected normal {
-  text-color: #FFFFFF;
-  background-color: #285577;
+  text-color: @fgd;
+  background-color: @bg-alt;
 }
 
 element-text {
-  text-color: #888888;
+  text-color: @cmt;
   vertical-align: 0.5;
 }
 
