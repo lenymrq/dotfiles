@@ -34,11 +34,14 @@ return {
       -- awful.layout.suit.floating
    },
 
+   lite = true,
+
    -- Bling
    --------
    -- Sizes.
    gaps = dpi(4),
-   tag_padding = dpi(6),
+   tag_padding = dpi(4),
+   radius = dpi(6),
 
    -- Colors. Available options:
    --   lite-xl, mardel, oxocarbon, rose-pine.

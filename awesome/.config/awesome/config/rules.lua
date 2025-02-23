@@ -2,6 +2,7 @@ local require, screen = require, screen
 
 local awful = require('awful')
 local ruled = require('ruled')
+local gears = require('gears')
 
 local user  = require('config.user')
 
@@ -18,7 +19,8 @@ ruled.client.connect_signal('request::rules', function()
          screen    = awful.screen.preferred,
          placement = awful.placement.centered + awful.placement.no_offscreen,
          callback  = awful.client.setslave,
-         size_hints_honor = false
+         size_hints_honor = false,
+         shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end
       }
    })
 
@@ -30,7 +32,7 @@ ruled.client.connect_signal('request::rules', function()
          class    = {
             'Arandr', 'Blueman-manager', 'Gpick', 'Kruler', 'Sxiv',
             'Tor Browser', 'Wpa_gui', 'veromix', 'xtightvncviewer',
-            'Nsxiv', 'mpv'
+            'Nsxiv', 'mpv', 'Nm-connection-editor'
          },
          -- Note that the name property shown in xprop might be set slightly after
          -- creation of the client and the name shown there might not match defined rules
@@ -55,10 +57,10 @@ ruled.client.connect_signal('request::rules', function()
    })
 
    -- Prevent certain clients from forcibly claiming focus.
-   ruled.client.append_rule({
-      rule_any   = { class = { 'firefox', 'steam', 'discord' } },
-      properties = { focus = false }
-   })
+   -- ruled.client.append_rule({
+   --    rule_any   = { class = { 'firefox', 'steam', 'discord' } },
+   --    properties = { focus = false }
+   -- })
 
    -- Map certain clients to certain workspaces.
    ruled.client.append_rule({
@@ -72,7 +74,25 @@ ruled.client.connect_signal('request::rules', function()
    })
    ruled.client.append_rule({
       rule_any = {
-         class = { 'discord', 'vesktop' }
+         class = { 'Code', 'jetbrains-idea', 'jetbrains-webstorm' }
+      },
+      properties = { tag = screen[1].tags[1] }
+   })
+   ruled.client.append_rule({
+      rule_any = {
+         class = { 'org.mozilla.firefox', 'Chromium-browser' }
+      },
+      properties = { tag = screen[1].tags[2] }
+   })
+   -- ruled.client.append_rule({
+   --    rule_any = {
+   --       class = { 'Alacritty' }
+   --    },
+   --    properties = { tag = screen[1].tags[3] }
+   -- })
+   ruled.client.append_rule({
+      rule_any = {
+         class = { 'discord', 'vesktop', 'Slack' }
       },
       properties = { tag = screen[1].tags[4] }
    })

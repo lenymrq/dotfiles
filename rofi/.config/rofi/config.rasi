@@ -11,6 +11,7 @@ configuration {
 
     bg: #191724;
     bg-alt: #403d52;
+    bg-altalt: #1f1d2e;
     cur: #1f1d2e;
     fgd: #e0def4;
     cmt: #6e6a86;
@@ -52,6 +53,10 @@ element {
   children: [ element-icon, element-text ];
   padding: 8px;
   spacing: 8px;
+  background-color: @bg-altalt;
+}
+
+element-text {
   background-color: transparent;
 }
 
