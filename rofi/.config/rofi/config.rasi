@@ -7,7 +7,7 @@ configuration {
 @theme "/dev/null"
 
 * {
-    font: "monospace 12";
+    font: "SF Pro Display 12";
 
     bg: #191724;
     bg-alt: #403d52;
@@ -55,6 +55,7 @@ element {
   padding: 8px;
   spacing: 8px;
   background-color: @bg-altalt;
+  border-radius: 6px;
 }
 
 element-text {

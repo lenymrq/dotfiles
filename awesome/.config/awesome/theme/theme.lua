@@ -30,9 +30,9 @@ else
 end
 
 -- Fonts
-_T.font_bitm = 'monospace '
-_T.font_mono = 'monospace '
-_T.bitm_size = dpi(10)
+_T.font_bitm = 'SF Pro Display '
+_T.font_mono = 'SFMono Nerd Font '
+_T.bitm_size = dpi(11)
 
 -- A few defaults.
 _T.font = _T.font_bitm .. _T.bitm_size
@@ -65,7 +65,7 @@ _T.tooltip_fg           = colorscheme.fg0
 
 -- Systray.
 _T.bg_systray           = colorscheme.bg1
-_T.systray_icon_spacing = dpi(2)
+_T.systray_icon_spacing = dpi(3)
 
 -- Bling
 --------

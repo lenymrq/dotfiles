@@ -3,7 +3,7 @@ general.import = [
 ]
 
 [font]
-normal = { family = "ComicShannsMono Nerd Font Mono", style = "Regular" }
+normal = { family = "SF Mono", style = "Regular" }
 size = 14
 
 [window]
@@ -14,4 +14,3 @@ shell = "zsh"
 
 [cursor]
 style = { shape = "Beam" }
-thickness = 0.1

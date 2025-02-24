@@ -109,7 +109,7 @@ if has('gui_running')
 
     " Set a custom font you have installed on your computer.
     " Syntax: set guifont=<font_name>\ <font_weight>\ <size>
-    set guifont=ComicShannsMono\ Nerd\ Font\ 15
+    set guifont=SF\ Mono\ 14
 
     " Display more of the file by default.
     " Hide the toolbar.
