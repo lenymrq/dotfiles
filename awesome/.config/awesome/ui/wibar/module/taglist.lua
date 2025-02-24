@@ -65,7 +65,8 @@ return function(s)
          bg_focus    = color.accent,
          bg_occupied = color.fg2,
          bg_empty    = color.bg4 .. 'ac',
-         bg_urgent   = color.red
+         bg_urgent   = color.red,
+         shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
       },
 
       -- The fun stuff.

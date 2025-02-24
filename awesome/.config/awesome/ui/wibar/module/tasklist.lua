@@ -87,6 +87,7 @@ return function(s)
          fg_focus    = color.accent,
          bg_urgent   = color.bg1,
          fg_urgent   = color.red,
+         shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
          shape_border_width           = dpi(1),
          shape_border_color           = color.bg3,
          shape_border_color_focus     = color.bg4 .. 'BF',

@@ -18,7 +18,7 @@ return function()
       {
          widget = wibox.container.background,
          bg     = color.bg3,
-         forced_width = dpi(1)
+         forced_width = dpi(1),
       },
       {
          layout = wibox.layout.fixed.vertical,
@@ -35,8 +35,8 @@ return function()
                margins = dpi(3),
                {
                   widget = wibox.container.constraint,
-                  strategy = 'exact',
-                  height = dpi(15),
+                  -- strategy = 'exact',
+                  -- height = dpi(15),
                   wibox.widget.systray()
                }
             }

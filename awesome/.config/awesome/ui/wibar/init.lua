@@ -27,7 +27,7 @@ return function(s)
                module.layoutbox(s),
                module.taglist(s)
             },
-            module.launcher(s)
+            -- module.launcher(s)
          }
       },
       {
@@ -72,7 +72,7 @@ return function(s)
                },
                module.systray()
             },
-            awful.widget.keyboardlayout(),
+            -- awful.widget.keyboardlayout(),
             {
                widget = wibox.container.margin,
                margins = {
@@ -93,7 +93,7 @@ return function(s)
    -- Create the wibox
    return awful.wibar({
       position = 'top',
-      height   = dpi(36),
+      height   = dpi(38),
       screen   = s,
       widget   = {
          widget = wibox.container.background,
