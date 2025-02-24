@@ -37,7 +37,7 @@ local user_at_host = wibox.widget({
       color = color.accent,
       align = 'right'
    }),
-   host
+   -- host
 })
 awful.spawn.easy_async_with_shell('uname -n', function(out)
    if out == nil or out == '' then return end

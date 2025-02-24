@@ -12,6 +12,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local widget = require('widget')
 local color  = require(beautiful.colorscheme)
+local user   = require('config.user')
 
 local _N = {}
 
@@ -63,7 +64,7 @@ function _N.actions(n)
       style = {
          underline_normal   = false,
          underline_selected = false,
-         bg_normal          = color.bg1
+         bg_normal          = color.bg1,
       },
       widget_template = {
          widget = wibox.container.background,
@@ -177,6 +178,7 @@ return function(n)
       notification = n,
       cursor       = 'hand2',
       border_width = 0,
+      shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
       widget_template = {
          widget   = wibox.container.constraint,
          strategy = 'max',

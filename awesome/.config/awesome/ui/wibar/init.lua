@@ -93,7 +93,7 @@ return function(s)
    -- Create the wibox
    return awful.wibar({
       position = 'top',
-      height   = dpi(38),
+      height   = dpi(42),
       screen   = s,
       widget   = {
          widget = wibox.container.background,
