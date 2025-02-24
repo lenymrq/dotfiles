@@ -1,7 +1,7 @@
 -- Kidna copying awesotre's stores on a surface level for added compatibility
 local function subscribable(base)
 	local obj = base or {}
-	
+
 	obj._subscribed = {}
 
 	-- Subscrubes a function to the object so that it's called when `fire` is

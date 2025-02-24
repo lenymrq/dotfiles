@@ -57,7 +57,7 @@ function mylayout.arrange(p)
                 x = area.x,
                 y = area.y
                     + left_iterator
-                        * (area.height / number_of_left_sided_slaves),
+                    * (area.height / number_of_left_sided_slaves),
                 width = slave_width,
                 height = area.height / number_of_left_sided_slaves,
             }
@@ -67,7 +67,7 @@ function mylayout.arrange(p)
                 x = master_area_x + master_area_width,
                 y = area.y
                     + right_iterator
-                        * (area.height / number_of_right_sided_slaves),
+                    * (area.height / number_of_right_sided_slaves),
                 width = slave_width,
                 height = area.height / number_of_right_sided_slaves,
             }

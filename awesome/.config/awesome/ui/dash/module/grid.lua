@@ -1,14 +1,14 @@
-local require = require
+local require   = require
 
 local awful     = require('awful')
 local beautiful = require('beautiful')
 local wibox     = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi       = beautiful.xresources.apply_dpi
 
-local color  = require(beautiful.colorscheme)
-local widget = require('widget')
-local icons  = require('theme.icons')
+local color     = require(beautiful.colorscheme)
+local widget    = require('widget')
+local icons     = require('theme.icons')
 
 -- local net = require('signal.system.network')
 
@@ -21,7 +21,7 @@ return function()
    --    - on_click: the action to execute on icon click.
    local function entry(args)
       local title = widget.textbox.colored({
-         text  = args.title
+         text = args.title
       })
       local body = widget.textbox.colored({
          text  = args.body,
@@ -34,8 +34,8 @@ return function()
       })
 
       local w = wibox.widget({
-         widget = wibox.container.background,
-         bg     = color.bg1,
+         widget       = wibox.container.background,
+         bg           = color.bg1,
          border_width = dpi(1),
          border_color = color.bg3,
          {
@@ -78,16 +78,16 @@ return function()
    end
 
    local network = entry({
-      title = 'Network',
-      body  = 'Settings',
-      icon  = icons['net_wifi_normal'],
+      title    = 'Network',
+      body     = 'Settings',
+      icon     = icons['net_wifi_normal'],
       -- on_click = function() net:toggle_networking() end
       on_click = function() awful.spawn('nm-connection-editor') end
    })
    local bluetooth = entry({
-      title = 'Bluetooth',
-      body  = 'Settings',
-      icon  = icons['bluez_scanning'],
+      title    = 'Bluetooth',
+      body     = 'Settings',
+      icon     = icons['bluez_scanning'],
       on_click = function() awful.spawn('blueman-manager') end
    })
 

@@ -26,8 +26,8 @@ local function draw_widget(
     widget_height
 )
     if not pcall(function()
-        return type(c.content)
-    end) then
+            return type(c.content)
+        end) then
         return
     end
 
@@ -154,14 +154,15 @@ local enable = function(opts)
         -- which can cause the c.content to not show the correct image
         gears.timer
         {
-            timeout = 0.1,
-            call_now  = false,
-            autostart = true,
+            timeout     = 0.1,
+            call_now    = false,
+            autostart   = true,
             single_shot = true,
-            callback = function()
+            callback    = function()
                 if t.selected == true then
                     for _, c in ipairs(t:clients()) do
-                        c.prev_content = gears.surface.duplicate_surface(c.content)
+                        c.prev_content = gears.surface.duplicate_surface(c
+                        .content)
                     end
                 end
             end

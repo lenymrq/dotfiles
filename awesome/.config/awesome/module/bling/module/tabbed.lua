@@ -1,7 +1,7 @@
 --[[
 
 This module currently works by adding a new property to each client that is tabbed.
-That new property is called bling_tabbed. 
+That new property is called bling_tabbed.
 So each client in a tabbed state has the property "bling_tabbed" which is a table.
 Each client that is not tabbed doesn't have that property.
 In the function themselves, the same object is refered to as "tabobj" which is why
@@ -99,7 +99,7 @@ tabbed.pick = function()
     -- compared to all other clients window ids
 
     local xwininfo_cmd =
-        [[ xwininfo | grep 'xwininfo: Window id:' | cut -d " " -f 4 ]]
+    [[ xwininfo | grep 'xwininfo: Window id:' | cut -d " " -f 4 ]]
     awful.spawn.easy_async_with_shell(xwininfo_cmd, function(output)
         for _, c in ipairs(client.get()) do
             if tonumber(c.window) == tonumber(output) then

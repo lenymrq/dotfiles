@@ -1,13 +1,13 @@
-local require = require
+local require   = require
 
 local awful     = require('awful')
 local beautiful = require('beautiful')
 local wibox     = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi       = beautiful.xresources.apply_dpi
 
-local color  = require(beautiful.colorscheme)
-local module = require(... .. '.module')
+local color     = require(beautiful.colorscheme)
+local module    = require(... .. '.module')
 
 return function(s)
    -- Left widgets.
@@ -16,7 +16,8 @@ return function(s)
       {
          widget  = wibox.container.margin,
          margins = {
-            top = dpi(6), bottom = dpi(6),
+            top = dpi(6),
+            bottom = dpi(6),
             right = dpi(16)
          },
          {
@@ -31,8 +32,8 @@ return function(s)
          }
       },
       {
-         widget = wibox.container.background,
-         bg     = color.bg3,
+         widget       = wibox.container.background,
+         bg           = color.bg3,
          forced_width = dpi(1)
       }
    })
@@ -44,8 +45,10 @@ return function(s)
       {
          widget  = wibox.container.margin,
          margins = {
-            left = dpi(9), right = dpi(9),
-            top = dpi(6), bottom = dpi(6)
+            left = dpi(9),
+            right = dpi(9),
+            top = dpi(6),
+            bottom = dpi(6)
          },
          module.tasklist(s)
       }
@@ -55,8 +58,8 @@ return function(s)
    local right = wibox.widget({
       layout = wibox.layout.fixed.horizontal,
       {
-         widget = wibox.container.background,
-         bg     = color.bg3,
+         widget       = wibox.container.background,
+         bg           = color.bg3,
          forced_width = dpi(1)
       },
       {

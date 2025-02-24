@@ -1,27 +1,33 @@
 if not RUBATO_DIR then RUBATO_DIR = (...):match("(.-)[^%.]+$") end
 
-local easing = require(RUBATO_DIR.."easing")
+local easing = require(RUBATO_DIR .. "easing")
 
 local function make_props_immutable(table)
 	setmetatable(table, {
 		__index = function(self, key)
-			if self._props[key] then return self._props[key]
-			else return rawget(self, key) end
+			if self._props[key] then
+				return self._props[key]
+			else
+				return rawget(self, key)
+			end
 		end,
 		__newindex = function(self, key, value)
-			if self._props[key] then return
-			else self._props[key] = value end
+			if self._props[key] then
+				return
+			else
+				self._props[key] = value
+			end
 		end,
 	})
 end
 
 local function manager()
-	local obj = {_props = {}}
+	local obj = { _props = {} }
 	make_props_immutable(obj)
 
 	obj._props.timeds = {}
 
-	obj._props.timed = {_props = {}}
+	obj._props.timed = { _props = {} }
 	obj._props.timed._props.defaults = {
 		duration = 1,
 		pos = 0,
@@ -36,10 +42,12 @@ local function manager()
 		rate = 60,
 	}
 	make_props_immutable(obj.timed)
-	obj._props.timed._props.override = {_props = {
-		clear = function() for _, timed in pairs(obj.timeds) do timed:reset_values() end end,
-		forall = function(func) for _, timed in pairs(obj.timeds) do func(timed) end end,
-	}}
+	obj._props.timed._props.override = {
+		_props = {
+			clear = function() for _, timed in pairs(obj.timeds) do timed:reset_values() end end,
+			forall = function(func) for _, timed in pairs(obj.timeds) do func(timed) end end,
+		}
+	}
 
 	setmetatable(obj.timed.override, {
 		__index = function(self, key) return self._props[key] end,

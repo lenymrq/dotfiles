@@ -27,7 +27,7 @@ local Proxy = require((...):match("(.-)[^%.]+$") .. "_proxy")
 local monitored = {}
 
 local function make_disconnected(name)
-  local o = {name = name}
+  local o = { name = name }
 
   local function disconnected_error()
     error(name .. " disconnected", 2)
@@ -39,20 +39,19 @@ local function make_disconnected(name)
       __call = disconnected_error,
       __newindex = disconnected_error,
       __index = disconnected_error
-  })
+    })
   return o
 end
 
 local function make_callbacks(managed, cb)
-
   local function name_appeared_callback()
     -- (bus, name, name_owner) passed as params, but we don't use them
     local proxy_obj = Proxy:new(managed._get_opts())
     rawset(managed, "is_connected", true)
     rawset(managed, "proxy", proxy_obj)
-    setmetatable(managed, {__index = proxy_obj})
+    setmetatable(managed, { __index = proxy_obj })
     if cb then
-        cb(managed, true)
+      cb(managed, true)
     end
   end
 
@@ -61,24 +60,24 @@ local function make_callbacks(managed, cb)
     local proxy_obj = managed._get_disconnected_proxy()
     rawset(managed, "is_connected", false)
     rawset(managed, "proxy", proxy_obj)
-    setmetatable(managed, {__index = proxy_obj})
+    setmetatable(managed, { __index = proxy_obj })
     if cb then
-        cb(managed, false)
+      cb(managed, false)
     end
   end
 
   return name_appeared_callback, name_vanished_callback
-
 end
 
 local function validate_opts(params)
-
   local opts = params or {}
 
-  local absent_keys = {bus = false,
-                       interface = false,
-                       name = false,
-                       path = false}
+  local absent_keys = {
+    bus = false,
+    interface = false,
+    name = false,
+    path = false
+  }
 
   for k, _ in pairs(absent_keys) do
     if opts[k] ~= nil then
@@ -100,7 +99,6 @@ local function validate_opts(params)
   if msg ~= "" then
     error("Missing required DBus options: " .. msg, 2)
   end
-
 end
 
 --[[-- Create a monitored proxy object from the given options.
@@ -154,15 +152,14 @@ end
 
 ]]
 function monitored.new(opts, cb)
-
   validate_opts(opts)
 
   local disconnected_proxy = make_disconnected(opts.name)
 
   local out = {
     name = opts.name,
-    _get_opts = function () return opts end,
-    _get_disconnected_proxy = function () return disconnected_proxy  end
+    _get_opts = function() return opts end,
+    _get_disconnected_proxy = function() return disconnected_proxy end
   }
 
   local name_appeared_callback, name_vanished_callback = make_callbacks(out, cb)
@@ -177,7 +174,6 @@ function monitored.new(opts, cb)
   )
 
   return out
-
 end
 
 return monitored

@@ -22,7 +22,8 @@ local function enable_wrapper(args)
     gtimer.delayed_call(function()
         naughty.notify({
             title = "Bling Error",
-            text = "Global signals are deprecated! Please take a look at the playerctl documentation.",
+            text =
+            "Global signals are deprecated! Please take a look at the playerctl documentation.",
             app_name = "Bling Error",
             app_icon = "system-error",
             actions = { open }

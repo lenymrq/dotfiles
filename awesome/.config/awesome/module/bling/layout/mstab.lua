@@ -89,7 +89,7 @@ function update_tabbar(
 
         -- Change visibility of the tab bar when layout, selected tag or number of clients (visible, master, slave) changes
         local function adjust_visibility()
-            local name = awful.layout.getname( awful.layout.get( s ) )
+            local name = awful.layout.getname(awful.layout.get(s))
             s.tabbar.visible = (name == mylayout.name)
         end
 

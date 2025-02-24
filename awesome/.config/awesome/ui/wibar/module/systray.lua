@@ -1,14 +1,14 @@
-local require = require
+local require   = require
 
 local awful     = require('awful')
 local beautiful = require('beautiful')
 local wibox     = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi       = beautiful.xresources.apply_dpi
 
-local widget = require('widget')
-local color  = require(beautiful.colorscheme)
-local icons  = require('theme.icons')
+local widget    = require('widget')
+local color     = require(beautiful.colorscheme)
+local icons     = require('theme.icons')
 
 return function()
    -- The systray itself.
@@ -16,15 +16,15 @@ return function()
       layout = wibox.layout.fixed.horizontal,
       visible = false,
       {
-         widget = wibox.container.background,
-         bg     = color.bg3,
+         widget       = wibox.container.background,
+         bg           = color.bg3,
          forced_width = dpi(1),
       },
       {
          layout = wibox.layout.fixed.vertical,
          {
-            widget = wibox.container.background,
-            bg     = color.bg3,
+            widget        = wibox.container.background,
+            bg            = color.bg3,
             forced_height = dpi(1)
          },
          {
@@ -42,8 +42,8 @@ return function()
             }
          },
          {
-            widget = wibox.container.background,
-            bg     = color.bg3,
+            widget        = wibox.container.background,
+            bg            = color.bg3,
             forced_height = dpi(1)
          }
       }
@@ -56,15 +56,17 @@ return function()
       align = 'center'
    })
    local switchbox = wibox.widget({
-      widget = wibox.container.background,
-      bg     = color.bg1,
+      widget       = wibox.container.background,
+      bg           = color.bg1,
       border_width = dpi(1),
       border_color = color.bg3,
       {
          widget  = wibox.container.margin,
          margins = {
-            top = dpi(7), bottom = dpi(7),
-            left = dpi(6), right = dpi(6)
+            top = dpi(7),
+            bottom = dpi(7),
+            left = dpi(6),
+            right = dpi(6)
          },
          switch
       },
@@ -90,7 +92,7 @@ return function()
    -- When hovered, lights up the switch and when clicked, switches states and changes
    -- the icon's direction.
    return wibox.widget({
-      layout  = wibox.layout.fixed.horizontal,
+      layout = wibox.layout.fixed.horizontal,
       systray,
       switchbox
    })

@@ -1,27 +1,27 @@
 -- See: https://lazka.github.io/pgi-docs/UPowerGlib-1.0/classes/Device.html
 local require, string, ipairs = require, string, ipairs
 
-local gears = require('gears')
+local gears                   = require('gears')
 
-local upower = require('lgi').require('UPowerGlib')
-local client = upower.Client()
-local user   = require('config.user')
+local upower                  = require('lgi').require('UPowerGlib')
+local client                  = upower.Client()
+local user                    = require('config.user')
 
-local instance = nil
+local instance                = nil
 
-local battery = {}
+local battery                 = {}
 
 -- Default to BAT0 if the user doesn't set it, in which case the user may not actually
 -- have a battery, which won't get past the for loop later on, which checks that
 -- `device_path` matches a present battery before attempting to get data from it.
-battery.device_path = '/org/freedesktop/UPower/devices/battery_' .. (user.battery_name or 'BAT0')
+battery.device_path           = '/org/freedesktop/UPower/devices/battery_' .. (user.battery_name or 'BAT0')
 -- The only relevant ones for this use case are the first five.
-battery.device_state = {
+battery.device_state          = {
    'UNKNOWN', 'CHARGING', 'DISCHARGING', 'EMPTY', 'FULLY_CHARGED',
    'PENDING_CHARGE', 'PENDING_DISCHARGE', 'LAST'
 }
 -- For some reason, this enum contains some unused values, they were set to nil here.
-battery.device_level = {
+battery.device_level          = {
    'UNKNOWN', 'NONE', nil, 'LOW', 'CRITICAL', nil, 'NORMAL', 'HIGH', 'FULL', nil
 }
 

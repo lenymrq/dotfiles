@@ -1,20 +1,20 @@
 local require, math, string, awesome = require, math, string, awesome
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local gears     = require('gears')
-local wibox     = require('wibox')
+local awful                          = require('awful')
+local beautiful                      = require('beautiful')
+local gears                          = require('gears')
+local wibox                          = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi                            = beautiful.xresources.apply_dpi
 
-local color  = require(beautiful.colorscheme)
-local pctl   = require('signal.system.playerctl')
-local widget = require('widget')
-local icons  = require('theme.icons')
-local user   = require('config.user')
+local color                          = require(beautiful.colorscheme)
+local pctl                           = require('signal.system.playerctl')
+local widget                         = require('widget')
+local icons                          = require('theme.icons')
+local user                           = require('config.user')
 
-local width, height, timeout = 270, 120, 3
-local ratio = width / (height - 24)
+local width, height, timeout         = 270, 120, 3
+local ratio                          = width / (height - 24)
 
 return function(s)
    local _W = {}
@@ -39,7 +39,7 @@ return function(s)
    })
    _W.title = widget.textbox.scrolling({
       text = 'Nothing Playing',
-      font  = beautiful.font_mono .. beautiful.bitm_size
+      font = beautiful.font_mono .. beautiful.bitm_size
    })
    _W.artist = widget.textbox.scrolling({
       text  = 'by Unknown',
@@ -88,8 +88,10 @@ return function(s)
       background_color = color.bg1,
       color = color.fg0,
       margins = {
-         left = dpi(9), right = dpi(9),
-         top = dpi(4), bottom = dpi(4)
+         left = dpi(9),
+         right = dpi(9),
+         top = dpi(4),
+         bottom = dpi(4)
       }
    })
    _W.volume_level = widget.textbox.colored({
@@ -102,15 +104,15 @@ return function(s)
    })
 
    local osd = wibox({
-      height  = height,
-      width   = width,
-      screen  = s,
-      bg      = color.bg0,
-      ontop   = true,
-      visible = false,
+      height       = height,
+      width        = width,
+      screen       = s,
+      bg           = color.bg0,
+      ontop        = true,
+      visible      = false,
       border_width = dpi(1),
       border_color = color.bg3,
-      widget = {
+      widget       = {
          layout = wibox.layout.fixed.vertical,
          {
             layout = wibox.layout.stack,
@@ -122,7 +124,7 @@ return function(s)
                   from  = { 0, 0 },
                   to    = { dpi(width), 0 },
                   stops = {
-                     { 0, color.bg0 .. 'EF' }, { 0.45, color.bg0 .. 'EF' },
+                     { 0,    color.bg0 .. 'EF' }, { 0.45, color.bg0 .. 'EF' },
                      { 0.73, color.bg0 .. 'CC' }, { 1, color.bg0 .. 'A0' }
                   }
                },
@@ -134,7 +136,9 @@ return function(s)
                      spacing = dpi(6),
                      {
                         layout = wibox.layout.align.horizontal,
-                        _W.icon, nil, _W.player
+                        _W.icon,
+                        nil,
+                        _W.player
                      },
                      {
                         layout = wibox.layout.fixed.vertical,
@@ -144,25 +148,29 @@ return function(s)
                      },
                      {
                         layout = wibox.layout.align.horizontal,
-                        _W.progress, nil, _W.status
+                        _W.progress,
+                        nil,
+                        _W.status
                      }
                   }
                }
             }
          },
          {
-            widget = wibox.container.background,
-            bg     = color.bg3,
+            widget        = wibox.container.background,
+            bg            = color.bg3,
             forced_height = dpi(1)
          },
          {
             widget  = wibox.container.margin,
             margins = {
-               top = dpi(6), bottom = dpi(6),
-               left = dpi(12), right = dpi(12)
+               top = dpi(6),
+               bottom = dpi(6),
+               left = dpi(12),
+               right = dpi(12)
             },
             {
-               layout  = wibox.layout.align.horizontal,
+               layout = wibox.layout.align.horizontal,
                _W.volume_level,
                _W.volume,
                _W.volume_label
@@ -242,7 +250,7 @@ return function(s)
 
    pctl:connect_signal('position', function(_, prog, len, _)
       _W.progress.text = string.format('%02d:%02d', math.floor(prog / 60), prog % 60)
-         .. ' / ' .. string.format('%02d:%02d', math.floor(len / 60), len % 60)
+          .. ' / ' .. string.format('%02d:%02d', math.floor(len / 60), len % 60)
    end)
 
    awesome.connect_signal('osd::new', function(new_osd)

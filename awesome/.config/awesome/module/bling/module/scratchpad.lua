@@ -30,7 +30,8 @@ end
 --- The turn off animation
 local function animate_turn_off(self, anim, axis)
     self.screen_on_toggled_scratchpad = self.client.screen
-    self.tag_on_toggled_scratchpad = self.screen_on_toggled_scratchpad.selected_tag
+    self.tag_on_toggled_scratchpad = self.screen_on_toggled_scratchpad
+    .selected_tag
 
     if self.client.floating == false then
         -- Save the client geometry before floating it
@@ -69,7 +70,7 @@ local function abort_if_tag_was_switched(self)
     -- Switch to tag 2
     -- Outcome: The client will remain on tag 1 and will instead be removed from tag 2
     if (self.turning_off) and (self.screen_on_toggled_scratchpad and
-        self.screen_on_toggled_scratchpad.selected_tag) ~= self.tag_on_toggled_scratchpad
+            self.screen_on_toggled_scratchpad.selected_tag) ~= self.tag_on_toggled_scratchpad
     then
         if self.rubato.x then
             self.rubato.x:abort()
@@ -115,13 +116,14 @@ function Scratchpad:new(args)
     if args.awestore then
         naughty.notify({
             title = "Bling Error",
-            text = "Awestore is no longer supported! Please take a look at the scratchpad documentation and use rubato for animations instead.",
+            text =
+            "Awestore is no longer supported! Please take a look at the scratchpad documentation and use rubato for animations instead.",
         })
     end
 
     args.rubato = args.rubato or {}
 
-    local ret = gears.object{}
+    local ret = gears.object {}
     gears.table.crush(ret, Scratchpad)
     gears.table.crush(ret, args)
 

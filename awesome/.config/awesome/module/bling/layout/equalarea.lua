@@ -32,8 +32,8 @@ local function divide(p, g, low, high, cls, mwfact, mcount)
             bigg.height = g.height
             bigg.width = math.floor(
                 g.width
-                    * (bigmasters * (mwfact - 1) + bigdiv)
-                    / (slaves + mwfact * masters)
+                * (bigmasters * (mwfact - 1) + bigdiv)
+                / (slaves + mwfact * masters)
             )
             smallg.width = g.width - bigg.width
             bigg.y = g.y
@@ -43,8 +43,8 @@ local function divide(p, g, low, high, cls, mwfact, mcount)
             bigg.width = g.width
             bigg.height = math.floor(
                 g.height
-                    * (bigmasters * (mwfact - 1) + bigdiv)
-                    / (slaves + mwfact * masters)
+                * (bigmasters * (mwfact - 1) + bigdiv)
+                / (slaves + mwfact * masters)
             )
             smallg.height = g.height - bigg.height
             bigg.x = g.x

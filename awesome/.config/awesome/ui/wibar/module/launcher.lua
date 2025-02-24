@@ -1,14 +1,14 @@
-local require = require
+local require   = require
 
 local awful     = require('awful')
 local beautiful = require('beautiful')
 local wibox     = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi       = beautiful.xresources.apply_dpi
 
-local widget = require('widget')
-local color  = require(beautiful.colorscheme)
-local icons  = require('theme.icons')
+local widget    = require('widget')
+local color     = require(beautiful.colorscheme)
+local icons     = require('theme.icons')
 
 return function(s)
    local w = wibox.widget({

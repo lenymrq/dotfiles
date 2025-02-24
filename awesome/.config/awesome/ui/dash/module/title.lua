@@ -1,18 +1,18 @@
-local require = require
+local require   = require
 
 local beautiful = require('beautiful')
 local wibox     = require('wibox')
 
-local dpi   = beautiful.xresources.apply_dpi
-local color = require(beautiful.colorscheme)
-local icons = require('theme.icons')
+local dpi       = beautiful.xresources.apply_dpi
+local color     = require(beautiful.colorscheme)
+local icons     = require('theme.icons')
 
 return function()
    return wibox.widget({
       layout = wibox.layout.fixed.vertical,
       {
-         widget = wibox.container.background,
-         bg     = color.bg3,
+         widget        = wibox.container.background,
+         bg            = color.bg3,
          forced_height = dpi(1)
       },
       {
@@ -23,8 +23,10 @@ return function()
             {
                widget  = wibox.container.margin,
                margins = {
-                  top = dpi(6), bottom = dpi(6),
-                  left = dpi(10), right = dpi(10)
+                  top = dpi(6),
+                  bottom = dpi(6),
+                  left = dpi(10),
+                  right = dpi(10)
                },
                {
                   widget = wibox.widget.textbox,
@@ -42,8 +44,10 @@ return function()
                {
                   widget = wibox.container.margin,
                   margins = {
-                     left = dpi(8), right = dpi(8),
-                     top = dpi(6), bottom = dpi(6)
+                     left = dpi(8),
+                     right = dpi(8),
+                     top = dpi(6),
+                     bottom = dpi(6)
                   },
                   {
                      widget = wibox.widget.textbox,

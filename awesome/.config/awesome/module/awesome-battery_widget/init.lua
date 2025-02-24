@@ -24,7 +24,7 @@ function battery_widget.list_devices()
     local ret = {}
     local devices = upower.Client():get_devices()
 
-    for _,d in ipairs(devices) do
+    for _, d in ipairs(devices) do
         table.insert(ret, d:get_object_path())
     end
 
@@ -38,7 +38,7 @@ end
 function battery_widget.get_device(path)
     local devices = upower.Client():get_devices()
 
-    for _,d in ipairs(devices) do
+    for _, d in ipairs(devices) do
         if d:get_object_path() == path then
             return d
         end
@@ -67,17 +67,16 @@ function battery_widget.to_clock(seconds)
     if seconds <= 0 then
         return '00:00';
     else
-        local hours = string.format('%02.f', math.floor(seconds/3600));
-        local mins = string.format('%02.f', math.floor(seconds/60 - hours*60));
+        local hours = string.format('%02.f', math.floor(seconds / 3600));
+        local mins = string.format('%02.f', math.floor(seconds / 60 - hours * 60));
         return hours .. ':' .. mins
     end
 end
 
-
 --- Gives the default widget to use if user didn't specify one.
 -- The default widget used is an `empty_widget` instance.
 -- @treturn widget The default widget to use.
-local function default_template ()
+local function default_template()
     return wbase.empty_widget()
 end
 
@@ -106,7 +105,7 @@ end
 --   widget creation.
 -- @treturn battery_widget The battery_widget instance build.
 -- @constructorfct battery_widget.new
-function battery_widget.new (args)
+function battery_widget.new(args)
     args = gtable.crush({
         widget_template = default_template(),
         device_path = '',
@@ -120,7 +119,7 @@ function battery_widget.new (args)
         or battery_widget.get_device(args.device_path)
 
     -- Attach signals:
-    widget.device.on_notify = function (d)
+    widget.device.on_notify = function(d)
         widget:emit_signal('upower::update', d)
     end
 
@@ -131,7 +130,6 @@ function battery_widget.new (args)
 
     return widget
 end
-
 
 function mt.__call(self, ...)
     return battery_widget.new(...)

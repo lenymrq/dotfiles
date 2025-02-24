@@ -1,16 +1,16 @@
 local require, os = require, os
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local wibox     = require('wibox')
+local awful       = require('awful')
+local beautiful   = require('beautiful')
+local wibox       = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi         = beautiful.xresources.apply_dpi
 
-local widget  = require('widget')
-local helpers = require('helpers')
-local color   = require(beautiful.colorscheme)
-local icons   = require('theme.icons')
-local weather = require('signal.system.weather')
+local widget      = require('widget')
+local helpers     = require('helpers')
+local color       = require(beautiful.colorscheme)
+local icons       = require('theme.icons')
+local weather     = require('signal.system.weather')
 
 return function(s)
    -- A simple widget that shows the correct suffix for the current date.
@@ -61,8 +61,8 @@ return function(s)
             top = dpi(5), bottom = dpi(5)
          },
          {
-            widget = wibox.container.background,
-            bg     = color.bg2,
+            widget       = wibox.container.background,
+            bg           = color.bg2,
             forced_width = dpi(1)
          }
       },

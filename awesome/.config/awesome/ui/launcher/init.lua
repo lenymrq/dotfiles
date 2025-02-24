@@ -3,18 +3,18 @@
 -- https://github.com/Stardust-kyun/dotfiles/blob/126b2df5edbec8044cbdbf13fb261f935311f6fe/home/.config/awesome/theme/launcher.lua
 local require, table, ipairs = require, table, ipairs
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local gears     = require('gears')
-local wibox     = require('wibox')
+local awful                  = require('awful')
+local beautiful              = require('beautiful')
+local gears                  = require('gears')
+local wibox                  = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
-local gio = require('lgi').Gio
+local dpi                    = beautiful.xresources.apply_dpi
+local gio                    = require('lgi').Gio
 
-local user  = require('config.user')
-local color = require(beautiful.colorscheme)
-local height, width, margin = 220, 540, 6
-local entry_max = 12
+local user                   = require('config.user')
+local color                  = require(beautiful.colorscheme)
+local height, width, margin  = 220, 540, 6
+local entry_max              = 12
 
 return function(s)
    local default
@@ -26,11 +26,11 @@ return function(s)
    end
 
    local launcher = wibox({
-      visible = false,
-      ontop   = true,
-      width   = dpi(width),
-      height  = dpi(height),
-      bg      = color.bg0,
+      visible      = false,
+      ontop        = true,
+      width        = dpi(width),
+      height       = dpi(height),
+      bg           = color.bg0,
       border_width = dpi(1),
       border_color = color.bg3
    })
@@ -40,12 +40,12 @@ return function(s)
    local _W = {}
    _W.prompt = wibox.widget.textbox('Search')
    _W.entries = wibox.widget({
-      layout  = wibox.layout.grid,
-      spacing = dpi(8),
-      expand  = true,
-      column_count = 3,
+      layout             = wibox.layout.grid,
+      spacing            = dpi(8),
+      expand             = true,
+      column_count       = 3,
       minimum_row_height = dpi(29),
-      homogenous = false
+      homogenous         = false
    })
 
    launcher:setup({
@@ -61,7 +61,7 @@ return function(s)
             from  = { 0, 0 },
             to    = { 0, dpi(height) },
             stops = {
-               { 0, color.bg0 .. 'A0' }, { 0.25, color.bg0 .. 'D0' },
+               { 0,   color.bg0 .. 'A0' }, { 0.25, color.bg0 .. 'D0' },
                { 0.4, color.bg0 .. 'F0' }, { 0.55, color.bg0 }, { 1, color.bg0 }
             }
          },
@@ -79,19 +79,20 @@ return function(s)
                         widget = wibox.container.background,
                         bg     = color.bg0,
                         {
-                           widget  = wibox.container.margin,
-                           margins = dpi(8),
+                           widget        = wibox.container.margin,
+                           margins       = dpi(8),
                            forced_height = dpi(28),
                            _W.prompt
                         }
                      },
                      {
-                        widget = wibox.container.background,
-                        bg     = color.bg2,
+                        widget        = wibox.container.background,
+                        bg            = color.bg2,
                         forced_height = dpi(1)
                      }
                   },
-                  nil, nil
+                  nil,
+                  nil
                },
                _W.entries
             }
@@ -109,7 +110,7 @@ return function(s)
       for _, entry in ipairs(gio.AppInfo.get_all()) do
          if entry:should_show() then
             local name =
-               entry:get_name():gsub("&", "&amp;"):gsub("<", "&lt;"):gsub("'", "&#39;")
+                entry:get_name():gsub("&", "&amp;"):gsub("<", "&lt;"):gsub("'", "&#39;")
             table.insert(entry_list, { name = name, appinfo = entry })
          end
       end
@@ -144,16 +145,18 @@ return function(s)
       -- Add filtered entries.
       for i, entry in ipairs(_A.filtered) do
          local widget = wibox.widget({
-            widget = wibox.container.background,
-            bg     = color.bg1,
-            fg     = color.fg0,
+            widget       = wibox.container.background,
+            bg           = color.bg1,
+            fg           = color.fg0,
             border_width = dpi(1),
             border_color = color.bg1,
             {
                widget  = wibox.container.margin,
                margins = {
-                  top = dpi(6), bottom = dpi(6),
-                  left = dpi(12), right = dpi(12)
+                  top = dpi(6),
+                  bottom = dpi(6),
+                  left = dpi(12),
+                  right = dpi(12)
                },
                wibox.widget.textbox(entry.name)
             }
@@ -179,15 +182,15 @@ return function(s)
 
       -- Populates prompt and makes it responsive.
       awful.prompt.run({
-         prompt  = 'Searching: ',
-         textbox = _W.prompt,
+         prompt           = 'Searching: ',
+         textbox          = _W.prompt,
          -- Upon modifying the contents of the prompt.
          changed_callback = function(cmd)
             local input = cmd:gsub("[%[%]%(%)%.%-%+%?%*%%]", "%%%1")
             _A.filter(input)
          end,
          -- Upon pressing enter.
-         exe_callback = function(cmd)
+         exe_callback     = function(cmd)
             local entry = _A.filtered[_A.entry_index]
             if entry then
                entry.appinfo:launch()
@@ -196,7 +199,7 @@ return function(s)
             end
          end,
          -- When all else is done.
-         done_callback = function()
+         done_callback    = function()
             launcher.visible = false
          end
       })
@@ -212,8 +215,8 @@ return function(s)
       end
 
       awful.placement.next_to(launcher, {
-         margins  = { top = dpi(margin), left = dpi(margin) },
-         geometry = s.bar,
+         margins             = { top = dpi(margin), left = dpi(margin) },
+         geometry            = s.bar,
          preferred_positions = 'bottom',
          preferred_anchors   = 'front'
       })

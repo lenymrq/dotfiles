@@ -3,13 +3,13 @@
 -- file which is merged with your present configuration on AwesomeWM startup.
 local require, io = require, io
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
+local awful       = require('awful')
+local beautiful   = require('beautiful')
 
-local color = require(beautiful.colorscheme)
-local path =  beautiful.data_dir .. 'xresources'
+local color       = require(beautiful.colorscheme)
+local path        = beautiful.data_dir .. 'xresources'
 
-local theme = string.format([[
+local theme       = string.format([[
 Nsxiv.window.background: %s
 Nsxiv.window.foreground: %s
 Nsxiv.bar.background: %s

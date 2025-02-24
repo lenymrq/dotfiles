@@ -2,19 +2,19 @@
 -- reliable enough to be usable.
 local require, io, os = require, io, os
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local naughty   = require('naughty')
+local awful           = require('awful')
+local beautiful       = require('beautiful')
+local naughty         = require('naughty')
 
-local user    = require('config.user')
-local helpers = require('helpers')
+local user            = require('config.user')
+local helpers         = require('helpers')
 
 -- The directory where PERMANENT files would be stored.
-local perm_dir  = user.screenshot_path or os.getenv('HOME')
+local perm_dir        = user.screenshot_path or os.getenv('HOME')
 
 local function send_notif(path)
-   local ok      = naughty.action({ name = 'Ok'      })
-   local save    = naughty.action({ name = 'Save'    })
+   local ok      = naughty.action({ name = 'Ok' })
+   local save    = naughty.action({ name = 'Save' })
    local discard = naughty.action({ name = 'Discard' })
 
    save:connect_signal('invoked', function()
@@ -75,7 +75,7 @@ local function take_screenshot(cmd)
 end
 
 return {
-   screen    = function()  take_screenshot('maim')                    end,
-   selection = function()  take_screenshot('maim -s')                 end,
+   screen    = function() take_screenshot('maim') end,
+   selection = function() take_screenshot('maim -s') end,
    delayed   = function(s) take_screenshot('sleep ' .. s .. '; maim') end
 }

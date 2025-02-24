@@ -1,18 +1,18 @@
 local require, math, string, collectgarbage = require, math, string, collectgarbage
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local gears     = require('gears')
-local wibox     = require('wibox')
+local awful                                 = require('awful')
+local beautiful                             = require('beautiful')
+local gears                                 = require('gears')
+local wibox                                 = require('wibox')
 
-local dpi   = beautiful.xresources.apply_dpi
-local pctl  = require('signal.system.playerctl')
+local dpi                                   = beautiful.xresources.apply_dpi
+local pctl                                  = require('signal.system.playerctl')
 
-local widget = require('widget')
-local color  = require(beautiful.colorscheme)
-local icons  = require('theme.icons')
-local player = require('ui.scratch').music
-local user   = require('config.user')
+local widget                                = require('widget')
+local color                                 = require(beautiful.colorscheme)
+local icons                                 = require('theme.icons')
+local player                                = require('ui.scratch').music
+local user                                  = require('config.user')
 
 return function()
    -- The art is a bit special.
@@ -39,51 +39,51 @@ return function()
       return w
    end
 
-   local song_icon   = button(icons['music'], function() player:turn_on() end)
-   local song_status = widget.textbox.colored({
+   local song_icon    = button(icons['music'], function() player:turn_on() end)
+   local song_status  = widget.textbox.colored({
       text  = 'Paused',
       color = color.fg1
    })
-   local song_player = widget.textbox.colored({
+   local song_player  = widget.textbox.colored({
       text  = 'Source Unknown',
       color = color.fg1,
       align = 'right'
    })
-   local song_title  = widget.textbox.scrolling({
-      text  = 'Nothing Playing',
-      font  = beautiful.font_mono .. beautiful.bitm_size
+   local song_title   = widget.textbox.scrolling({
+      text = 'Nothing Playing',
+      font = beautiful.font_mono .. beautiful.bitm_size
    })
-   local song_artist = widget.textbox.scrolling({
+   local song_artist  = widget.textbox.scrolling({
       text  = 'by Unknown',
       font  = beautiful.font_mono .. beautiful.bitm_size,
       color = color.fg1
    })
-   local song_album  = widget.textbox.scrolling({
+   local song_album   = widget.textbox.scrolling({
       text  = 'No album',
       font  = beautiful.font_mono .. beautiful.bitm_size,
       color = color.fg2
    })
 
-   local prog_text   = widget.textbox.colored({
+   local prog_text    = widget.textbox.colored({
       text  = '00:00 / 00:00',
       font  = beautiful.font,
       color = color.fg1
    })
-   local prog_slider = wibox.widget({
-      widget  = wibox.widget.slider,
-      minimum = 0,
-      maximum = 100,
-      value   = 0,
+   local prog_slider  = wibox.widget({
+      widget           = wibox.widget.slider,
+      minimum          = 0,
+      maximum          = 100,
+      value            = 0,
       bar_color        = color.bg1,
       bar_active_color = color.bg3
    })
 
-   local play_pause = button(icons['music_play'],  function() pctl:play_pause() end)
-   local back = button(icons['music_previous'], function() pctl:previous() end)
-   local forward = button(icons['music_next'], function() pctl:next() end)
-   local loop = button(icons['music_loop'], function() pctl:cycle_loop_status() end)
-   local loop_text = widget.textbox.colored({ text = 'None' })
-   local shuffle = button(icons['music_shuffle'], function() pctl:cycle_shuffle() end)
+   local play_pause   = button(icons['music_play'], function() pctl:play_pause() end)
+   local back         = button(icons['music_previous'], function() pctl:previous() end)
+   local forward      = button(icons['music_next'], function() pctl:next() end)
+   local loop         = button(icons['music_loop'], function() pctl:cycle_loop_status() end)
+   local loop_text    = widget.textbox.colored({ text = 'None' })
+   local shuffle      = button(icons['music_shuffle'], function() pctl:cycle_shuffle() end)
    local last_shuffle = false
    shuffle:connect_signal('mouse::leave', function(self)
       self.color = last_shuffle and color.accent or color.fg0
@@ -99,7 +99,7 @@ return function()
             from  = { 0, 0 },
             to    = { dpi(360), 0 },
             stops = {
-               { 0, color.bg0 .. 'EF' }, { 0.45, color.bg0 .. 'EF' },
+               { 0,    color.bg0 .. 'EF' }, { 0.45, color.bg0 .. 'EF' },
                { 0.73, color.bg0 .. 'CC' }, { 1, color.bg0 .. 'A0' }
             }
          },
@@ -110,8 +110,10 @@ return function()
             {
                widget  = wibox.container.margin,
                margins = {
-                  top = dpi(16), bottom = dpi(14),
-                  left = dpi(16), right = dpi(16)
+                  top = dpi(16),
+                  bottom = dpi(14),
+                  left = dpi(16),
+                  right = dpi(16)
                },
                {
                   layout  = wibox.layout.fixed.vertical,
@@ -195,7 +197,7 @@ return function()
          song_player.text = 'via ' .. source
          -- Update image only if desired.
          if not user.lite or user.lite == nil then
-            song_art.image   = gears.surface.crop_surface({
+            song_art.image = gears.surface.crop_surface({
                ratio   = 3,
                surface = gears.surface.load_uncached(cover or beautiful.wallpaper)
             })
@@ -216,7 +218,7 @@ return function()
       prog_slider.maximum = len
       prog_slider.value   = prog
       prog_text.text      = string.format('%02d:%02d', math.floor(prog / 60), prog % 60)
-         .. ' / ' .. string.format('%02d:%02d', math.floor(len / 60), len % 60)
+          .. ' / ' .. string.format('%02d:%02d', math.floor(len / 60), len % 60)
    end)
 
    pctl:connect_signal('playback_status', function(_, playing, _)

@@ -2,23 +2,23 @@
 -- https://github.com/Aproxia-dev
 local require, collectgarbage = require, collectgarbage
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local gears     = require('gears')
-local naughty   = require('naughty')
-local wibox     = require('wibox')
+local awful                   = require('awful')
+local beautiful               = require('beautiful')
+local gears                   = require('gears')
+local naughty                 = require('naughty')
+local wibox                   = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi                     = beautiful.xresources.apply_dpi
 
-local widget = require('widget')
-local color  = require(beautiful.colorscheme)
-local user   = require('config.user')
+local widget                  = require('widget')
+local color                   = require(beautiful.colorscheme)
+local user                    = require('config.user')
 
-local _N = {}
+local _N                      = {}
 
 function _N.title(n)
    return widget.textbox.scrolling({
-      text = '<i>'..((n.title == nil or n.title == '') and 'AwesomeWM' or n.title)..'</i>'
+      text = '<i>' .. ((n.title == nil or n.title == '') and 'AwesomeWM' or n.title) .. '</i>'
    })
 end
 
@@ -32,21 +32,21 @@ end
 
 function _N.icon(n)
    return wibox.widget({
-      widget = wibox.widget.imagebox,
-      image  = n.icon and gears.surface.crop_surface({
+      widget          = wibox.widget.imagebox,
+      image           = n.icon and gears.surface.crop_surface({
          ratio   = 1,
          surface = gears.surface.load_uncached(n.icon)
       }) or beautiful.notification_default,
-      buttons = { awful.button(nil, 1, function() n:destroy() end) },
+      buttons         = { awful.button(nil, 1, function() n:destroy() end) },
       scaling_quality = 'nearest'
    })
 end
 
 function _N.timeout()
    return wibox.widget({
-      widget    = wibox.widget.progressbar,
-      max_value = 100,
-      value     = 0,
+      widget           = wibox.widget.progressbar,
+      max_value        = 100,
+      value            = 0,
       background_color = color.bg1,
       color            = color.accent,
       forced_height    = dpi(3)
@@ -55,13 +55,13 @@ end
 
 function _N.actions(n)
    return wibox.widget({
-      widget       = naughty.list.actions,
-      notification = n,
-      base_layout  = wibox.widget({
+      widget          = naughty.list.actions,
+      notification    = n,
+      base_layout     = wibox.widget({
          layout  = wibox.layout.flex.horizontal,
          spacing = dpi(2)
       }),
-      style = {
+      style           = {
          underline_normal   = false,
          underline_selected = false,
          bg_normal          = color.bg1,
@@ -106,8 +106,10 @@ return function(n)
             {
                widget  = wibox.container.margin,
                margins = {
-                  top = dpi(8), bottom = dpi(8),
-                  left = dpi(12), right = dpi(12)
+                  top = dpi(8),
+                  bottom = dpi(8),
+                  left = dpi(12),
+                  right = dpi(12)
                },
                {
                   widget = wibox.container.place,
@@ -147,8 +149,8 @@ return function(n)
       {
          layout = wibox.layout.fixed.vertical,
          {
-            widget = wibox.container.background,
-            bg     = color.bg3,
+            widget        = wibox.container.background,
+            bg            = color.bg3,
             forced_height = dpi(1)
          },
          {
@@ -175,10 +177,10 @@ return function(n)
    })
 
    local layout = naughty.layout.box({
-      notification = n,
-      cursor       = 'hand2',
-      border_width = 0,
-      shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
+      notification    = n,
+      cursor          = 'hand2',
+      border_width    = 0,
+      shape           = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
       widget_template = {
          widget   = wibox.container.constraint,
          strategy = 'max',
@@ -189,16 +191,16 @@ return function(n)
             strategy = 'min',
             width    = dpi(120),
             {
-               widget = wibox.container.background,
-               bg     = color.bg0,
+               widget       = wibox.container.background,
+               bg           = color.bg0,
                border_width = dpi(1),
                border_color = color.bg3,
                {
                   layout = wibox.layout.fixed.horizontal,
                   iconbox,
                   {
-                     widget = wibox.container.background,
-                     bg     = color.bg3,
+                     widget       = wibox.container.background,
+                     bg           = color.bg3,
                      forced_width = dpi(1)
                   },
                   {
@@ -228,7 +230,7 @@ return function(n)
       end
    })
    -- Stop the timeout on notification hover.
-   layout:connect_signal('mouse::enter', function() anim.pause = true  end)
+   layout:connect_signal('mouse::enter', function() anim.pause = true end)
    layout:connect_signal('mouse::leave', function() anim.pause = false end)
    anim.target = 100
 

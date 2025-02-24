@@ -38,4 +38,3 @@ return {
   variant = variant,
   monitored = monitored,
 }
-

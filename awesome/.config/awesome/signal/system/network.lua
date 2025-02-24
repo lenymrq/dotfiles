@@ -1,14 +1,14 @@
 local require, string, table, ipairs, print = require, string, table, ipairs, print
 
-local gears = require('gears')
+local gears                                 = require('gears')
 
-local lgi  = require('lgi')
-local dbus = require('module.dbus_proxy')
+local lgi                                   = require('lgi')
+local dbus                                  = require('module.dbus_proxy')
 
-local instance = nil
-local net = {}
+local instance                              = nil
+local net                                   = {}
 
-local _NM_status, NM = pcall(function()
+local _NM_status, NM                        = pcall(function()
    return lgi.NM
 end)
 
@@ -140,14 +140,14 @@ function net:scan_aps()
 
             -- Add the access point info to the access point table.
             local ret = {
-               raw_ssid = ap.Ssid,
-               ssid     = ssid,
-               security = security,
-               password = password,
-               strength = ap.Strength,
-               path     = ap_path,
-               dev_if   = self._private.dev.Interface,
-               dev_path = self._private.dev.object_path,
+               raw_ssid   = ap.Ssid,
+               ssid       = ssid,
+               security   = security,
+               password   = password,
+               strength   = ap.Strength,
+               path       = ap_path,
+               dev_if     = self._private.dev.Interface,
+               dev_path   = self._private.dev.object_path,
                hw_address = ap.HwAddress
             }
             gears.table.crush(ret, ap, true)
@@ -175,7 +175,6 @@ end
 function net:get_aps()
    return self._private.aps
 end
-
 
 local function new()
    local self = gears.object({})
@@ -218,7 +217,7 @@ local function new()
       if not data.NetworkingEnabled then return end
 
       if (data.WirelessEnabled ~= nil and
-            data.WirelessEnabled ~= self._private.wireless_enabled) then
+             data.WirelessEnabled ~= self._private.wireless_enabled) then
          self._private.wireless_enabled = data.WirelessEnabled
          self:emit_signal('wireless::state', data.WirelessEnabled)
 

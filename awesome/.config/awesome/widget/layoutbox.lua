@@ -11,16 +11,16 @@
 --- Modified to use my icon font instead of the usual images.
 
 local require, pairs, assert, type, setmetatable
-   = require, pairs, assert, type, setmetatable
-local capi = { screen = screen, tag = tag }
-local layout = require("awful.layout")
-local tooltip = require("awful.tooltip")
-local beautiful = require("beautiful")
-local wibox = require("wibox")
-local gdebug = require("gears.debug")
-local gtable = require("gears.table")
+                                                 = require, pairs, assert, type, setmetatable
+local capi                                       = { screen = screen, tag = tag }
+local layout                                     = require("awful.layout")
+local tooltip                                    = require("awful.tooltip")
+local beautiful                                  = require("beautiful")
+local wibox                                      = require("wibox")
+local gdebug                                     = require("gears.debug")
+local gtable                                     = require("gears.table")
 
-local icon = require('theme.icons')
+local icon                                       = require('theme.icons')
 
 local function get_screen(s)
     return s and capi.screen[s]
@@ -67,7 +67,7 @@ function layoutbox.new(args)
 
         gdebug.deprecate(
             "Use awful.widget.layoutbox{screen=s} instead of awful.widget.layoutbox(screen)",
-            {deprecated_in=5}
+            { deprecated_in = 5 }
         )
     end
 
@@ -92,7 +92,7 @@ function layoutbox.new(args)
     local w = boxes[screen]
     if not w then
         w = wibox.widget.textbox()
-        w._layoutbox_tooltip = tooltip {objects = {w}, delay_show = 1}
+        w._layoutbox_tooltip = tooltip { objects = { w }, delay_show = 1 }
 
         -- Apply the buttons, visible, forced_width and so on
         gtable.crush(w, args)

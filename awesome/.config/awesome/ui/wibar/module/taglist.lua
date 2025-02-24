@@ -1,29 +1,29 @@
 local require, client, awesome = require, client, awesome
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local gears     = require('gears')
-local wibox     = require('wibox')
+local awful                    = require('awful')
+local beautiful                = require('beautiful')
+local gears                    = require('gears')
+local wibox                    = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi                      = beautiful.xresources.apply_dpi
 
-local bling  = require('module.bling')
-local color  = require(beautiful.colorscheme)
-local user   = require('config.user')
-local mod    = require('binds.mod')
-local modkey = mod.modkey
+local bling                    = require('module.bling')
+local color                    = require(beautiful.colorscheme)
+local user                     = require('config.user')
+local mod                      = require('binds.mod')
+local modkey                   = mod.modkey
 
 return function(s)
    if (not user.lite or user.lite == nil) then
       -- Enable and customize the tag preview widget.
       bling.widget.tag_preview.enable({
          show_client_content = true,
-         scale = 0.125,
-         honor_padding  = true,
-         honor_workarea = true,
-         placement_fn = function(c)
+         scale               = 0.125,
+         honor_padding       = true,
+         honor_workarea      = true,
+         placement_fn        = function(c)
             awful.placement.next_to(c, {
-               margins = { top = beautiful.useless_gap, left = dpi(40) },
+               margins             = { top = beautiful.useless_gap, left = dpi(40) },
                preferred_positions = 'bottom',
                preferred_anchors   = 'front',
                geometry            = s.bar
@@ -34,9 +34,9 @@ return function(s)
 
    -- Create the taglist.
    local tags = awful.widget.taglist({
-      screen  = s,
-      filter  = awful.widget.taglist.filter.all,
-      buttons = {
+      screen          = s,
+      filter          = awful.widget.taglist.filter.all,
+      buttons         = {
          -- Left-clicking a tag changes to it.
          awful.button(nil, 1, function(t) t:view_only() end),
          -- Mod + Left-clicking a tag sends the currently focused client to it.
@@ -57,16 +57,16 @@ return function(s)
          -- awful.button(nil, 4, function(t) awful.tag.viewprev(t.screen) end),
          -- awful.button(nil, 5, function(t) awful.tag.viewnext(t.screen) end)
       },
-      layout = {
+      layout          = {
          layout  = wibox.layout.fixed.horizontal,
          spacing = dpi(8)
       },
-      style = {
+      style           = {
          bg_focus    = color.accent,
          bg_occupied = color.fg2,
          bg_empty    = color.bg4 .. 'ac',
          bg_urgent   = color.red,
-         shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
+         shape       = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
       },
 
       -- The fun stuff.
@@ -140,8 +140,8 @@ return function(s)
    })
 
    return wibox.widget({
-      widget = wibox.container.background,
-      bg     = color.bg1,
+      widget       = wibox.container.background,
+      bg           = color.bg1,
       border_width = dpi(1),
       border_color = color.bg3,
       {

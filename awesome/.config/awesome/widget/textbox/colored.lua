@@ -2,11 +2,11 @@
 
 local require, type, setmetatable = require, type, setmetatable
 
-local beautiful = require('beautiful')
-local gears     = require('gears')
-local wibox     = require('wibox')
+local beautiful                   = require('beautiful')
+local gears                       = require('gears')
+local wibox                       = require('wibox')
 
-local textbox = { mt = {} }
+local textbox                     = { mt = {} }
 
 --- Create a colorable textbox widget. Like a regular `wibox.widget.textbox`, but also
 --- capable of coloring its text.

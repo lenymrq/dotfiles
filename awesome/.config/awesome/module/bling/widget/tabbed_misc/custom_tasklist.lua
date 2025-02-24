@@ -5,13 +5,13 @@ local beautiful = require("beautiful")
 local dpi = require("beautiful.xresources").apply_dpi
 
 local function tabobj_support(self, c, index, clients)
- 	-- Self is the background widget in this context
+	-- Self is the background widget in this context
 	if not c.bling_tabbed and #c.bling_tabbed.clients > 1 then
 		return
 	end
 
 	local group = c.bling_tabbed
-	
+
 	-- TODO: Allow customization here
 	local layout_v = wibox.widget {
 		vertical_spacing = dpi(2),

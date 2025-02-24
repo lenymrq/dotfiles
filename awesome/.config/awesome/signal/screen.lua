@@ -1,11 +1,11 @@
 local require, screen, table = require, screen, table
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
+local awful                  = require('awful')
+local beautiful              = require('beautiful')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi                    = beautiful.xresources.apply_dpi
 
-local user = require('config.user')
+local user                   = require('config.user')
 
 --- Attach tags and require('ui') to all screens.
 screen.connect_signal('request::desktop_decoration', function(s)
@@ -34,9 +34,9 @@ end)
 
 --- Wallpaper.
 -- NOTE: `awful.wallpaper` is ideal for creating a wallpaper IF YOU
--- BENEFIT FROM IT BEING A WIDGET and not just the root window 
--- background. IF YOU JUST WISH TO SET THE ROOT WINDOW BACKGROUND, you 
--- may want to use the deprecated `gears.wallpaper` instead. This is 
+-- BENEFIT FROM IT BEING A WIDGET and not just the root window
+-- background. IF YOU JUST WISH TO SET THE ROOT WINDOW BACKGROUND, you
+-- may want to use the deprecated `gears.wallpaper` instead. This is
 -- the most common case of just wanting to set an image as wallpaper.
 
 -- screen.connect_signal('request::wallpaper', function(s)

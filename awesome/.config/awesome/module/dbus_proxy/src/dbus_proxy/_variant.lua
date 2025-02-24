@@ -54,7 +54,6 @@ stripped3 = variant.strip(v3)
 -- {{1, 2, 3}, {4, 1, 2, 3}, n=2}
 ]]
 function variant.strip(v)
-
   if not tostring(v):find("GLib%.Variant$") then
     if type(v) == "table" and #v > 0 then
       -- Strip the 'n' field from pure arrays.
@@ -86,7 +85,6 @@ function variant.strip(v)
   else
     return variant.strip(v.value)
   end
-
 end
 
 return variant

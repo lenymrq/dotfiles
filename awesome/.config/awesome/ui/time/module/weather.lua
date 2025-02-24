@@ -1,15 +1,15 @@
 local require, string, math, os, table, ipairs = require, string, math, os, table, ipairs
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local wibox     = require('wibox')
+local awful                                    = require('awful')
+local beautiful                                = require('beautiful')
+local wibox                                    = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi                                      = beautiful.xresources.apply_dpi
 
-local weather = require('signal.system.weather')
-local widget  = require('widget')
-local color   = require(beautiful.colorscheme)
-local icons   = require('theme.icons')
+local weather                                  = require('signal.system.weather')
+local widget                                   = require('widget')
+local color                                    = require(beautiful.colorscheme)
+local icons                                    = require('theme.icons')
 
 return function()
    -- Current weather widgets!
@@ -71,7 +71,10 @@ return function()
 
       return wibox.widget({
          layout = wibox.layout.fixed.vertical,
-         time, icon, temp, humy,
+         time,
+         icon,
+         temp,
+         humy,
          set_time = function(_, t)
             if t + index >= 24 then
                t = t + index - 24
@@ -133,7 +136,10 @@ return function()
 
       return wibox.widget({
          layout = wibox.layout.fixed.vertical,
-         time, icon, max, min,
+         time,
+         icon,
+         max,
+         min,
          set_time = function(_, d)
             d = d + index
             if d > 7 then
@@ -166,8 +172,10 @@ return function()
       {
          widget = wibox.container.margin,
          margins = {
-            top = dpi(4), bottom = dpi(4),
-            left = dpi(8), right = dpi(8)
+            top = dpi(4),
+            bottom = dpi(4),
+            left = dpi(8),
+            right = dpi(8)
          },
          {
             widget = widget.textbox.colored({
@@ -186,8 +194,10 @@ return function()
       {
          widget = wibox.container.margin,
          margins = {
-            top = dpi(4), bottom = dpi(4),
-            left = dpi(8), right = dpi(8)
+            top = dpi(4),
+            bottom = dpi(4),
+            left = dpi(8),
+            right = dpi(8)
          },
          {
             widget = widget.textbox.colored({
@@ -203,8 +213,8 @@ return function()
       end
    })
    local toggle = wibox.widget({
-      widget = wibox.container.background,
-      bg     = color.bg1,
+      widget       = wibox.container.background,
+      bg           = color.bg1,
       border_width = dpi(1),
       border_color = color.bg3,
       {
@@ -215,10 +225,10 @@ return function()
                awful.button(nil, 1, function()
                   hour_widgets.visible = true
                   day_widgets.visible  = false
-                  hour_toggle.bg = color.bg2
-                  hour_toggle.col = color.fg0
-                  day_toggle.bg = color.bg2 .. '80'
-                  day_toggle.col = color.fg2
+                  hour_toggle.bg       = color.bg2
+                  hour_toggle.col      = color.fg0
+                  day_toggle.bg        = color.bg2 .. '80'
+                  day_toggle.col       = color.fg2
                end)
             }
          },
@@ -231,12 +241,12 @@ return function()
             widget = day_toggle,
             buttons = {
                awful.button(nil, 1, function()
-                  day_widgets.visible = true
-                  hour_widgets.visible  = false
-                  day_toggle.bg = color.bg2
-                  day_toggle.col = color.fg0
-                  hour_toggle.bg = color.bg2 .. '80'
-                  hour_toggle.col = color.fg2
+                  day_widgets.visible  = true
+                  hour_widgets.visible = false
+                  day_toggle.bg        = color.bg2
+                  day_toggle.col       = color.fg0
+                  hour_toggle.bg       = color.bg2 .. '80'
+                  hour_toggle.col      = color.fg2
                end)
             }
          }
@@ -244,11 +254,11 @@ return function()
    })
 
    local w = wibox.widget({
-      widget = wibox.container.background,
-      bg     = color.bg1,
+      widget       = wibox.container.background,
+      bg           = color.bg1,
       border_width = dpi(1),
       border_color = color.bg3,
-      visible = false,
+      visible      = false,
       {
          widget  = wibox.container.margin,
          margins = dpi(16),
@@ -275,7 +285,9 @@ return function()
                {
                   layout = wibox.layout.align.horizontal,
                   expand = 'none',
-                  nil, nil, toggle
+                  nil,
+                  nil,
+                  toggle
                },
                {
                   layout = wibox.layout.align.horizontal,

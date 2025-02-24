@@ -237,8 +237,8 @@ local function call_async(proxy, interface, method, user_callback, context, args
       local out, err = receiver_proxy:call_finish(res)
 
       if not out and err then
-          user_callback(proxy, context, out, err)
-          return
+        user_callback(proxy, context, out, err)
+        return
       end
 
       local result = variant.strip(out)
@@ -294,15 +294,15 @@ end
 local function build_args(method, ...)
   local args = {}
   for _, arg in ipairs(method.in_args) do
-    args[#args + 1] = {type = arg.signature}
+    args[#args + 1] = { type = arg.signature }
   end
 
-  assert(#{...} == #args,
-         string.format(
-           "Expected %d parameters but got %d",
-           #args, #{...}))
+  assert(#{ ... } == #args,
+    string.format(
+      "Expected %d parameters but got %d",
+      #args, #{ ... }))
 
-  for idx, val in ipairs({...}) do
+  for idx, val in ipairs({ ... }) do
     args[idx].value = val
   end
 
@@ -318,7 +318,7 @@ end
 -- @see build_args
 -- @see call
 local function generate_method(interface_name, method)
-  return function (proxy, ...)
+  return function(proxy, ...)
     local args = build_args(method, ...)
 
     return call(
@@ -327,7 +327,6 @@ local function generate_method(interface_name, method)
       method.name,
       args)
   end
-
 end
 
 --- Generate an *asynchronous* method.
@@ -339,7 +338,7 @@ end
 -- @see build_args
 -- @see call_async
 local function generate_async_method(interface_name, method)
-  return function (proxy, user_callback, context, ...)
+  return function(proxy, user_callback, context, ...)
     local args = build_args(method, ...)
 
     return call_async(
@@ -350,7 +349,6 @@ local function generate_async_method(interface_name, method)
       context,
       args)
   end
-
 end
 
 --- Generate the accessor table for a property
@@ -366,24 +364,24 @@ local function generate_accessor(property)
   local accessor = {}
 
   if property.flags.READABLE then
-    accessor.getter =  function (proxy)
+    accessor.getter = function(proxy)
       return get_property(proxy, property.name)
     end
   else
-    accessor.getter =  function ()
+    accessor.getter = function()
       error(string.format("Property '%s' is not readable",
-                          property.name))
+        property.name))
     end
   end
 
   if property.flags.WRITABLE then
-    accessor.setter = function (proxy, opts)
+    accessor.setter = function(proxy, opts)
       set_property(proxy, property.name, opts)
     end
   else
-    accessor.setter =  function ()
+    accessor.setter = function()
       error(string.format("Property '%s' is not writable",
-                          property.name))
+        property.name))
     end
   end
 
@@ -413,7 +411,6 @@ local function generate_fields(proxy)
 
   -- NOTE: does not take into account nested nodes.
   for _, iface in ipairs(node.interfaces) do
-
     for _, method in ipairs(iface.methods) do
       if not proxy[method.name] then
         proxy[method.name] = generate_method(iface.name, method)
@@ -434,7 +431,6 @@ local function generate_fields(proxy)
     for _, property in ipairs(iface.properties) do
       proxy.accessors[property.name] = generate_accessor(property)
     end
-
   end
 
   for k, _ in pairs(proxy) do
@@ -448,12 +444,10 @@ local function generate_fields(proxy)
       end
     end
   end
-
 end
 
 local meta = {
-  __index = function (tbl, key)
-
+  __index = function(tbl, key)
     if Proxy[key] then
       return Proxy[key]
     end
@@ -467,7 +461,7 @@ local meta = {
     return rawget(tbl, key)
   end,
 
-  __newindex = function (tbl, key, value)
+  __newindex = function(tbl, key, value)
     local v = tbl.accessors[key]
 
     if v then
@@ -475,7 +469,6 @@ local meta = {
     else
       rawset(tbl, key, value)
     end
-
   end
 }
 
@@ -503,7 +496,6 @@ proxy:connect_signal(
 )
 ]]
 function Proxy:connect_signal(callback, signal_name, sender_name)
-
   if not self.signals[signal_name] then
     error(string.format("Invalid signal: %s", signal_name))
   end
@@ -518,7 +510,6 @@ function Proxy:connect_signal(callback, signal_name, sender_name)
       return callback(self, unpack(params))
     end
   end
-
 end
 
 --[[-- Call a function when the properties of the proxy object change.
@@ -551,7 +542,7 @@ function Proxy:on_properties_changed(callback)
   self._proxy.on_g_properties_changed = function(_, changed, invalidated)
     changed = variant.strip(changed)
     return callback(self, changed, invalidated)
-    end
+  end
 end
 
 --[[-- Create a new proxy object
@@ -571,11 +562,10 @@ The `opts` table should have the following fields:
 
 ]]
 function Proxy:new(opts)
-
   local proxy, err = DBusProxy.new_sync(
     opts.bus,
     opts.flags or DBusProxyFlags.NONE,
-    DBusInterfaceInfo({name = opts.interface}),
+    DBusInterfaceInfo({ name = opts.interface }),
     opts.name,
     opts.path,
     opts.interface)

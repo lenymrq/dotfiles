@@ -1,11 +1,11 @@
 local require, os = require, os
 
-local beautiful = require('beautiful')
-local wibox     = require('wibox')
+local beautiful   = require('beautiful')
+local wibox       = require('wibox')
 
-local helpers = require('helpers')
-local widget  = require('widget')
-local color   = require(beautiful.colorscheme)
+local helpers     = require('helpers')
+local widget      = require('widget')
+local color       = require(beautiful.colorscheme)
 
 return function()
    local hour = wibox.widget({
@@ -27,12 +27,13 @@ return function()
       callback  = function()
          local day = tonumber(os.date('%e'))
          date.text =
-            os.date('%A, the ') .. day .. helpers.get_suffix(day) .. os.date(' of %B')
+             os.date('%A, the ') .. day .. helpers.get_suffix(day) .. os.date(' of %B')
       end
    })
 
    return wibox.widget({
       layout = wibox.layout.fixed.vertical,
-      hour, date
+      hour,
+      date
    })
 end

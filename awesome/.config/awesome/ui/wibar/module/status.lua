@@ -1,15 +1,15 @@
-local require = require
+local require      = require
 
-local beautiful = require('beautiful')
-local wibox     = require('wibox')
+local beautiful    = require('beautiful')
+local wibox        = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi          = beautiful.xresources.apply_dpi
 
-local color   = require(beautiful.colorscheme)
-local icons   = require('theme.icons')
-local widget  = require('widget')
-local audio   = require('signal.system.audio')
-local battery = require('signal.system.battery')
+local color        = require(beautiful.colorscheme)
+local icons        = require('theme.icons')
+local widget       = require('widget')
+local audio        = require('signal.system.audio')
+local battery      = require('signal.system.battery')
 
 local audio_widget = widget.textbox.colored({
    text  = icons['audio_muted'],
@@ -69,18 +69,20 @@ end)
 
 return function()
    return wibox.widget({
-      widget = wibox.container.background,
-      bg     = color.bg1,
+      widget       = wibox.container.background,
+      bg           = color.bg1,
       border_width = dpi(1),
       border_color = color.bg3,
       {
          widget  = wibox.container.margin,
          margins = {
-            top = dpi(6), bottom = dpi(6),
-            left = dpi(12), right = dpi(12)
+            top = dpi(6),
+            bottom = dpi(6),
+            left = dpi(12),
+            right = dpi(12)
          },
          {
-            layout  = wibox.layout.fixed.horizontal,
+            layout = wibox.layout.fixed.horizontal,
             audio_widget,
             battery_widget
          }

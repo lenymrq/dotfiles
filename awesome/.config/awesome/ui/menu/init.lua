@@ -1,28 +1,28 @@
 local require, awesome, os = require, awesome, os
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local wibox     = require('wibox')
+local awful                = require('awful')
+local beautiful            = require('beautiful')
+local wibox                = require('wibox')
 
-local hotkeys = require('awful.hotkeys_popup')
-local dpi = beautiful.xresources.apply_dpi
+local hotkeys              = require('awful.hotkeys_popup')
+local dpi                  = beautiful.xresources.apply_dpi
 
-local apps  = require('config.apps')
-local user  = require('config.user')
-local color = require(beautiful.colorscheme)
+local apps                 = require('config.apps')
+local user                 = require('config.user')
+local color                = require(beautiful.colorscheme)
 
 --- Menu
-local menu = {}
-local section = {}
+local menu                 = {}
+local section              = {}
 
-section.awesome = {
+section.awesome            = {
    { 'Hotkeys',       function() hotkeys.show_help(nil, awful.screen.focused()) end },
    { 'Documentation', apps.browser .. ' https://awesomewm.org/apidoc' },
    { 'Configuration', apps.editor_cmd .. ' ' .. awesome.conffile },
    { 'Reload',        awesome.restart }
 }
 
-section.power = {
+section.power              = {
    { 'Log off',  function() awesome.quit() end },
    { 'Suspend',  function() os.execute(user.suspend_cmd) end },
    { 'Reboot',   function() os.execute(user.reboot_cmd) end },
@@ -30,13 +30,13 @@ section.power = {
 }
 
 -- Create a main menu.
-menu.main = awful.menu({
+menu.main                  = awful.menu({
    theme = {
-      font   = beautiful.font,
-      width  = dpi(172),
-      height = dpi(32),
-      bg_normal = color.bg0,
-      bg_focus  = color.bg1,
+      font         = beautiful.font,
+      width        = dpi(172),
+      height       = dpi(32),
+      bg_normal    = color.bg0,
+      bg_focus     = color.bg1,
       border_width = dpi(1),
       border_color = color.bg3
    },
@@ -61,8 +61,8 @@ menu.main.wibox:set_widget(wibox.widget({
 -- Repeat for submenus.
 awful.menu.old_new = awful.menu.new
 function awful.menu.new(...)
-   local submenu    = awful.menu.old_new(...)
-   submenu.wibox.bg = color.bg0
+   local submenu              = awful.menu.old_new(...)
+   submenu.wibox.bg           = color.bg0
    submenu.wibox.border_width = dpi(1)
    submenu.wibox.border_color = color.bg3
    submenu.wibox:set_widget(wibox.widget({

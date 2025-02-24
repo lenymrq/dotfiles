@@ -1,15 +1,15 @@
 local require, awesome, client = require, awesome, client
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local gears     = require('gears')
-local wibox     = require('wibox')
+local awful                    = require('awful')
+local beautiful                = require('beautiful')
+local gears                    = require('gears')
+local wibox                    = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi                      = beautiful.xresources.apply_dpi
 
-local bling = require('module.bling')
-local color = require(beautiful.colorscheme)
-local user  = require('config.user')
+local bling                    = require('module.bling')
+local color                    = require(beautiful.colorscheme)
+local user                     = require('config.user')
 
 return function(s)
    if (not user.lite or user.lite == nil) then
@@ -17,22 +17,24 @@ return function(s)
       bling.widget.task_preview.enable({
          placement_fn = function(c)
             awful.placement.next_to(c, {
-               margins = { top = beautiful.useless_gap },
+               margins             = { top = beautiful.useless_gap },
                preferred_positions = 'bottom',
                preferred_anchors   = 'middle',
                geometry            = s.bar
             })
          end,
          structure = {
-            widget = wibox.container.background,
-            bg     = color.bg1,
+            widget       = wibox.container.background,
+            bg           = color.bg1,
             border_width = dpi(1),
             border_color = color.bg3,
             {
                widget  = wibox.container.margin,
                margins = {
-                  top = dpi(6), bottom = dpi(8),
-                  left = dpi(8), right = dpi(8)
+                  top = dpi(6),
+                  bottom = dpi(8),
+                  left = dpi(8),
+                  right = dpi(8)
                },
                {
                   layout  = wibox.layout.fixed.vertical,
@@ -56,9 +58,9 @@ return function(s)
 
    -- Create a tasklist widget.
    return awful.widget.tasklist({
-      screen  = s,
-      filter  = awful.widget.tasklist.filter.currenttags,
-      buttons = {
+      screen          = s,
+      filter          = awful.widget.tasklist.filter.currenttags,
+      buttons         = {
          -- Left-clicking a client indicator minimizes it if it's unminimized, or
          -- unminimizes it if it's minimized.
          awful.button(nil, 1, function(c)
@@ -73,20 +75,20 @@ return function(s)
          -- awful.button(nil, 4, function() awful.client.focus.byidx(-1) end),
          -- awful.button(nil, 5, function() awful.client.focus.byidx( 1) end)
       },
-      layout = {
+      layout          = {
          layout  = wibox.layout.flex.horizontal,
          spacing = dpi(6)
       },
-      style = {
+      style           = {
          -- Colors.
-         bg_minimize = color.bg1,
-         fg_minimize = color.bg4,
-         bg_normal   = color.bg1,
-         fg_normal   = color.fg2,
-         bg_focus    = color.bg2 .. '80',
-         fg_focus    = color.accent,
-         bg_urgent   = color.bg1,
-         fg_urgent   = color.red,
+         bg_minimize                  = color.bg1,
+         fg_minimize                  = color.bg4,
+         bg_normal                    = color.bg1,
+         fg_normal                    = color.fg2,
+         bg_focus                     = color.bg2 .. '80',
+         fg_focus                     = color.accent,
+         bg_urgent                    = color.bg1,
+         fg_urgent                    = color.red,
          -- shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
          shape_border_width           = dpi(1),
          shape_border_color           = color.bg3,
@@ -94,14 +96,14 @@ return function(s)
          shape_border_color_minimized = color.bg2,
          shape_border_color_urgent    = color.red,
          -- Styling.
-         font         = beautiful.font,
-         disable_icon = true,
-         maximized    = '[+]',
-         minimized    = '[-]',
-         sticky       = '[*]',
-         floating     = '[~]',
-         ontop        = '[^]',
-         above        = '[!]'
+         font                         = beautiful.font,
+         disable_icon                 = true,
+         maximized                    = '[+]',
+         minimized                    = '[-]',
+         sticky                       = '[*]',
+         floating                     = '[~]',
+         ontop                        = '[^]',
+         above                        = '[!]'
       },
       widget_template = {
          widget = wibox.container.background,

@@ -71,11 +71,12 @@ end
 function icon_theme:get_client_icon_path(client)
     local apps = Gio.AppInfo.get_all()
 
-    return  get_icon_by_pid_command(self, client, apps) or
-            get_icon_by_icon_name(self, client, apps) or
-            get_icon_by_class(self, client, apps) or
-            client.icon or
-            self:choose_icon({"window", "window-manager", "xfwm4-default", "window_list" })
+    return get_icon_by_pid_command(self, client, apps) or
+        get_icon_by_icon_name(self, client, apps) or
+        get_icon_by_class(self, client, apps) or
+        client.icon or
+        self:choose_icon({ "window", "window-manager", "xfwm4-default",
+            "window_list" })
 end
 
 function icon_theme:choose_icon(icons_names)
@@ -119,7 +120,7 @@ function icon_theme:get_icon_path(icon_name)
 end
 
 local function new(theme_name, icon_size)
-    local ret = gobject{}
+    local ret = gobject {}
     gtable.crush(ret, icon_theme, true)
 
     ret.name = theme_name or nil

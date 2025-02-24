@@ -1,10 +1,10 @@
 local require, client = require, client
 
-local awful = require('awful')
+local awful           = require('awful')
 
-local mod    = require('binds.mod')
-local modkey = mod.modkey
-local tabbed = require('module.bling').module.tabbed
+local mod             = require('binds.mod')
+local modkey          = mod.modkey
+local tabbed          = require('module.bling').module.tabbed
 
 --- Client keybindings.
 client.connect_signal('request::default_keybindings', function()
@@ -15,23 +15,23 @@ client.connect_signal('request::default_keybindings', function()
 
       awful.key({ modkey, mod.shift }, 'space', awful.client.floating.toggle,
          { description = 'toggle floating', group = 'client' }),
-      awful.key({ modkey,           }, 't', function(c) c.ontop = not c.ontop end,
+      awful.key({ modkey, }, 't', function(c) c.ontop = not c.ontop end,
          { description = 'toggle keep on top', group = 'client' }),
-      awful.key({ modkey, mod.ctrl  }, 'space', function(c) c.sticky = not c.sticky end,
+      awful.key({ modkey, mod.ctrl }, 'space', function(c) c.sticky = not c.sticky end,
          { description = 'toggle sticky', group = 'client' }),
 
-      awful.key({ modkey,           }, 'n',
+      awful.key({ modkey, }, 'n',
          function(c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
          end, { description = 'minimize', group = 'client' }),
-      awful.key({ modkey,           }, 'm',
+      awful.key({ modkey, }, 'm',
          function(c)
             c.maximized = not c.maximized
             c:raise()
          end, { description = '(un)maximize', group = 'client' }),
-      awful.key({ modkey,           }, 'f', function(c)
+      awful.key({ modkey, }, 'f', function(c)
          c.fullscreen = not c.fullscreen
          c:raise()
       end, { description = 'toggle fullscreen', group = 'client' }),

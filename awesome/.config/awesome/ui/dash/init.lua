@@ -1,30 +1,30 @@
-local require = require
+local require               = require
 
-local beautiful = require('beautiful')
-local wibox     = require('wibox')
-local gears     = require('gears')
+local beautiful             = require('beautiful')
+local wibox                 = require('wibox')
+local gears                 = require('gears')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi                   = beautiful.xresources.apply_dpi
 
-local color = require(beautiful.colorscheme)
-local mods  = require('ui.dash.module')
-local user = require('config.user')
+local color                 = require(beautiful.colorscheme)
+local mods                  = require('ui.dash.module')
+local user                  = require('config.user')
 
 local width, height, margin = 352, 510, 6
 
 return function(s)
    local panel = wibox({
-      ontop    = true,
-      visible  = false,
-      width    = dpi(width),
-      height   = dpi(height),
-      bg       = color.bg0,
-      x        = dpi(s.geometry.width - width - margin),
-      y        = dpi(margin + s.bar.height),
+      ontop        = true,
+      visible      = false,
+      width        = dpi(width),
+      height       = dpi(height),
+      bg           = color.bg0,
+      x            = dpi(s.geometry.width - width - margin),
+      y            = dpi(margin + s.bar.height),
       border_width = dpi(1),
       border_color = color.bg3,
-      shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
-      widget = {
+      shape        = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
+      widget       = {
          layout = wibox.layout.align.vertical,
          {
             layout = wibox.layout.fixed.vertical,
@@ -43,21 +43,23 @@ return function(s)
                spacing = dpi(16),
                mods.grid(),
                {
-                  widget = wibox.container.background,
-                  bg     = color.bg3,
+                  widget        = wibox.container.background,
+                  bg            = color.bg3,
                   forced_height = dpi(1)
                },
                mods.player(),
                mods.slider(),
                {
-                  widget = wibox.container.background,
-                  bg     = color.bg3,
+                  widget        = wibox.container.background,
+                  bg            = color.bg3,
                   forced_height = dpi(1)
                },
                {
                   layout = wibox.layout.align.vertical,
                   expand = 'none',
-                  nil, mods.random(), nil
+                  nil,
+                  mods.random(),
+                  nil
                }
             }
          },

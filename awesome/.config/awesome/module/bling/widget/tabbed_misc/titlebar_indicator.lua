@@ -4,7 +4,7 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local dpi = require("beautiful.xresources").apply_dpi
 local tabbed_module = require(
-    tostring(...):match(".*bling") .. ".module.tabbed"
+	tostring(...):match(".*bling") .. ".module.tabbed"
 )
 
 -- Just check if a table contains a value.
@@ -43,19 +43,20 @@ return function(c, opts)
 		spacing = opts.layout_spacing,
 	})
 
-	awesome.connect_signal("bling::tabbed::client_removed", function(_, removed_c)
-		-- Remove from list
-		for idx, icon in ipairs(tabbed_icons.children) do
-			if icon._client == removed_c then
-				tabbed_icons:remove(idx)
+	awesome.connect_signal("bling::tabbed::client_removed",
+		function(_, removed_c)
+			-- Remove from list
+			for idx, icon in ipairs(tabbed_icons.children) do
+				if icon._client == removed_c then
+					tabbed_icons:remove(idx)
+				end
 			end
-		end
 
-		-- Empty list
-		if removed_c == c then
-			tabbed_icons:reset()
-		end
-	end)
+			-- Empty list
+			if removed_c == c then
+				tabbed_icons:reset()
+			end
+		end)
 
 	local function recreate(group)
 		if tbl_contains(group.clients, c) then
@@ -70,25 +71,25 @@ return function(c, opts)
 			for idx, client in ipairs(group.clients) do
 				local widget = wibox.widget(
 					opts.widget_template or {
-					{
 						{
 							{
-								id = "icon_role",
-								forced_width = opts.icon_size,
-								forced_height = opts.icon_size,
-								widget = awful.widget.clienticon,
+								{
+									id = "icon_role",
+									forced_width = opts.icon_size,
+									forced_height = opts.icon_size,
+									widget = awful.widget.clienticon,
+								},
+								margins = opts.icon_margin,
+								widget = wibox.container.margin,
 							},
-							margins = opts.icon_margin,
-							widget = wibox.container.margin,
+							shape = opts.icon_shape,
+							id = "bg_role",
+							widget = wibox.container.background,
 						},
-						shape = opts.icon_shape,
-						id = "bg_role",
-						widget = wibox.container.background,
-					},
-					halign = "center",
-					valign = "center",
-					widget = wibox.container.place,
-				})
+						halign = "center",
+						valign = "center",
+						widget = wibox.container.place,
+					})
 
 				widget._client = client
 

@@ -5,23 +5,23 @@
 -- ensure that weather information is obtained or fails cleanly.
 local require, string, math, table = require, string, math, table
 
-local awful = require('awful')
-local gears = require('gears')
+local awful                        = require('awful')
+local gears                        = require('gears')
 
-local json = require('module.json')
-local user = require('config.user')
+local json                         = require('module.json')
+local user                         = require('config.user')
 
-local instance = nil
+local instance                     = nil
 
 -- If the user hasn't set these, don't even try.
-local key    = user.weather_key
-local coords = user.weather_coords
+local key                          = user.weather_key
+local coords                       = user.weather_coords
 if key == nil or coords == nil then return end
 
 local command = [[bash -c "curl -s --show-error -X GET '%s'"]]
 local url =
-   'https://api.openweathermap.org/data/2.5/onecall?lat=' .. coords[1] ..
-   '&lon=' .. coords[2] .. '&appid=' .. key .. '&units=metric&exclude=minutely'
+    'https://api.openweathermap.org/data/2.5/onecall?lat=' .. coords[1] ..
+    '&lon=' .. coords[2] .. '&appid=' .. key .. '&units=metric&exclude=minutely'
 local shell_cmd = string.format(command, url)
 
 -- Customizable values.
@@ -106,7 +106,7 @@ local function new()
       data.icon        = icon_map[res.current.weather[1].icon]
 
       -- The next 12 hours.
-      data.by_hour = {}
+      data.by_hour     = {}
       for i = 1, 12, 1 do
          table.insert(data.by_hour, res.hourly[i])
          data.by_hour[i].temp = math.floor(data.by_hour[i].temp)

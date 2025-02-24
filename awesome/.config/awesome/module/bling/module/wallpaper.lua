@@ -159,7 +159,7 @@ function setters.simple(args)
     local wallpapers = prepare_list(args)
     simple_index = (simple_index % #wallpapers) + 1
     if type(args.screen) == 'table' then
-        for _,v in ipairs(args.screen) do
+        for _, v in ipairs(args.screen) do
             args.screen = v
             apply(wallpapers[simple_index], args)
             args.screen = nil
@@ -177,7 +177,7 @@ end
 function setters.random(args)
     local wallpapers = prepare_list(args)
     if type(args.screen) == 'table' then
-        for _,v in ipairs(args.screen) do
+        for _, v in ipairs(args.screen) do
             args.screen = v
             apply(wallpapers[math.random(#wallpapers)], args)
             args.screen = nil
@@ -203,14 +203,16 @@ local simple_schedule_object = nil
 function setters.simple_schedule(args)
     local function update_wallpaper()
         local fake_args = gears.table.join(args, {
-            wallpaper = args.wallpaper[simple_schedule_object.closest_lower_time],
+            wallpaper = args.wallpaper
+            [simple_schedule_object.closest_lower_time],
         })
         simple_schedule_object.schedule_set_function(fake_args)
     end
     if not simple_schedule_object then
         simple_schedule_object = {}
         -- initialize the schedule object, so we don't do it for every call
-        simple_schedule_object.schedule_set_function = args.schedule_set_function
+        simple_schedule_object.schedule_set_function = args
+            .schedule_set_function
             or setters.simple
         -- we get the sorted time keys
         simple_schedule_object.times = {}
@@ -237,7 +239,8 @@ function setters.simple_schedule(args)
             )
             if simple_schedule_object.timer.timeout < 0 then
                 -- the next_time is the day after, so we add 24 hours to the timer
-                simple_schedule_object.timer.timeout = simple_schedule_object.timer.timeout
+                simple_schedule_object.timer.timeout = simple_schedule_object
+                    .timer.timeout
                     + 86400
             end
             simple_schedule_object.timer:again()
@@ -270,7 +273,7 @@ function setters.awesome_wallpaper(args)
         alt_fg = beautiful.bg_focus,
     }
     colors.bg = helpers.color.is_dark(beautiful.bg_normal)
-            and helpers.color.lighten(colors.bg)
+        and helpers.color.lighten(colors.bg)
         or helpers.color.darken(colors.bg)
     if type(args.colors) == "table" then
         colors.bg = args.colors.bg or colors.bg

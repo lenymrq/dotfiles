@@ -1,13 +1,13 @@
-local require = require
+local require   = require
 
 local awful     = require('awful')
 local beautiful = require('beautiful')
 local wibox     = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi       = beautiful.xresources.apply_dpi
 
-local widget = require('widget')
-local color  = require(beautiful.colorscheme)
+local widget    = require('widget')
+local color     = require(beautiful.colorscheme)
 
 return function(s)
    -- Create a textbox widget which will contain an icon indicating which layout we're using.
@@ -19,15 +19,15 @@ return function(s)
       {
          layout = wibox.layout.fixed.horizontal,
          {
-            widget = wibox.container.background,
-            bg     = color.bg3,
+            widget       = wibox.container.background,
+            bg           = color.bg3,
             forced_width = dpi(1)
          },
          {
             layout = wibox.layout.align.vertical,
             {
-               widget = wibox.container.background,
-               bg     = color.bg3,
+               widget        = wibox.container.background,
+               bg            = color.bg3,
                forced_height = dpi(1)
             },
             {
@@ -41,17 +41,17 @@ return function(s)
                }
             },
             {
-               widget = wibox.container.background,
-               bg     = color.bg3,
+               widget        = wibox.container.background,
+               bg            = color.bg3,
                forced_height = dpi(1)
             }
          }
       },
       buttons = {
-         awful.button(nil, 1, function() awful.layout.inc( 1) end),
+         awful.button(nil, 1, function() awful.layout.inc(1) end),
          awful.button(nil, 3, function() awful.layout.inc(-1) end),
          awful.button(nil, 4, function() awful.layout.inc(-1) end),
-         awful.button(nil, 5, function() awful.layout.inc( 1) end)
+         awful.button(nil, 5, function() awful.layout.inc(1) end)
       }
    })
    layout:connect_signal('mouse::enter', function(self)

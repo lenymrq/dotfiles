@@ -1,13 +1,13 @@
 -- This is used later as the default terminal and editor to run.
-local apps = {}
+local apps                        = {}
 
-apps.terminal     = 'alacritty'
-apps.terminal_cmd = apps.terminal .. ' -e '
+apps.terminal                     = 'alacritty'
+apps.terminal_cmd                 = apps.terminal .. ' -e '
 
-apps.editor     = os.getenv('EDITOR') or 'vim'
-apps.editor_cmd = apps.terminal_cmd .. apps.editor
+apps.editor                       = os.getenv('EDITOR') or 'vim'
+apps.editor_cmd                   = apps.terminal_cmd .. apps.editor
 
-apps.browser    = 'firefox'
+apps.browser                      = 'firefox'
 
 -- Set the terminal for the menubar.
 require('menubar').utils.terminal = apps.terminal

@@ -53,10 +53,11 @@ function _filesystem.list_directory_files(path, exts, recursive)
 end
 
 function _filesystem.save_image_async_curl(url, filepath, callback)
-    awful.spawn.with_line_callback(string.format("curl -L -s %s -o %s", url, filepath),
-    {
-      exit=callback
-    })
+    awful.spawn.with_line_callback(
+        string.format("curl -L -s %s -o %s", url, filepath),
+        {
+            exit = callback
+        })
 end
 
 return _filesystem

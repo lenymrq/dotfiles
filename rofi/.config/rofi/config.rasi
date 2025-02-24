@@ -7,7 +7,7 @@ configuration {
 @theme "/dev/null"
 
 * {
-    font: "SF Pro Display 12";
+    font: "SF Pro Display 14";
 
     bg: #191724;
     bg-alt: #403d52;

@@ -1,16 +1,16 @@
 local require, os, awesome = require, os, awesome
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local gears     = require('gears')
-local wibox     = require('wibox')
+local awful                = require('awful')
+local beautiful            = require('beautiful')
+local gears                = require('gears')
+local wibox                = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi                  = beautiful.xresources.apply_dpi
 
-local color  = require(beautiful.colorscheme)
-local icons  = require('theme.icons')
-local widget = require('widget')
-local conf   = require('config.user')
+local color                = require(beautiful.colorscheme)
+local icons                = require('theme.icons')
+local widget               = require('widget')
+local conf                 = require('config.user')
 
 local pfp_widget
 if not conf.lite or conf.lite == nil then
@@ -18,7 +18,7 @@ if not conf.lite or conf.lite == nil then
       widget = wibox.widget.imagebox,
       image  = gears.surface.crop_surface({
          surface = beautiful.pfp,
-         ratio   = 7/3,
+         ratio   = 7 / 3,
          left    = dpi(48)
       })
    })
@@ -91,9 +91,9 @@ local power = wibox.widget({
       visible = false,
       id      = 'power',
       button(icons['power_shutdown'], function() awful.spawn(conf.shutdown_cmd) end),
-      button(icons['power_reboot'],   function() awful.spawn(conf.reboot_cmd) end),
-      button(icons['power_suspend'],  function() awful.spawn(conf.suspend_cmd) end),
-      button(icons['power_logoff'],   function() awesome.quit() end)
+      button(icons['power_reboot'], function() awful.spawn(conf.reboot_cmd) end),
+      button(icons['power_suspend'], function() awful.spawn(conf.suspend_cmd) end),
+      button(icons['power_logoff'], function() awesome.quit() end)
    },
    toggle_show_power = function(self)
       local power = self:get_children_by_id('power')[1]
@@ -124,7 +124,7 @@ return function()
                      from  = { dpi(240), 0 },
                      to    = { 0, 0 },
                      stops = {
-                        { 0, color.bg1 }, { 0.33, color.bg1 .. 'F0' },
+                        { 0,    color.bg1 }, { 0.33, color.bg1 .. 'F0' },
                         { 0.66, color.bg1 .. 'DC' }, { 1, color.bg1 .. 'C0' }
                      }
                   }
@@ -132,8 +132,8 @@ return function()
             }
          },
          {
-            widget = wibox.container.background,
-            bg     = color.bg1,
+            widget       = wibox.container.background,
+            bg           = color.bg1,
             forced_width = dpi(115)
          }
       },
@@ -148,7 +148,8 @@ return function()
                -- Text alignment sucks.
                {
                   layout = wibox.layout.align.horizontal,
-                  nil, nil,
+                  nil,
+                  nil,
                   user_at_host,
                },
                uptime_widget

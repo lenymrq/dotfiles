@@ -2,11 +2,11 @@
 
 local require, type, setmetatable = require, type, setmetatable
 
-local beautiful = require('beautiful')
-local gears     = require('gears')
-local wibox     = require('wibox')
+local beautiful                   = require('beautiful')
+local gears                       = require('gears')
+local wibox                       = require('wibox')
 
-local textbox = { mt = {} }
+local textbox                     = { mt = {} }
 
 --- Create a scrolling, colorable textbox widget. Like a regular `wibox.widget.textbox`,
 --- but also capable of coloring its text, and scrolling in either axis.
@@ -48,7 +48,7 @@ function textbox.new(args)
    local w = wibox.widget({
       widget = scroll,
       step_function =
-         wibox.container.scroll.step_functions.waiting_nonlinear_back_and_forth,
+          wibox.container.scroll.step_functions.waiting_nonlinear_back_and_forth,
       speed = 50,
       {
          widget = require('widget.textbox.colored')({
@@ -75,4 +75,3 @@ function textbox.mt:__call(...)
 end
 
 return setmetatable(textbox, textbox.mt)
-

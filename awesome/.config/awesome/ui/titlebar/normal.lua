@@ -1,23 +1,23 @@
 local require, client = require, client
 
-local awful     = require('awful')
-local beautiful = require('beautiful')
-local gears     = require('gears')
-local wibox     = require('wibox')
+local awful           = require('awful')
+local beautiful       = require('beautiful')
+local gears           = require('gears')
+local wibox           = require('wibox')
 
-local dpi = beautiful.xresources.apply_dpi
+local dpi             = beautiful.xresources.apply_dpi
 
-local tabbed = require('module.bling').widget.tabbed_misc
-local widget = require('widget')
-local color  = require(beautiful.colorscheme)
-local icons  = require('theme.icons')
+local tabbed          = require('module.bling').widget.tabbed_misc
+local widget          = require('widget')
+local color           = require(beautiful.colorscheme)
+local icons           = require('theme.icons')
 
 --- The titlebar to be used on normal clients.
 return function(c)
    local function button(icon, hover, action)
       local w = wibox.widget({
-         widget = wibox.container.background,
-         bg     = color.bg2 .. '90',
+         widget       = wibox.container.background,
+         bg           = color.bg2 .. '90',
          border_width = dpi(1),
          border_color = color.bg3,
          {
@@ -70,20 +70,22 @@ return function(c)
    end
 
    local tabs = tabbed.titlebar_indicator(c, {
-      bg_color       = color.bg1 .. '80',
-      bg_color_focus = color.transparent,
-      fg_color       = color.fg0 .. 'AB',
-      fg_color_focus = color.accent,
-      layout = wibox.layout.flex.horizontal,
-      layout_spacing = 0,
+      bg_color        = color.bg1 .. '80',
+      bg_color_focus  = color.transparent,
+      fg_color        = color.fg0 .. 'AB',
+      fg_color_focus  = color.accent,
+      layout          = wibox.layout.flex.horizontal,
+      layout_spacing  = 0,
       widget_template = {
          widget = wibox.container.background,
          id     = 'bg_role',
          {
             widget = wibox.container.margin,
             margins = {
-               left = dpi(11), right = dpi(11),
-               top = dpi(11), bottom = dpi(11)
+               left = dpi(11),
+               right = dpi(11),
+               top = dpi(11),
+               bottom = dpi(11)
             },
             {
                widget = wibox.widget.textbox,
@@ -101,8 +103,8 @@ return function(c)
    })
 
    local top = wibox.widget({
-      widget  = wibox.container.background,
-      bg      = color.bg1,
+      widget       = wibox.container.background,
+      bg           = color.bg1,
       border_width = dpi(1),
       border_color = color.bg3,
       {
@@ -110,7 +112,7 @@ return function(c)
          expand = 'outer',
          -- Left
          {
-            layout  = wibox.layout.fixed.horizontal,
+            layout = wibox.layout.fixed.horizontal,
             {
                widget  = wibox.container.margin,
                margins = dpi(6),
@@ -121,8 +123,8 @@ return function(c)
                )
             },
             {
-               widget = wibox.container.background,
-               bg     = color.bg3,
+               widget       = wibox.container.background,
+               bg           = color.bg3,
                forced_width = dpi(1)
             }
          },
@@ -134,10 +136,10 @@ return function(c)
          },
          -- Right
          {
-            layout  = wibox.layout.fixed.horizontal,
+            layout = wibox.layout.fixed.horizontal,
             {
-               widget = wibox.container.background,
-               bg     = color.bg3,
+               widget       = wibox.container.background,
+               bg           = color.bg3,
                forced_width = dpi(1)
             },
             {
@@ -167,17 +169,17 @@ return function(c)
    })
 
    local bottom = wibox.widget({
-      widget = wibox.container.background,
-      bg     = color.bg1,
+      widget       = wibox.container.background,
+      bg           = color.bg1,
       border_width = dpi(1),
       border_color = color.bg3,
       {
          layout = wibox.layout.fixed.horizontal,
          {
-            widget = wibox.container.background,
-            bg     = color.transparent,
+            widget       = wibox.container.background,
+            bg           = color.transparent,
             forced_width = dpi(48),
-            buttons = {
+            buttons      = {
                awful.button(nil, 1, function()
                   c:activate({ context = 'titlebar', action = 'mouse_move' })
                end),
@@ -187,8 +189,8 @@ return function(c)
             }
          },
          {
-            widget = wibox.container.background,
-            bg     = color.bg3,
+            widget       = wibox.container.background,
+            bg           = color.bg3,
             forced_width = dpi(1)
          }
       }
@@ -199,8 +201,8 @@ return function(c)
       bg     = color.bg3
    })
 
-   awful.titlebar(c, { position = 'top',    size = dpi(33) }).widget = top
-   awful.titlebar(c, { position = 'bottom', size = dpi(7)  }).widget = bottom
-   awful.titlebar(c, { position = 'left',   size = dpi(1)  }).widget = empty
-   awful.titlebar(c, { position = 'right',  size = dpi(1)  }).widget = empty
+   awful.titlebar(c, { position = 'top', size = dpi(33) }).widget = top
+   awful.titlebar(c, { position = 'bottom', size = dpi(7) }).widget = bottom
+   awful.titlebar(c, { position = 'left', size = dpi(1) }).widget = empty
+   awful.titlebar(c, { position = 'right', size = dpi(1) }).widget = empty
 end
