@@ -19,4 +19,4 @@ My setup:
 
 awesome config is a modified version of [gwileful](https://github.com/Gwynsav/gwileful).
 
-*TODO: animations for tag list (maybe)*
+*TODO: bar brightness icon, animations for tag list (maybe)*
