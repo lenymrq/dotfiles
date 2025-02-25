@@ -8,11 +8,12 @@ local wibox                  = require('wibox')
 local dpi                    = beautiful.xresources.apply_dpi
 
 local color                  = require(beautiful.colorscheme)
-local audio                  = require('signal.system.audio')
 local widget                 = require('widget')
 local icons                  = require('theme.icons')
 
 local width, height, timeout = 200, 32, 3
+
+local screen = gears.object({})
 
 return function(s)
     local icon = widget.textbox.colored({
@@ -75,26 +76,15 @@ return function(s)
         end
     })
 
-    local old = { mute = nil, level = nil, fresh = true }
-    audio:connect_signal('sinks::default', function(_, default_sink)
+    local old = { level = nil, fresh = true }
+    awesome.connect_signal('brightness::change', function(value)
         -- Sometimes, pactl gets pretty confused.
-        if old.mute == default_sink.mute and old.level == default_sink.volume then
-            return
-        end
-
         -- Update OSD.
-        if default_sink.mute or default_sink.volume == 0 then
-            icon.text = icons['audio_muted']
-        elseif default_sink.volume >= 50 then
-            icon.text = icons['audio_increase']
-        else
-            icon.text = icons['audio_decrease']
-        end
-        progress.value = default_sink.volume
-        label.text     = default_sink.volume .. '%'
+        icon.text = icons.weather['day_clear']
+        progress.value = value
+        label.text     = value .. '%'
         -- Update reference values.
-        old.mute       = default_sink.mute
-        old.level      = default_sink.volume
+        old.level      = value
 
         -- Prevents the OSD from being shown when interacting with dashboard sliders.
         if s.dash.visible then return end

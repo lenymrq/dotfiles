@@ -1,16 +1,17 @@
-local require, awesome, client = require, awesome, client
+local require, awesome, client, string = require, awesome, client, string
 
-local awful                    = require('awful')
+local awful                            = require('awful')
 
-local mod                      = require('binds.mod')
-local modkey                   = mod.modkey
+local mod                              = require('binds.mod')
+local modkey                           = mod.modkey
 
-local apps                     = require('config.apps')
-local audio                    = require('signal.system.audio')
-local pctl                     = require('signal.system.playerctl')
-local shooter                  = require('script.shooter')
-local scratch                  = require('ui.scratch')
-local lock                     = require('script.lock')
+local apps                             = require('config.apps')
+local audio                            = require('signal.system.audio')
+local pctl                             = require('signal.system.playerctl')
+local shooter                          = require('script.shooter')
+-- local scratch                  = require('ui.scratch')
+local lock                             = require('script.lock')
+local brightness                       = require('signal.system.brightness')
 
 --- Global key bindings
 awful.keyboard.append_global_keybindings({
@@ -147,9 +148,9 @@ awful.keyboard.append_global_keybindings({
 
    -- Brightness
    -- TODO: OSD for screen brightness
-   awful.key({}, 'XF86MonBrightnessDown', function() awful.spawn('brightnessctl set 5%-') end,
+   awful.key({}, 'XF86MonBrightnessDown', brightness.down,
       { description = 'lowers screen brightness', group = 'screen' }),
-   awful.key({}, 'XF86MonBrightnessUp', function() awful.spawn('brightnessctl set 5%+') end,
+   awful.key({}, 'XF86MonBrightnessUp', brightness.up,
       { description = 'raises screen brightness', group = 'screen' }),
 
    -- Lock
