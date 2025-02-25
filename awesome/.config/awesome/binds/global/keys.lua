@@ -147,7 +147,6 @@ awful.keyboard.append_global_keybindings({
       { description = 'skips to next song', group = 'music' }),
 
    -- Brightness
-   -- TODO: OSD for screen brightness
    awful.key({}, 'XF86MonBrightnessDown', brightness.down,
       { description = 'lowers screen brightness', group = 'screen' }),
    awful.key({}, 'XF86MonBrightnessUp', brightness.up,
