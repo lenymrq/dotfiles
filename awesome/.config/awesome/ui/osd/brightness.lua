@@ -10,10 +10,11 @@ local dpi                    = beautiful.xresources.apply_dpi
 local color                  = require(beautiful.colorscheme)
 local widget                 = require('widget')
 local icons                  = require('theme.icons')
+local user                   = require('config.user')
 
 local width, height, timeout = 200, 32, 3
 
-local screen = gears.object({})
+local screen                 = gears.object({})
 
 return function(s)
     local icon = widget.textbox.colored({
@@ -51,6 +52,7 @@ return function(s)
         visible      = false,
         border_width = dpi(1),
         border_color = color.bg3,
+        shape        = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
         widget       = {
             widget  = wibox.container.margin,
             margins = {
@@ -80,7 +82,7 @@ return function(s)
     awesome.connect_signal('brightness::change', function(value)
         -- Sometimes, pactl gets pretty confused.
         -- Update OSD.
-        icon.text = icons.weather['day_clear']
+        icon.text      = icons.weather['day_clear']
         progress.value = value
         label.text     = value .. '%'
         -- Update reference values.

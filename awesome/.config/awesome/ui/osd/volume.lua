@@ -11,6 +11,7 @@ local color                  = require(beautiful.colorscheme)
 local audio                  = require('signal.system.audio')
 local widget                 = require('widget')
 local icons                  = require('theme.icons')
+local user                   = require('config.user')
 
 local width, height, timeout = 200, 32, 3
 
@@ -50,6 +51,7 @@ return function(s)
         visible      = false,
         border_width = dpi(1),
         border_color = color.bg3,
+        shape        = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
         widget       = {
             widget  = wibox.container.margin,
             margins = {
