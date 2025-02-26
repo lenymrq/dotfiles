@@ -20,4 +20,4 @@ My setup:
 awesome config is a modified version of [gwileful](https://github.com/Gwynsav/gwileful).
 Commands to [install awesome git](https://www.reddit.com/r/awesomewm/comments/xi6ab5/installing_awesomewm).
 
-_TODO: bar brightness icon, animations for tag list (maybe)_
+_TODO: animations for tag list (maybe)_
