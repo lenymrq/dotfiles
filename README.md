@@ -8,6 +8,8 @@ The `awesome` configuration is a modified version of [gwileful](https://github.c
 
 ## Dependencies
 
+**Required**:
+
 - `pulseaudio`
 - `networkmanager`
 - `brightnessctl`
@@ -34,3 +36,4 @@ The only package that requires a specific version is `awesome`—you need the [v
 # TODO
 
 - `awesome`: Add animations for the tag list and other UI elements.
+- `README`: Add screenshots.
