@@ -6,7 +6,7 @@ The `awesome` configuration is a modified version of [gwileful](https://github.c
 
 # Installation
 
-### Dependencies
+## Dependencies
 
 - `pulseaudio`
 - `networkmanager`
@@ -19,7 +19,7 @@ _Optional_:
 
 - `picom`
 
-### Steps
+## Steps
 
 1. [Install awesome from GitHub](https://www.reddit.com/r/awesomewm/comments/xi6ab5/installing_awesomewm).
 2. Install dependencies: `sudo dnf install blueman brightnessctl playerctl i3lock rofi picom`.  
