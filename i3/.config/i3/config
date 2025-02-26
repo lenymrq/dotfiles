@@ -232,7 +232,6 @@ bindsym $mod+Shift+s sticky toggle
 # Execs
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id picom
-exec --no-startup-id unclutter --timeout 0.75
 
 # Assignements
 assign [class="Code"] $ws1

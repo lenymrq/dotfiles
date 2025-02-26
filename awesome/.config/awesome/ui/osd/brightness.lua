@@ -12,7 +12,7 @@ local widget                 = require('widget')
 local icons                  = require('theme.icons')
 local user                   = require('config.user')
 
-local width, height, timeout = 200, 32, 3
+local width, height, timeout = 200, 32, 1
 
 local screen                 = gears.object({})
 
@@ -102,7 +102,7 @@ return function(s)
             timer:again()
         else
             osd.visible = true
-            awful.placement.bottom(osd, { margins = { bottom = beautiful.useless_gap } })
+            awful.placement.centered(osd, { margins = { bottom = beautiful.useless_gap } })
             timer:start()
         end
     end)
