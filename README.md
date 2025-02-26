@@ -4,6 +4,8 @@ These are the dotfiles I use on my laptop, things might look a bit big on a stan
 
 The `awesome` configuration is a modified version of [gwileful](https://github.com/Gwynsav/gwileful).
 
+This repository is designed to make it easy to use `stow`.
+
 # Installation
 
 ## Dependencies
