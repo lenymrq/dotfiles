@@ -10,7 +10,7 @@ local color                 = require(beautiful.colorscheme)
 local mods                  = require('ui.dash.module')
 local user                  = require('config.user')
 
-local width, height, margin = 352, 510, 6
+local width, height, margin = 352, 380, 6
 
 return function(s)
    local panel = wibox({
@@ -48,19 +48,19 @@ return function(s)
                   forced_height = dpi(1)
                },
                mods.player(),
-               mods.slider(),
-               {
-                  widget        = wibox.container.background,
-                  bg            = color.bg3,
-                  forced_height = dpi(1)
-               },
-               {
-                  layout = wibox.layout.align.vertical,
-                  expand = 'none',
-                  nil,
-                  mods.random(),
-                  nil
-               }
+               -- mods.slider(),
+               -- {
+               --    widget        = wibox.container.background,
+               --    bg            = color.bg3,
+               --    forced_height = dpi(1)
+               -- },
+               -- {
+               --    layout = wibox.layout.align.vertical,
+               --    expand = 'none',
+               --    nil,
+               --    mods.random(),
+               --    nil
+               -- }
             }
          },
          -- mods.title()
