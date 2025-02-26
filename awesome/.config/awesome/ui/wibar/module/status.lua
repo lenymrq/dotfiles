@@ -11,6 +11,7 @@ local widget       = require('widget')
 local audio        = require('signal.system.audio')
 local battery      = require('signal.system.battery')
 
+-- Audio
 local audio_widget = widget.textbox.colored({
    text  = icons['audio_muted'],
    font  = icons.font .. icons.size,
@@ -29,6 +30,7 @@ audio:connect_signal('sinks::default', function(_, default_sink)
    end
 end)
 
+-- Battery
 -- Only assigned if a valid battery is found.
 local battery_icon = widget.textbox.colored({
    text = icons.battery['UNKNOWN'],

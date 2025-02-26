@@ -10,6 +10,7 @@ return {
             for e in string.gmatch(stdout, '([^,]+)') do
                 if (i == 4) then
                     value = tonumber(string.sub(e, 1, -2)) + 0
+                    break
                 end
                 i = i + 1
             end
@@ -23,6 +24,7 @@ return {
             for e in string.gmatch(stdout, '([^,]+)') do
                 if (i == 4) then
                     value = tonumber(string.sub(e, 1, -2)) + 0
+                    break
                 end
                 i = i + 1
             end
