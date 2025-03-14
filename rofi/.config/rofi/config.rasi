@@ -1,26 +1,26 @@
 configuration {
   show-icons: true;
-  modes: [ combi ];
+  modes: [ run ];
   combi-modes: [ run ];
 }
 
 @theme "/dev/null"
 
 * {
-    font: "SF Pro Display 14";
+    font: "SF Pro Display 12";
 
-    bg: #191724;
-    bg-alt: #403d52;
-    bg-altalt: #1f1d2e;
-    cur: #1f1d2e;
-    fgd: #e0def4;
-    cmt: #6e6a86;
-    cya: #9ccfd8;
-    grn: #31748f;
-    ora: #ebbcba;
-    pur: #c4a7e7;
-    red: #eb6f92;
-    yel: #f6c177;
+    bg: #1c1c1e;
+    bg-alt: #3a3a3c;
+    bg-altalt: #2c2c2e;
+    cur: @bg-altalt;
+    fgd: #f2f2f7;
+    cmt: #98989d;
+    cya: #5ac8f5;
+    grn: #32d74b;
+    ora: #ff9f0a;
+    pur: #bf5af2;
+    red: #ff453a;
+    yel: #ffd60a;
 
     text-color: @fgd;
     background-color: @bg;
@@ -28,7 +28,7 @@ configuration {
 
 window {
   border: 1px;
-  border-color: @pur;
+  border-color: @cmt;
   border-radius: 6px;
   padding: 8px;
   width: 25%;
