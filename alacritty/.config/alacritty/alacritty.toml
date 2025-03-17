@@ -4,7 +4,7 @@ general.import = [
 
 [font]
 normal = { family = "SF Mono", style = "Regular" }
-size = 14
+size = 12
 
 [window]
 padding = { x = 5, y = 5 }
