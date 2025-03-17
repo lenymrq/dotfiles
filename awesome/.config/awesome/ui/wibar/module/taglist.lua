@@ -63,8 +63,8 @@ return function(s)
       },
       style           = {
          bg_focus    = color.accent,
-         bg_occupied = color.fg2,
-         bg_empty    = color.bg4 .. 'ac',
+         bg_occupied = color.bg4,
+         bg_empty    = color.bg3,
          bg_urgent   = color.red,
          shape       = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
       },

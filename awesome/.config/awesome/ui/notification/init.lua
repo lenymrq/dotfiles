@@ -180,7 +180,6 @@ return function(n)
       notification    = n,
       cursor          = 'hand2',
       border_width    = 0,
-      shape           = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
       widget_template = {
          widget   = wibox.container.constraint,
          strategy = 'max',

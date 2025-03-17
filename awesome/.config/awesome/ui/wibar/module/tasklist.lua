@@ -81,18 +81,17 @@ return function(s)
       },
       style           = {
          -- Colors.
-         bg_minimize                  = color.bg1,
+         bg_minimize                  = color.bg0,
          fg_minimize                  = color.bg4,
          bg_normal                    = color.bg1,
          fg_normal                    = color.fg2,
-         bg_focus                     = color.bg2 .. '80',
-         fg_focus                     = color.accent,
+         bg_focus                     = color.bg1,
+         fg_focus                     = color.fg1,
          bg_urgent                    = color.bg1,
          fg_urgent                    = color.red,
-         -- shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
          shape_border_width           = dpi(1),
          shape_border_color           = color.bg3,
-         shape_border_color_focus     = color.bg4 .. 'BF',
+         shape_border_color_focus     = color.accent,
          shape_border_color_minimized = color.bg2,
          shape_border_color_urgent    = color.red,
          -- Styling.

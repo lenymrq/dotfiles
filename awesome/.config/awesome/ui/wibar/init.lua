@@ -41,7 +41,7 @@ return function(s)
    -- Middle widgets.
    local center = wibox.widget({
       widget = wibox.container.background,
-      bg     = color.bg1 .. '80',
+      bg     = color.bg0,
       {
          widget  = wibox.container.margin,
          margins = {

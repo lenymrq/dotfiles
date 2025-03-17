@@ -45,7 +45,7 @@ return {
 
    -- Colors. Available options:
    --   lite-xl, mardel, oxocarbon, rose-pine.
-   colorscheme     = 'rose-pine',
+   colorscheme     = 'macos',
    style           = 'dark',
 
    -- Profile Picture.
