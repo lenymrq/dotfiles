@@ -23,7 +23,6 @@ return function(s)
       y            = dpi(margin + s.bar.height),
       border_width = dpi(1),
       border_color = color.bg3,
-      shape        = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end,
       widget       = {
          layout = wibox.layout.align.vertical,
          {

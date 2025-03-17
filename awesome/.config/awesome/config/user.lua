@@ -49,13 +49,9 @@ return {
    style           = 'dark',
 
    -- Profile Picture.
-   -- pfp = HOME .. 'Pictures/avatars/misuta-o-saru/gundamZOOM.jpg',
-   -- pfp = HOME .. 'Pictures/avatars/misuta-o-saru/foxZOOM.jpg',
    pfp             = HOME .. '.local/share/pfp/dog.jpg',
 
    -- Wallpaper.
-   -- wall = HOME .. 'Pictures/walls/flowers/YellowMacro.jpg',
-   -- wall = HOME .. 'Pictures/walls/abstract/GeometricalShape.jpg',
    wall            = HOME .. '.local/share/backgrounds/sakurajima-mai-1.png',
 
    -- Screenshots, they're only saved to this path when you select SAVE on the screenshot

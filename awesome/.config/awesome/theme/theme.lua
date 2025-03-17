@@ -31,7 +31,7 @@ end
 
 -- Fonts
 _T.font_bitm                       = 'SF Pro Display '
-_T.font_mono                       = 'SFMono Nerd Font '
+_T.font_mono                       = 'SF Mono '
 _T.bitm_size                       = dpi(11)
 
 -- A few defaults.
@@ -48,7 +48,9 @@ _T.useless_gap                     = user.gaps or dpi(6)
 _T.master_width_factor             = 0.58
 
 -- Borders.
-_T.border_width                    = 0
+_T.border_width                    = 1
+_T.border_normal                   = colorscheme.bg3
+_T.border_focus                    = colorscheme.accent
 
 -- Widgets
 ----------

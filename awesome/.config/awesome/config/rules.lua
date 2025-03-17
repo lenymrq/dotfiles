@@ -20,7 +20,6 @@ ruled.client.connect_signal('request::rules', function()
          placement        = awful.placement.centered + awful.placement.no_offscreen,
          callback         = awful.client.setslave,
          size_hints_honor = false,
-         shape            = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, user.radius) end
       }
    })
 
