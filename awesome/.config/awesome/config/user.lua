@@ -40,7 +40,7 @@ return {
    --------
    -- Sizes.
    gaps            = dpi(4),
-   tag_padding     = dpi(4),
+   tag_padding     = dpi(0),
    radius          = dpi(6),
 
    -- Colors. Available options:
