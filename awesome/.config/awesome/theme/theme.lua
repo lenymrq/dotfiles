@@ -32,7 +32,7 @@ end
 -- Fonts
 _T.font_bitm                       = 'SF Pro Display '
 _T.font_mono                       = 'SF Mono '
-_T.bitm_size                       = dpi(11)
+_T.bitm_size                       = dpi(10)
 
 -- A few defaults.
 _T.font                            = _T.font_bitm .. _T.bitm_size
