@@ -1,8 +1,10 @@
 # Welcome
 
-These are the dotfiles I use on my laptop, things might look a bit big on a standard desktop screen.
+These are the dotfiles I use on my laptop, things might look a bit big on a standard desktop screen I don't know.
 
-The `awesome` configuration is a modified version of [gwileful](https://github.com/Gwynsav/gwileful).
+I use `awesome` as my main window manager and `i3` as a fallback if everything goes to hell.
+
+The `awesome` configuration is built from [modular-awm-default](https://github.com/Gwynsav/modular-awm-default).
 
 This repository is designed to make it easy to use `stow`.
 
@@ -13,9 +15,9 @@ This repository is designed to make it easy to use `stow`.
 **Required**:
 
 - `pulseaudio`
+- `alsa`
 - `networkmanager`
 - `brightnessctl`
-- `playerctl`
 - `i3lock`
 - `rofi`
 
@@ -29,13 +31,12 @@ _Optional_:
 2. Install dependencies: `sudo dnf install blueman brightnessctl playerctl i3lock rofi picom`.  
    The rest of the dependencies should come preinstalled with Fedora. If not, just install them.
 
-Check that the default apps are the ones you want to use. You can change them in `awesome/.config/awesome/config/apps.lua`.
-
-The process should be similar for other distributions (unless you’re using `nix` 🤣), but you’ll need to use your distribution’s package manager.
+The process should be similar for other distributions, but you’ll need to use your distribution’s package manager.
 
 The only package that requires a specific version is `awesome`—you need the [version from GitHub](https://github.com/awesomeWM/awesome), as the stable release will not work.
 
 # TODO
 
-- `awesome`: Add animations for the tag list and other UI elements.
+- `awesome`: Add animations.
+- `awesome`: Move away from `rofi` and build my own app launcher (or extend `awesome`'s default one).
 - `README`: Add screenshots.

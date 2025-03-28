@@ -35,7 +35,7 @@ return function(s, size)
                id     = 'clienticon',
                widget = awful.widget.clienticon,
             },
-            margins = dpi(4),
+            margins = dpi(8),
             widget  = wibox.container.margin,
          },
          id              = 'background_role',

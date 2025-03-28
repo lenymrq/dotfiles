@@ -18,6 +18,8 @@ export PATH="$PATH:/home/leny/.local/bin"
 
 export PATH=$PATH:/home/leny/.spicetify
 
+export PATH=$PATH:/home/leny/bin
+
 # Alias
 clang-format-all() {
     find $1 -type f -name '*.[ch]' | xargs clang-format -i

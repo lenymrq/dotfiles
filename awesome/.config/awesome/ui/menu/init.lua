@@ -1,83 +1,31 @@
-local require, awesome, os = require, awesome, os
-
-local awful                = require('awful')
-local beautiful            = require('beautiful')
-local wibox                = require('wibox')
-
-local hotkeys              = require('awful.hotkeys_popup')
-local dpi                  = beautiful.xresources.apply_dpi
-
-local apps                 = require('config.apps')
-local user                 = require('config.user')
-local color                = require(beautiful.colorscheme)
+local awful     = require('awful')
+local beautiful = require('beautiful')
 
 --- Menu
-local menu                 = {}
-local section              = {}
-
-section.awesome            = {
-   { 'Hotkeys',       function() hotkeys.show_help(nil, awful.screen.focused()) end },
-   { 'Documentation', apps.browser .. ' https://awesomewm.org/apidoc' },
-   { 'Configuration', apps.editor_cmd .. ' ' .. awesome.conffile },
-   { 'Reload',        awesome.restart }
-}
-
-section.power              = {
-   { 'Log off',  function() awesome.quit() end },
-   { 'Suspend',  function() os.execute(user.suspend_cmd) end },
-   { 'Reboot',   function() os.execute(user.reboot_cmd) end },
-   { 'Shutdown', function() os.execute(user.shutdown_cmd) end }
-}
+local menu = {}
+local apps = require('config.apps')
+local hkey_popup = require('awful.hotkeys_popup')
 
 -- Create a main menu.
-menu.main                  = awful.menu({
-   theme = {
-      font         = beautiful.font,
-      width        = dpi(172),
-      height       = dpi(32),
-      bg_normal    = color.bg0,
-      bg_focus     = color.bg1,
-      border_width = dpi(1),
-      border_color = color.bg3
+menu.awesome = {
+   { 'hotkeys',     function() hkey_popup.show_help(nil, awful.screen.focused()) end },
+   { 'manual',      apps.terminal .. ' -e man awesome' },
+   -- Not part of the original config but extremely useful, especially as the example
+   -- config is meant to serve as an example to build your own environment upon.
+   {
+      'docs',
+      (os.getenv('BROWSER') or 'firefox') .. ' https://awesomewm.org/apidoc'
    },
+   -- { 'edit config', apps.editor_cmd .. ' ' .. awesome.conffile },
+   { 'restart',     awesome.restart },
+   { 'quit',        function() awesome.quit() end }
+}
+
+menu.main = awful.menu({
    items = {
-      { 'Terminal', apps.terminal },
-      { 'Editor',   apps.editor },
-      { 'Browser',  apps.browser },
-      { 'Awesome',  section.awesome },
-      { 'Power',    section.power }
+      { 'awesome', menu.awesome, beautiful.awesome_icon },
+      { 'open terminal', apps.terminal }
    }
 })
-
--- Add margins.
-menu.main.wibox:set_widget(wibox.widget({
-   widget  = wibox.container.margin,
-   margins = dpi(12),
-   {
-      widget = wibox.container.background,
-      menu.main.wibox.widget
-   }
-}))
--- Repeat for submenus.
-awful.menu.old_new = awful.menu.new
-function awful.menu.new(...)
-   local submenu              = awful.menu.old_new(...)
-   submenu.wibox.bg           = color.bg0
-   submenu.wibox.border_width = dpi(1)
-   submenu.wibox.border_color = color.bg3
-   submenu.wibox:set_widget(wibox.widget({
-      widget = wibox.container.background,
-      bg     = color.bg0,
-      {
-         widget  = wibox.container.margin,
-         margins = dpi(12),
-         {
-            widget = wibox.container.background,
-            submenu.wibox.widget
-         }
-      }
-   }))
-   return submenu
-end
 
 return menu

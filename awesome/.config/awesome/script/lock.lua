@@ -1,7 +1,5 @@
-local require = require
-
 local awful = require('awful')
 
 return function()
-    awful.spawn.with_shell('lock')
+   awful.spawn.with_shell('lock')
 end

@@ -1,9 +1,7 @@
-local require, client = require, client
+local awful = require('awful')
 
-local awful           = require('awful')
-
-local mod             = require('binds.mod')
-local modkey          = mod.modkey
+local mod    = require('binds.mod')
+local modkey = mod.modkey
 
 --- Client mouse bindings.
 client.connect_signal('request::default_mousebindings', function()
