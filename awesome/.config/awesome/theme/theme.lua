@@ -1,15 +1,13 @@
----------------------------
--- Default awesome theme --
----------------------------
-
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local rnotification = require("ruled.notification")
 local dpi = xresources.apply_dpi
+local naughty = require('naughty')
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 local config_path = gfs.get_configuration_dir()
+local util = require('util')
 
 local palette = {}
 
@@ -69,9 +67,6 @@ theme.border_color_marked = theme.bg_normal
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- theme.wibar_border_color = theme.bg_normal
 -- theme.wibar_opacity = 0.8
-theme.notification_border_color = theme.accent
-theme.notification_max_width = dpi(500)
-theme.notification_max_height = dpi(300)
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
@@ -99,6 +94,13 @@ theme.menu_width  = dpi(100)
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 theme.radius = dpi(10)
+
+theme.notification_border_color = theme.bg_focus
+theme.notification_max_width = dpi(800)
+theme.notification_max_height = theme.notification_max_width / 2
+theme.notification_margin = theme.radius
+theme.notification_shape = util.rrect(theme.radius / 2)
+theme.notification_spacing = dpi(5)
 
 theme.icon_path = config_path .. "theme/asset/"
 
@@ -133,7 +135,7 @@ theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/m
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
 -- theme.wallpaper = themes_path.."default/background.png"
-theme.wallpaper = "~/.local/share/backgrounds/sakurajima-mai-1.png"
+theme.wallpaper = "/home/leny/.local/share/backgrounds/sakurajima-mai-1.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
@@ -169,5 +171,7 @@ rnotification.connect_signal('request::rules', function()
         properties = { bg = theme.bg_urgent, fg = theme.fg_urgent }
     }
 end)
+
+naughty.config.defaults.shape = theme.notification_shape
 
 return theme

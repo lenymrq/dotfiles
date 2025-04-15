@@ -12,7 +12,7 @@ return {
    -- screens (default behavior).
    tags = { '1', '2', '3', '4', '5' },
    -- Screenshot path (obviously)
-   screenshot_path = '~/Pictures/',
+   screenshot_path = '/home/leny/Pictures/',
    -- Table of layouts to cover with awful.layout.inc, ORDER MATTERS, the first layout 
    -- in the table is your DEFAULT LAYOUT.
    layouts = {

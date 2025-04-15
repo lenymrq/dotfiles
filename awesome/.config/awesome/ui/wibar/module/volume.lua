@@ -56,6 +56,9 @@ return function(s)
          self.text = util.colortext(self.percentage .. '%', color)
          self.icon = get_volume_icon(self.percentage, self.is_muted)
       end,
+      get_volume = function(self)
+         return self.percentage
+      end,
       set_muted = function(self, is_muted)
          self.is_muted = is_muted
          self.icon = get_volume_icon(self.percentage, self.is_muted)
@@ -86,10 +89,6 @@ return function(s)
       end)
    end
 
-   -- Initial update
-   update_volume_status()
-   update_mute_status()
-
    awesome.connect_signal('audio::mute', function()
       awful.spawn.easy_async_with_shell(toggle_mute_command, function()
          update_mute_status()
@@ -110,6 +109,10 @@ return function(s)
          volume_widget.volume = val
       end)
    end)
+
+   -- Initial update
+   update_volume_status()
+   update_mute_status()
 
    gears.timer {
       timeout   = 5,

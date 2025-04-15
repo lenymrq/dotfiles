@@ -67,4 +67,9 @@ ruled.client.connect_signal('request::rules', function()
       rule_any = { class = { 'discord', 'vesktop', 'Slack' } },
       properties = { screen = 1, tag = '4' }
    })
+
+   ruled.client.append_rule({
+      rule_any = { class = { 'Spotify' } },
+      properties = { screen = 1, tag = '5' }
+   })
 end)
