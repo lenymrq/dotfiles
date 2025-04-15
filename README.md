@@ -2,11 +2,11 @@
 
 These are the dotfiles I use on my laptop, things might look a bit big on a standard desktop screen I don't know.
 
-I use `awesome` as my main window manager and `i3` as a fallback if everything goes to hell.
+I use [awesome](https://awesomewm.org/) as my main window manager and [i3](https://i3wm.org/) as a fallback if everything goes to hell.
 
 The `awesome` configuration is built from [modular-awm-default](https://github.com/Gwynsav/modular-awm-default).
 
-This repository is designed to make it easy to use `stow`.
+This repository is designed to make it easy to use [stow](https://www.gnu.org/software/stow/).
 
 # Installation
 
@@ -19,16 +19,11 @@ This repository is designed to make it easy to use `stow`.
 - `networkmanager`
 - `brightnessctl`
 - `i3lock`
-- `rofi`
-
-_Optional_:
-
-- `picom`
 
 ## Steps
 
 1. [Install awesome from GitHub](https://www.reddit.com/r/awesomewm/comments/xi6ab5/installing_awesomewm).
-2. Install dependencies: `sudo dnf install blueman brightnessctl playerctl i3lock rofi picom`.  
+2. Install dependencies: `sudo dnf install alsa-utils alsa-lib brightnessctl i3lock`.  
    The rest of the dependencies should come preinstalled with Fedora. If not, just install them.
 
 The process should be similar for other distributions, but you’ll need to use your distribution’s package manager.
@@ -37,6 +32,5 @@ The only package that requires a specific version is `awesome`—you need the [v
 
 # TODO
 
-- `awesome`: Add animations.
 - `awesome`: Move away from `rofi` and build my own app launcher (or extend `awesome`'s default one).
 - `README`: Add screenshots.
