@@ -12,11 +12,9 @@ This repository is designed to make it easy to use [stow](https://www.gnu.org/so
 
 ## Dependencies
 
-**Required**:
+These are the dependencies for the `awesome` config
 
-- `pulseaudio`
 - `alsa`
-- `networkmanager`
 - `brightnessctl`
 - `i3lock`
 
