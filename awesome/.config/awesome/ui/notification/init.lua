@@ -5,7 +5,7 @@ local naughty = require('naughty')
 return function(n)
    return naughty.layout.box({
       notification = n,
-      minimum_width = dpi(125),
-      minimum_height = dpi(50),
+      minimum_width = beautiful.notification_min_width,
+      minimum_height = beautiful.notification_min_height,
    })
 end

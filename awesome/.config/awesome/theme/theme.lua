@@ -96,10 +96,12 @@ theme.menu_width  = dpi(100)
 theme.radius = dpi(10)
 
 theme.notification_border_color = theme.bg_focus
-theme.notification_max_width = dpi(800)
-theme.notification_max_height = theme.notification_max_width / 2
-theme.notification_margin = theme.radius
-theme.notification_shape = util.rrect(theme.radius / 2)
+theme.notification_max_width = dpi(600)
+theme.notification_max_height = theme.notification_max_width / 3
+theme.notification_min_width = dpi(150)
+theme.notification_min_height = theme.notification_min_width / 3
+theme.notification_margin = dpi(10)
+theme.notification_shape = util.rrect(dpi(5))
 theme.notification_spacing = dpi(5)
 
 theme.icon_path = config_path .. "theme/asset/"
