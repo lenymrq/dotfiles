@@ -50,7 +50,7 @@ theme.fg_focus      = palette.fg_foc
 theme.fg_urgent     = palette.fg_foc
 theme.fg_minimize   = palette.fg
 
--- theme.useless_gap         = dpi(4)
+theme.useless_gap         = dpi(0)
 theme.border_width        = dpi(1)
 theme.border_color_normal = theme.bg_focus
 theme.border_color_active = theme.fg_normal
