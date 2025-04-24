@@ -2,86 +2,91 @@
 -- reliable enough to be usable.
 local require, io, os = require, io, os
 
-local awful           = require('awful')
-local beautiful       = require('beautiful')
-local naughty         = require('naughty')
+local awful = require("awful")
+local beautiful = require("beautiful")
+local naughty = require("naughty")
 
-local user            = require('config.user')
+local user = require("config.user")
 
 -- The directory where PERMANENT files would be stored.
-local perm_dir        = user.screenshot_path or os.getenv('HOME')
+local perm_dir = user.screenshot_path or os.getenv("HOME")
 
 local function dir_exists(path)
-   if path:sub(-1, -1) ~= '/' then
-      path = path .. '/'
-   end
-   return os.rename(path, path)
+	if path:sub(-1, -1) ~= "/" then
+		path = path .. "/"
+	end
+	return os.rename(path, path)
 end
 
-
 local function send_notif(path)
-   local ok      = naughty.action({ name = 'Ok' })
-   local save    = naughty.action({ name = 'Save' })
-   local discard = naughty.action({ name = 'Discard' })
+	local ok = naughty.action({ name = "Ok" })
+	local save = naughty.action({ name = "Save" })
+	local discard = naughty.action({ name = "Discard" })
 
-   save:connect_signal('invoked', function()
-      if not dir_exists(perm_dir) then
-         awful.spawn('mkdir -p ' .. perm_dir)
-      end
-      awful.spawn.easy_async_with_shell('cp ' .. path .. ' ' .. perm_dir, function()
-         naughty.notification({
-            title   = 'Screenshot',
-            message = 'Saved to ' .. perm_dir,
-            actions = { ok }
-         })
-      end)
-   end)
+	save:connect_signal("invoked", function()
+		if not dir_exists(perm_dir) then
+			awful.spawn("mkdir -p " .. perm_dir)
+		end
+		awful.spawn.easy_async_with_shell("cp " .. path .. " " .. perm_dir, function()
+			naughty.notification({
+				title = "Screenshot",
+				message = "Saved to " .. perm_dir,
+				actions = { ok },
+			})
+		end)
+	end)
 
-   discard:connect_signal('invoked', function()
-      awful.spawn.easy_async_with_shell('rm ' .. path, function()
-         naughty.notification({
-            icon    = beautiful.notification_cancel,
-            title   = 'Screenshot',
-            message = 'Temporary file removed!',
-            actions = { ok }
-         })
-      end)
-   end)
+	discard:connect_signal("invoked", function()
+		awful.spawn.easy_async_with_shell("rm " .. path, function()
+			naughty.notification({
+				icon = beautiful.notification_cancel,
+				title = "Screenshot",
+				message = "Temporary file removed!",
+				actions = { ok },
+			})
+		end)
+	end)
 
-   -- Check whether the screenshot was taken or not.
-   local file = io.open(path)
-   if file ~= nil then
-      -- If it exists:
-      io.close(file)
-      naughty.notification({
-         icon    = path,
-         title   = 'Screenshot',
-         message = 'Copied to clipboard!',
-         actions = { save, discard }
-      })
-   else
-      -- If it doesn't:
-      naughty.notification({
-         icon    = beautiful.notification_cancel,
-         title   = 'Screenshot',
-         message = 'Cancelled!',
-         actions = { ok }
-      })
-   end
+	-- Check whether the screenshot was taken or not.
+	local file = io.open(path)
+	if file ~= nil then
+		-- If it exists:
+		io.close(file)
+		naughty.notification({
+			icon = path,
+			title = "Screenshot",
+			message = "Copied to clipboard!",
+			actions = { save, discard },
+		})
+	else
+		-- If it doesn't:
+		naughty.notification({
+			icon = beautiful.notification_cancel,
+			title = "Screenshot",
+			message = "Cancelled!",
+			actions = { ok },
+		})
+	end
 end
 
 -- Takes a screenshot and puts it in `/tmp`, then copies it to system clipboard
 -- and notifies about the result.
 local function take_screenshot(cmd)
-   local tmp = '/tmp/ss-' .. os.date('%Y%m%d-%H%M%S') .. '.png'
-   awful.spawn.easy_async_with_shell(cmd .. ' ' .. tmp, function()
-      awful.spawn.with_shell('xclip -selection clip -t image/png -i ' .. tmp)
-      send_notif(tmp)
-   end)
+	local tmp = "/tmp/ss-" .. os.date("%Y%m%d-%H%M%S") .. ".png"
+	awful.spawn.easy_async_with_shell(cmd .. " " .. tmp, function()
+		awful.spawn.with_shell("xclip -selection clip -t image/png -i " .. tmp)
+		send_notif(tmp)
+	end)
 end
 
 return {
-   screen    = function() take_screenshot('maim') end,
-   selection = function() take_screenshot('maim -s') end,
-   delayed   = function(s) take_screenshot('sleep ' .. s .. '; maim') end
+	screen = function()
+		take_screenshot("maim")
+	end,
+	selection = function()
+		take_screenshot("maim -s")
+	end,
+	delayed = function(s)
+		take_screenshot("sleep " .. s .. "; maim")
+	end,
 }

@@ -1,4 +1,5 @@
 return {
-   rrect     = require(... .. '.rrect'),
-   colortext = require(... .. '.colortext')
+	rrect = require(... .. ".rrect"),
+	colortext = require(... .. ".colortext"),
 }
+
