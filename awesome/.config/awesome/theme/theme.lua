@@ -11,7 +11,7 @@ local util = require("util")
 
 local font = "SF Pro Display "
 local font_size = 11
-local notification_font_size = 14
+local notification_font_size = 13
 
 local palette = {}
 
