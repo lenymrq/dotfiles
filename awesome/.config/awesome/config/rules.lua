@@ -66,7 +66,7 @@ ruled.client.connect_signal("request::rules", function()
 	})
 
 	ruled.client.append_rule({
-		rule_any = { class = { "org.mozilla.firefox", "Chromium-browser" } },
+		rule_any = { class = { "org.mozilla.firefox", "Chromium-browser", "Brave-browser" } },
 		properties = { screen = 1, tag = "2" },
 	})
 
