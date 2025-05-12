@@ -101,6 +101,7 @@ theme.notification_max_width = dpi(600)
 theme.notification_max_height = theme.notification_max_width / 3
 theme.notification_min_width = dpi(200)
 -- theme.notification_min_height = theme.notification_min_width / 3
+theme.notification_icon_size = dpi(200)
 theme.notification_margin = dpi(10)
 theme.notification_shape = util.rrect(dpi(5))
 theme.notification_spacing = dpi(5)
