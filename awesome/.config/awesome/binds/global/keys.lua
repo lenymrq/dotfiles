@@ -6,6 +6,7 @@ local modkey = mod.modkey
 local apps = require("config.apps")
 local lock = require("script.lock")
 local screenshot = require("script.screenshot")
+local bling = require("module.bling")
 
 --- Global key bindings
 awful.keyboard.append_global_keybindings({
@@ -46,12 +47,12 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.byidx(-1)
 	end, { description = "focus previous by index", group = "client" }),
-	awful.key({ modkey }, "Tab", function()
-		awful.client.focus.history.previous()
-		if client.focus then
-			client.focus:raise()
-		end
-	end, { description = "go back", group = "client" }),
+	-- awful.key({ modkey }, "Tab", function()
+	-- 	awful.client.focus.history.previous()
+	-- 	if client.focus then
+	-- 		client.focus:raise()
+	-- 	end
+	-- end, { description = "go back", group = "client" }),
 	awful.key({ modkey, mod.ctrl }, "k", function()
 		awful.screen.focus_relative(1)
 	end, { description = "focus the next screen", group = "screen" }),
@@ -201,4 +202,24 @@ awful.keyboard.append_global_keybindings({
 	-- Screenshot
 	awful.key({}, "Print", screenshot.screen),
 	awful.key({ modkey }, "Print", screenshot.selection),
+
+	-- Bling
+	awful.key(
+		{ modkey },
+		"w",
+		bling.module.tabbed.pick,
+		{ description = "pick a client to add to the tabbed group", group = "layout" }
+	),
+	awful.key(
+		{ modkey, mod.shift },
+		"w",
+		bling.module.tabbed.pop,
+		{ description = "remove the focused client from the tabbed group", group = "layout" }
+	),
+	awful.key(
+		{ modkey },
+		"Tab",
+		bling.module.tabbed.iter,
+		{ description = "cycle through focused tabbed group", group = "client" }
+	),
 })
