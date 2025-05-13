@@ -106,6 +106,9 @@ theme.notification_margin = dpi(10)
 theme.notification_shape = util.rrect(dpi(5))
 theme.notification_spacing = dpi(5)
 
+-- Bling
+theme.tabbar_disable = true
+
 theme.icon_path = config_path .. "theme/asset/"
 
 theme.bar_height = dpi(28)

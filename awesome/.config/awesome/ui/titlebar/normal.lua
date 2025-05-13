@@ -1,5 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local bling = require("module.bling")
 
 --- The titlebar to be used on normal clients.
 return function(c)
@@ -19,7 +20,8 @@ return function(c)
 		-- Left
 		{
 			layout = wibox.layout.fixed.horizontal,
-			awful.titlebar.widget.iconwidget(c),
+			-- awful.titlebar.widget.iconwidget(c),
+			bling.widget.tabbed_misc.titlebar_indicator(c),
 			buttons = buttons,
 		},
 		-- Middle
@@ -32,13 +34,13 @@ return function(c)
 			buttons = buttons,
 		},
 		-- Right
-		{
-			layout = wibox.layout.fixed.horizontal,
-			awful.titlebar.widget.floatingbutton(c),
-			awful.titlebar.widget.maximizedbutton(c),
-			awful.titlebar.widget.stickybutton(c),
-			awful.titlebar.widget.ontopbutton(c),
-			awful.titlebar.widget.closebutton(c),
-		},
+		-- {
+		-- 	layout = wibox.layout.fixed.horizontal,
+		-- 	awful.titlebar.widget.floatingbutton(c),
+		-- 	awful.titlebar.widget.maximizedbutton(c),
+		-- 	awful.titlebar.widget.stickybutton(c),
+		-- 	awful.titlebar.widget.ontopbutton(c),
+		-- 	awful.titlebar.widget.closebutton(c),
+		-- },
 	})
 end
