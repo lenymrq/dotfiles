@@ -16,4 +16,7 @@ shell = "zsh"
 style = { shape = "Block" }
 
 [keyboard]
-bindings = [{ key = "Enter", mods = "Super | Shift", command = "alacritty" }]
+bindings = [
+  { key = "Enter", mods = "Super | Shift", action = "CreateNewWindow" },
+  { key = "Enter", mods = "Super | Alt", action = "SpawnNewInstance" }
+]
