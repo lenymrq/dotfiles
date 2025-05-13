@@ -918,6 +918,14 @@ require('lazy').setup({
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+      require('mini.indentscope').setup {
+        draw = {
+          delay = 0,
+          -- animation = require('mini.indentscope').gen_animation.none(),
+        },
+        symbol = '▏',
+      }
+      require('mini.tabline').setup()
     end,
   },
   { -- Highlight, edit, and navigate code
@@ -956,7 +964,7 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
+  -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
