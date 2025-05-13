@@ -4,9 +4,9 @@ These are the dotfiles I use on my laptop, things might look a bit big on a stan
 
 I use [awesome](https://awesomewm.org/) as my main window manager and [i3](https://i3wm.org/) as a fallback if everything goes to hell.
 
-I use [kickstart](https://github.com/nvim-lua/kickstart.nvim) that I tweaked for the `nvim` config.
-
 The `awesome` configuration is built from [modular-awm-default](https://github.com/Gwynsav/modular-awm-default).
+
+The `nvim` configuration is built from [kickstart](https://github.com/nvim-lua/kickstart.nvim).
 
 This repository is designed to make it easy to use [stow](https://www.gnu.org/software/stow/).
 
