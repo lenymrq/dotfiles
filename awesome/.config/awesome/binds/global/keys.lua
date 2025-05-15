@@ -92,16 +92,16 @@ awful.keyboard.append_global_keybindings({
 		end
 		selected_tag.master_width_factor = 0.5
 	end, { description = "reset master width factor", group = "client" }),
-	awful.key({ modkey, mod.shift }, "h", function()
+	awful.key({ modkey, mod.ctrl }, "l", function()
 		awful.tag.incnmaster(1, nil, true)
 	end, { description = "increase the number of master clients", group = "layout" }),
-	awful.key({ modkey, mod.shift }, "l", function()
+	awful.key({ modkey, mod.ctrl }, "h", function()
 		awful.tag.incnmaster(-1, nil, true)
 	end, { description = "decrease the number of master clients", group = "layout" }),
-	awful.key({ modkey, mod.ctrl }, "l", function()
+	awful.key({ modkey, mod.shift }, "l", function()
 		awful.tag.incncol(1, nil, true)
 	end, { description = "increase the number of columns", group = "layout" }),
-	awful.key({ modkey, mod.ctrl }, "h", function()
+	awful.key({ modkey, mod.shift }, "h", function()
 		awful.tag.incncol(-1, nil, true)
 	end, { description = "decrease the number of columns", group = "layout" }),
 	awful.key({ modkey }, "space", function()
