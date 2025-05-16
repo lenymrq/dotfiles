@@ -16,7 +16,7 @@ return function(s)
 
 	local inner_margin_width = dpi(2)
 
-	local font = beautiful.font_no_size .. "16"
+	local font = "JetBrainsMono Nerd Font Mono 16" -- any nerd font in mono variant should work
 
 	local update_tags = function(self, c3)
 		local tagicon = self:get_children_by_id("icon_role")[1]

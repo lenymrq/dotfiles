@@ -9,7 +9,7 @@ local themes_path = gfs.get_themes_dir()
 local config_path = gfs.get_configuration_dir()
 local rrect = require("util").rrect
 
-local font = "JetBrainsMono Nerd Font Mono "
+local font = "SF Pro Display "
 local font_size = 11
 local notification_font_size = 13
 
