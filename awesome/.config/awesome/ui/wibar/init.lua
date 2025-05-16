@@ -5,8 +5,6 @@ local dpi = beautiful.xresources.apply_dpi
 
 local module = require(... .. ".module")
 
-local space = dpi(12)
-
 return function(s)
 	s.mypromptbox = awful.widget.prompt() -- Create a promptbox.
 
@@ -21,23 +19,29 @@ return function(s)
 			-- Left widgets.
 			{
 				layout = wibox.layout.fixed.horizontal,
-				module.layoutbox(s),
+				{
+					module.layoutbox(s),
+					margins = { left = dpi(4), top = dpi(4), bottom = dpi(4) },
+					widget = wibox.container.margin,
+				},
 				module.taglist(s),
-				module.tasklist(s),
-				spacing = dpi(0),
+				-- module.tasklist(s),
+				spacing = dpi(8),
 			},
 			-- Middle widgets.
 			wibox.widget.textclock(), -- Create a textclock widget.
 			-- Right widgets.
 			{
-				layout = wibox.layout.fixed.horizontal,
-				module.volume(s),
-				module.brightness(s),
-				module.battery(s),
-				module.systray(s, beautiful.bar_height - beautiful.bar_height / 6),
-				spacing = space,
+				{
+					layout = wibox.layout.fixed.horizontal,
+					module.volume(s),
+					module.brightness(s),
+					module.battery(s),
+					spacing = dpi(12),
+				},
+				margins = { right = dpi(6) },
+				widget = wibox.layout.margin,
 			},
 		},
 	})
 end
-

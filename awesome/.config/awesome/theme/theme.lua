@@ -7,9 +7,9 @@ local naughty = require("naughty")
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 local config_path = gfs.get_configuration_dir()
-local util = require("util")
+local rrect = require("util").rrect
 
-local font = "SF Pro Display "
+local font = "JetBrainsMono Nerd Font Mono "
 local font_size = 11
 local notification_font_size = 13
 
@@ -42,6 +42,7 @@ theme.gray = palette.gray
 theme.accent = palette.accent
 
 theme.font = font .. font_size
+theme.font_no_size = font
 
 theme.bg_normal = palette.bg
 theme.bg_focus = palette.bg_foc
@@ -52,7 +53,7 @@ theme.bg_systray = theme.bg_normal
 theme.fg_normal = palette.fg
 theme.fg_focus = palette.fg_foc
 theme.fg_urgent = palette.fg_foc
-theme.fg_minimize = palette.fg
+theme.fg_minimize = palette.bg
 
 theme.useless_gap = dpi(0)
 theme.border_width = dpi(1)
@@ -93,7 +94,7 @@ theme.menu_width = dpi(100)
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
-theme.radius = dpi(10)
+theme.radius = dpi(6)
 
 theme.notification_font = font .. notification_font_size
 theme.notification_border_color = theme.bg_focus
@@ -103,7 +104,7 @@ theme.notification_min_width = dpi(200)
 -- theme.notification_min_height = theme.notification_min_width / 3
 theme.notification_icon_size = dpi(200)
 theme.notification_margin = dpi(10)
-theme.notification_shape = util.rrect(dpi(5))
+theme.notification_shape = rrect()
 theme.notification_spacing = dpi(5)
 
 -- Bling

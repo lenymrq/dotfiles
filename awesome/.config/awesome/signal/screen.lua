@@ -10,7 +10,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 	-- Attach a wibar to each screen.
 	s.bar = require("ui.wibar")(s)
 	-- Attach a dock to each screen.
-	-- s.dock = require('ui.dock')(s)
+	s.taskbar = require("ui.taskbar")(s)
 end)
 
 --- Wallpaper.
