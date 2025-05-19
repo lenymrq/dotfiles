@@ -3,6 +3,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local gears = require("gears")
 local dpi = beautiful.xresources.apply_dpi
+local rrect = require("util").rrect
 
 return function(s)
 	-- Create a tasklist widget
@@ -30,7 +31,7 @@ return function(s)
 		},
 		layout = {
 			layout = wibox.layout.flex.horizontal,
-			spacing = dpi(6),
+			spacing = dpi(8),
 		},
 		style = {
 			-- Colors.
@@ -42,13 +43,14 @@ return function(s)
 			fg_focus = beautiful.fg_focus,
 			bg_urgent = beautiful.bg_urgent,
 			fg_urgent = beautiful.fg_urgent,
+			-- shape = rrect(),
 			shape_border_width = dpi(1),
 			shape_border_color = beautiful.border_color_normal,
-			shape_border_color_focus = beautiful.border_color_focus,
+			shape_border_color_focus = beautiful.border_color_active,
 			shape_border_color_minimized = beautiful.border_marked,
 			shape_border_color_urgent = beautiful.bg_urgent,
 			-- Styling
-			-- font = beautiful.font,
+			font = beautiful.taskbar_font,
 			-- disable_icon = false,
 			-- maximized = "[+]",
 			-- minimized = "[-]",
@@ -81,7 +83,7 @@ return function(s)
 						valign = "center",
 						id = "text_role",
 					},
-					spacing = dpi(6),
+					spacing = dpi(8),
 					layout = wibox.layout.fixed.horizontal,
 				},
 			},

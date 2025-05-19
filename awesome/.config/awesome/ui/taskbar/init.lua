@@ -11,7 +11,7 @@ return function(s)
 	-- Create the wibox
 	s.mywibox = awful.wibar({
 		position = "bottom",
-		height = dpi(32),
+		height = beautiful.taskbar_height,
 		screen = s,
 		widget = {
 			layout = wibox.layout.align.horizontal,
@@ -44,7 +44,7 @@ return function(s)
 			{
 				layout = wibox.layout.fixed.horizontal,
 				awful.widget.keyboardlayout(), -- Keyboard map indicator and switcher.
-				module.systray(s, beautiful.bar_height - beautiful.bar_height / 6),
+				module.systray(s, beautiful.taskbar_height - beautiful.taskbar_height / 6),
 			},
 		},
 	})

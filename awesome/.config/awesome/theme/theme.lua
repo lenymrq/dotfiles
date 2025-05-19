@@ -11,7 +11,8 @@ local rrect = require("util").rrect
 
 local font = "SF Pro Display "
 local font_size = 11
-local notification_font_size = 13
+local taskbar_font_size = 11
+local notification_font_size = 12
 
 local palette = {}
 
@@ -43,6 +44,8 @@ theme.accent = palette.accent
 
 theme.font = font .. font_size
 theme.font_no_size = font
+
+theme.taskbar_font = font .. taskbar_font_size
 
 theme.bg_normal = palette.bg
 theme.bg_focus = palette.bg_foc
@@ -108,7 +111,7 @@ theme.notification_min_width = dpi(200)
 -- theme.notification_min_height = theme.notification_min_width / 3
 theme.notification_icon_size = dpi(200)
 theme.notification_margin = dpi(10)
-theme.notification_shape = rrect()
+theme.notification_shape = rrect(theme.radius)
 theme.notification_spacing = dpi(5)
 
 -- Bling
@@ -116,8 +119,10 @@ theme.tabbar_disable = true
 
 theme.icon_path = config_path .. "theme/asset/"
 
-theme.bar_height = dpi(28)
+theme.bar_height = dpi(32)
 theme.bar_icon_color = theme.fg_focus
+
+theme.taskbar_height = dpi(32)
 
 -- Define the image to load
 theme.titlebar_close_button_normal = themes_path .. "default/titlebar/close_normal.png"
@@ -182,6 +187,6 @@ rnotification.connect_signal("request::rules", function()
 	})
 end)
 
-naughty.config.defaults.shape = theme.notification_shape
+-- naughty.config.defaults.shape = theme.notification_shape
 
 return theme

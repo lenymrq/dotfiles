@@ -19,7 +19,7 @@ ruled.client.connect_signal("request::rules", function()
 			placement = awful.placement.centered + awful.placement.no_offscreen,
 			callback = awful.client.setslave,
 			size_hints_honor = false,
-			-- shape            = util.rrect()
+			-- shape = util.rrect(),
 		},
 	})
 
