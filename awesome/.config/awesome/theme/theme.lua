@@ -72,11 +72,15 @@ theme.border_color_marked = theme.bg_normal
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- theme.wibar_border_color = theme.bg_normal
 -- theme.wibar_opacity = 0.8
+theme.taglist_bg_focus = theme.bg_normal
+theme.taglist_bg_occupied = theme.bg_normal
+theme.taglist_bg_empty = theme.bg_normal
+theme.taglist_bg_volatile = theme.bg_normal
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
+-- local taglist_square_size = dpi(4)
+-- theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
+-- theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -94,7 +98,7 @@ theme.menu_width = dpi(100)
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
-theme.radius = dpi(6)
+theme.radius = dpi(4)
 
 theme.notification_font = font .. notification_font_size
 theme.notification_border_color = theme.bg_focus
