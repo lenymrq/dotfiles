@@ -205,9 +205,9 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
 -- Keybinds to make buffer navigation easier
-vim.keymap.set('n', '<C-PageUp>', ':bprev<CR>', { silent = true, desc = 'Focus previous buffer' })
-vim.keymap.set('n', '<C-PageDown>', ':bnext<CR>', { silent = true, desc = 'Focus next buffer' })
-vim.keymap.set('n', '<C-x>', ':bdelete<CR>', { silent = true, desc = 'Delete current buffer' })
+vim.keymap.set({ 'n', 'i' }, '<C-PageUp>', '<CMD>:bprev<CR>', { silent = true, desc = 'Focus previous buffer' })
+vim.keymap.set({ 'n', 'i' }, '<C-PageDown>', '<CMD>:bnext<CR>', { silent = true, desc = 'Focus next buffer' })
+vim.keymap.set('n', '<C-x>', '<CMD>:bdelete<CR>', { silent = true, desc = 'Delete current buffer' })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
