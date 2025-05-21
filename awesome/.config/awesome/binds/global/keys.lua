@@ -6,7 +6,25 @@ local modkey = mod.modkey
 local apps = require("config.apps")
 local lock = require("script.lock")
 local screenshot = require("script.screenshot")
+local user = require("config.user")
+
 local bling = require("module.bling")
+
+local layout_maximized = false
+local layout_previous = nil
+
+local layout_max_toggle = function()
+	if layout_maximized then
+		awful.layout.append_default_layouts(user.layouts)
+		if layout_previous then
+			awful.layout.set(layout_previous)
+		end
+	else
+		layout_previous = awful.layout.get(awful.screen.focused())
+		awful.layout.set(awful.layout.suit.max)
+	end
+	layout_maximized = not layout_maximized
+end
 
 --- Global key bindings
 awful.keyboard.append_global_keybindings({
@@ -105,11 +123,20 @@ awful.keyboard.append_global_keybindings({
 		awful.tag.incncol(-1, nil, true)
 	end, { description = "decrease the number of columns", group = "layout" }),
 	awful.key({ modkey }, "space", function()
-		awful.layout.inc(1)
+		if layout_maximized then
+			layout_max_toggle()
+		else
+			awful.layout.inc(1)
+		end
 	end, { description = "select next", group = "layout" }),
 	awful.key({ modkey, mod.shift }, "space", function()
-		awful.layout.inc(-1)
+		if layout_maximized then
+			layout_max_toggle()
+		else
+			awful.layout.inc(-1)
+		end
 	end, { description = "select previous", group = "layout" }),
+	awful.key({ modkey }, "m", layout_max_toggle, { description = "switch to maximize layout", group = "layout" }),
 	awful.key({
 		modifiers = { modkey },
 		keygroup = "numrow",
