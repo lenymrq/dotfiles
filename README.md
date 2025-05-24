@@ -19,19 +19,18 @@ These are the dependencies for the `awesome` config
 - `alsa`
 - `brightnessctl`
 - `i3lock`
+- `picom`
 
 There are a few dependencies for the nvim config
 
 - `markdownlint-cli`
 
-And there might be others I don't remember
+And there might be others I don't remember.
 
 ## Steps
 
 1. [Install awesome from GitHub](https://www.reddit.com/r/awesomewm/comments/xi6ab5/installing_awesomewm).
-2. Install dependencies: `sudo dnf install alsa-utils alsa-lib brightnessctl i3lock`.  
-   The rest of the dependencies should come preinstalled with Fedora. If not, just install them.
-
+2. Install dependencies.
 The process should be similar for other distributions, but you’ll need to use your distribution’s package manager.
 
 The only package that requires a specific version is `awesome`—you need the [version from GitHub](https://github.com/awesomeWM/awesome), as the stable release will not work.
