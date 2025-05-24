@@ -13,6 +13,7 @@ return function(s)
 		position = "top",
 		screen = s,
 		height = beautiful.bar_height,
+		bg = beautiful.bg_normal,
 		widget = {
 			layout = wibox.layout.align.horizontal,
 			expand = "none",

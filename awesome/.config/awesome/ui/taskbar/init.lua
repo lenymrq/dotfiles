@@ -13,6 +13,7 @@ return function(s)
 		position = "bottom",
 		height = beautiful.taskbar_height,
 		screen = s,
+		bg = beautiful.bg_normal,
 		widget = {
 			layout = wibox.layout.align.horizontal,
 			-- Left widgets.
