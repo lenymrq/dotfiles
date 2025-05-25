@@ -58,7 +58,7 @@ theme.fg_focus = palette.fg_foc
 theme.fg_urgent = palette.fg_foc
 theme.fg_minimize = palette.bg
 
-theme.useless_gap = dpi(4)
+theme.useless_gap = dpi(8)
 theme.border_width = dpi(1)
 theme.border_color_normal = theme.bg_focus
 theme.border_color_active = theme.fg_normal
@@ -74,7 +74,7 @@ theme.border_color_marked = theme.bg_normal
 -- prompt_[fg|bg|fg_cursor|bg_cursor|font]
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- theme.wibar_border_color = theme.bg_normal
-theme.wibar_opacity = 0.8
+-- theme.wibar_opacity = 0.8
 theme.taglist_bg_focus = theme.bg_normal .. "00"
 theme.taglist_bg_occupied = theme.bg_normal .. "00"
 theme.taglist_bg_empty = theme.bg_normal .. "00"
