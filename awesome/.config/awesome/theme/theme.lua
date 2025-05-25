@@ -44,6 +44,7 @@ theme.accent = palette.accent
 
 theme.font = font .. font_size
 theme.font_no_size = font
+theme.nerd_font = "JetBrainsMono Nerd Font Mono 20"
 
 theme.taskbar_font = font .. taskbar_font_size
 
