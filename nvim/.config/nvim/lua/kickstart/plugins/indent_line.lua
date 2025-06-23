@@ -5,6 +5,9 @@ return {
     -- See `:help ibl`
     main = 'ibl',
     opts = {
+      indent = {
+        char = '▏', -- This is a slightly thinner char than the default one, check :help ibl.config.indent.char
+      },
       scope = {
         enabled = true,
         show_start = true,
