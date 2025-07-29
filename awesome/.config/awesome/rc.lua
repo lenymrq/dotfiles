@@ -332,12 +332,6 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, 'r', function()
     awful.tag.setmwfact(0.5)
   end, { description = 'reset master width factor', group = 'layout' }),
-  awful.key({ modkey, 'Control' }, 'j', function()
-    awful.client.incwfact(-0.1)
-  end, { description = 'decrease client factor', group = 'client' }),
-  awful.key({ modkey, 'Control' }, 'k', function()
-    awful.client.incwfact(0.1)
-  end, { description = 'increase client factor', group = 'client' }),
   awful.key({ modkey, 'Shift' }, 'h', function()
     awful.tag.incnmaster(1, nil, true)
   end, { description = 'increase the number of master clients', group = 'layout' }),
@@ -588,11 +582,6 @@ client.connect_signal('manage', function(c)
     -- Prevent clients from being unreachable after screen count changes.
     awful.placement.no_offscreen(c)
   end
-
-  -- Rounded corners
-  -- c.shape = function(cr, w, h)
-  --   gears.shape.rounded_rect(cr, w, h, 6)
-  -- end
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
