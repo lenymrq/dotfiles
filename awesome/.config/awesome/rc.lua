@@ -57,7 +57,7 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. 'default/theme.lua')
 -- beautiful.font = 'JetBrainsMono Nerd Font Mono 10'
-beautiful.wallpaper = '/home/lmarques/.local/share/backgrounds/frieren-1.png'
+beautiful.wallpaper = '/home/lmarques/.local/share/backgrounds/sakurajima-mai-1.png'
 beautiful.useless_gap = 8
 -- beautiful.border_width = 2
 
@@ -312,16 +312,16 @@ globalkeys = gears.table.join(
   awful.key({ modkey, 'Shift' }, 'j', function()
     awful.client.swap.byidx(-1)
   end, { description = 'swap with previous client by index', group = 'client' }),
-  awful.key({ modkey, 'Ctrl' }, 'Left', function()
+  awful.key({ modkey, 'Ctrl' }, 'h', function()
     awful.screen.focus_bydirection('left', awful.screen.focused())
   end, { description = 'focus the left screen', group = 'screen' }),
-  awful.key({ modkey, 'Ctrl' }, 'Right', function()
+  awful.key({ modkey, 'Ctrl' }, 'l', function()
     awful.screen.focus_bydirection('right', awful.screen.focused())
   end, { description = 'focus the right screen', group = 'screen' }),
-  awful.key({ modkey, 'Ctrl' }, 'Up', function()
+  awful.key({ modkey, 'Ctrl' }, 'k', function()
     awful.screen.focus_bydirection('up', awful.screen.focused())
   end, { description = 'focus the up screen', group = 'screen' }),
-  awful.key({ modkey, 'Ctrl' }, 'Down', function()
+  awful.key({ modkey, 'Ctrl' }, 'j', function()
     awful.screen.focus_bydirection('down', awful.screen.focused())
   end, { description = 'focus the down screen', group = 'screen' }),
   awful.key({ modkey }, 'u', awful.client.urgent.jumpto, { description = 'jump to urgent client', group = 'client' }),
@@ -339,25 +339,25 @@ globalkeys = gears.table.join(
   awful.key({ modkey, 'Shift' }, 'r', awesome.restart, { description = 'reload awesome', group = 'awesome' }),
   awful.key({ modkey, 'Shift' }, 'e', awesome.quit, { description = 'quit awesome', group = 'awesome' }),
 
-  awful.key({ modkey }, 'l', function()
+  awful.key({ modkey }, 'p', function()
     awful.tag.incmwfact(0.05)
   end, { description = 'increase master width factor', group = 'layout' }),
-  awful.key({ modkey }, 'h', function()
+  awful.key({ modkey }, 'o', function()
     awful.tag.incmwfact(-0.05)
   end, { description = 'decrease master width factor', group = 'layout' }),
   awful.key({ modkey }, 'r', function()
     awful.tag.setmwfact(0.5)
   end, { description = 'reset master width factor', group = 'layout' }),
-  awful.key({ modkey, 'Shift' }, 'h', function()
+  awful.key({ modkey, 'Shift' }, 'p', function()
     awful.tag.incnmaster(1, nil, true)
   end, { description = 'increase the number of master clients', group = 'layout' }),
-  awful.key({ modkey, 'Shift' }, 'l', function()
+  awful.key({ modkey, 'Shift' }, 'o', function()
     awful.tag.incnmaster(-1, nil, true)
   end, { description = 'decrease the number of master clients', group = 'layout' }),
-  awful.key({ modkey, 'Control' }, 'l', function()
+  awful.key({ modkey, 'Control' }, 'p', function()
     awful.tag.incncol(1, nil, true)
   end, { description = 'increase the number of columns', group = 'layout' }),
-  awful.key({ modkey, 'Control' }, 'h', function()
+  awful.key({ modkey, 'Control' }, 'o', function()
     awful.tag.incncol(-1, nil, true)
   end, { description = 'decrease the number of columns', group = 'layout' }),
   awful.key({ modkey }, 'space', function()
@@ -433,16 +433,16 @@ clientkeys = gears.table.join(
   -- awful.key({ modkey, 'Control' }, 'Return', function(c)
   --   c:swap(awful.client.getmaster())
   -- end, { description = 'move to master', group = 'client' }),
-  awful.key({ modkey, 'Shift' }, 'Left', function(c)
+  awful.key({ modkey, 'Ctrl', 'Shift' }, 'h', function(c)
     c:move_to_screen(c.screen:get_next_in_direction 'left')
   end, { description = 'move to left screen', group = 'client' }),
-  awful.key({ modkey, 'Shift' }, 'Right', function(c)
+  awful.key({ modkey, 'Ctrl', 'Shift' }, 'l', function(c)
     c:move_to_screen(c.screen:get_next_in_direction 'right')
   end, { description = 'move to right screen', group = 'client' }),
-  awful.key({ modkey, 'Shift' }, 'Up', function(c)
+  awful.key({ modkey, 'Ctrl', 'Shift' }, 'k', function(c)
     c:move_to_screen(c.screen:get_next_in_direction 'up')
   end, { description = 'move to up screen', group = 'client' }),
-  awful.key({ modkey, 'Shift' }, 'Down', function(c)
+  awful.key({ modkey, 'Ctrl', 'Shift' }, 'j', function(c)
     c:move_to_screen(c.screen:get_next_in_direction 'down')
   end, { description = 'move to down screen', group = 'client' }),
   -- awful.key({ modkey }, 't', function(c)

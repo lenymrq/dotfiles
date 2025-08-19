@@ -5,7 +5,7 @@ return {
     priority = 1000,
     config = function()
       require('cyberdream').setup {
-        variant = 'auto',
+        variant = 'default',
         transparent = true,
       }
 

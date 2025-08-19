@@ -24,6 +24,7 @@ return {
         local treesitter_context = require 'treesitter-context'
 
         vim.keymap.set('n', '<leader>tc', treesitter_context.toggle, { desc = '[T]oggle [C]ontext' })
+        treesitter_context.disable()
       end,
     },
   },
