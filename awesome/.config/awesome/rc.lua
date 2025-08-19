@@ -86,7 +86,7 @@ awful.layout.layouts = {
   -- awful.layout.suit.fair.horizontal,
   -- awful.layout.suit.spiral,
   -- awful.layout.suit.spiral.dwindle,
-  -- awful.layout.suit.max,
+  awful.layout.suit.max,
   -- awful.layout.suit.max.fullscreen,
   -- awful.layout.suit.corner.nw,
   -- awful.layout.suit.corner.ne,
@@ -303,10 +303,10 @@ globalkeys = gears.table.join(
     awful.client.swap.byidx(-1)
   end, { description = 'swap with previous client by index', group = 'client' }),
   awful.key({ modkey }, 'Tab', function()
-    awful.screen.focus_relative(-1)
+    awful.screen.focus_relative(1)
   end, { description = 'focus the next screen', group = 'screen' }),
   awful.key({ modkey, 'Shift' }, 'Tab', function()
-    awful.screen.focus_relative(1)
+    awful.screen.focus_relative(-1)
   end, { description = 'focus the previous screen', group = 'screen' }),
   awful.key({ modkey }, 'u', awful.client.urgent.jumpto, { description = 'jump to urgent client', group = 'client' }),
   -- awful.key({ modkey }, 'Tab', function()
@@ -418,10 +418,10 @@ clientkeys = gears.table.join(
   --   c:swap(awful.client.getmaster())
   -- end, { description = 'move to master', group = 'client' }),
   awful.key({ modkey }, 'o', function(c)
-    c:move_to_screen(c.screen.index - 1)
+    c:move_to_screen(c.screen.index + 1)
   end, { description = 'move to next screen', group = 'client' }),
   awful.key({ modkey, 'Shift' }, 'o', function(c)
-    c:move_to_screen(c.screen.index + 1)
+    c:move_to_screen(c.screen.index - 1)
   end, { description = 'move to previous screen', group = 'client' }),
   -- awful.key({ modkey }, 't', function(c)
   --   c.ontop = not c.ontop
@@ -638,6 +638,8 @@ end)
 -- }}}
 
 -- Autostart
+awful.spawn.with_shell 'xss-lock --transfer-sleep-lock -- i3lock --nofork'
+awful.spawn.with_shell 'killall nm-applet; nm-applet'
 awful.spawn.easy_async_with_shell 'killall picom; picom'
-awful.spawn.easy_async_with_shell 'unclutter --timeout 0.5'
+awful.spawn.easy_async_with_shell 'killall unclutter; unclutter --timeout 0.5'
 awful.spawn.easy_async_with_shell 'setxkbmap us'
