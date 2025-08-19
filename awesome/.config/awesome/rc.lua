@@ -281,8 +281,18 @@ root.buttons(gears.table.join(
 -- {{{ Key bindings
 globalkeys = gears.table.join(
   awful.key({ modkey }, 's', hotkeys_popup.show_help, { description = 'show help', group = 'awesome' }),
-  awful.key({ modkey }, 'Left', awful.tag.viewprev, { description = 'view previous', group = 'tag' }),
-  awful.key({ modkey }, 'Right', awful.tag.viewnext, { description = 'view next', group = 'tag' }),
+  awful.key({ modkey }, 'Left', function()
+    awful.client.focus.global_bydirection 'left'
+  end, { description = 'focus client left client', group = 'client' }),
+  awful.key({ modkey }, 'Right', function()
+    awful.client.focus.global_bydirection 'right'
+  end, { description = 'focus client right client', group = 'client' }),
+  awful.key({ modkey }, 'Up', function()
+    awful.client.focus.global_bydirection 'up'
+  end, { description = 'focus client up client', group = 'client' }),
+  awful.key({ modkey }, 'Down', function()
+    awful.client.focus.global_bydirection 'down'
+  end, { description = 'focus client down client', group = 'client' }),
   -- awful.key({ modkey }, 'Escape', awful.tag.history.restore, { description = 'go back', group = 'tag' }),
 
   awful.key({ modkey }, 'k', function()
@@ -302,19 +312,25 @@ globalkeys = gears.table.join(
   awful.key({ modkey, 'Shift' }, 'j', function()
     awful.client.swap.byidx(-1)
   end, { description = 'swap with previous client by index', group = 'client' }),
-  awful.key({ modkey }, 'Tab', function()
-    awful.screen.focus_relative(1)
-  end, { description = 'focus the next screen', group = 'screen' }),
-  awful.key({ modkey, 'Shift' }, 'Tab', function()
-    awful.screen.focus_relative(-1)
-  end, { description = 'focus the previous screen', group = 'screen' }),
+  awful.key({ modkey, 'Ctrl' }, 'Left', function()
+    awful.screen.focus_bydirection('left', awful.screen.focused())
+  end, { description = 'focus the left screen', group = 'screen' }),
+  awful.key({ modkey, 'Ctrl' }, 'Right', function()
+    awful.screen.focus_bydirection('right', awful.screen.focused())
+  end, { description = 'focus the right screen', group = 'screen' }),
+  awful.key({ modkey, 'Ctrl' }, 'Up', function()
+    awful.screen.focus_bydirection('up', awful.screen.focused())
+  end, { description = 'focus the up screen', group = 'screen' }),
+  awful.key({ modkey, 'Ctrl' }, 'Down', function()
+    awful.screen.focus_bydirection('down', awful.screen.focused())
+  end, { description = 'focus the down screen', group = 'screen' }),
   awful.key({ modkey }, 'u', awful.client.urgent.jumpto, { description = 'jump to urgent client', group = 'client' }),
-  -- awful.key({ modkey }, 'Tab', function()
-  --   awful.client.focus.history.previous()
-  --   if client.focus then
-  --     client.focus:raise()
-  --   end
-  -- end, { description = 'go back', group = 'client' }),
+  awful.key({ modkey }, 'Tab', function()
+    awful.client.focus.history.previous()
+    if client.focus then
+      client.focus:raise()
+    end
+  end, { description = 'go back', group = 'client' }),
 
   -- Standard program
   awful.key({ modkey }, 'Return', function()
@@ -417,12 +433,18 @@ clientkeys = gears.table.join(
   -- awful.key({ modkey, 'Control' }, 'Return', function(c)
   --   c:swap(awful.client.getmaster())
   -- end, { description = 'move to master', group = 'client' }),
-  awful.key({ modkey }, 'o', function(c)
-    c:move_to_screen(c.screen.index + 1)
-  end, { description = 'move to next screen', group = 'client' }),
-  awful.key({ modkey, 'Shift' }, 'o', function(c)
-    c:move_to_screen(c.screen.index - 1)
-  end, { description = 'move to previous screen', group = 'client' }),
+  awful.key({ modkey, 'Shift' }, 'Left', function(c)
+    c:move_to_screen(c.screen:get_next_in_direction 'left')
+  end, { description = 'move to left screen', group = 'client' }),
+  awful.key({ modkey, 'Shift' }, 'Right', function(c)
+    c:move_to_screen(c.screen:get_next_in_direction 'right')
+  end, { description = 'move to right screen', group = 'client' }),
+  awful.key({ modkey, 'Shift' }, 'Up', function(c)
+    c:move_to_screen(c.screen:get_next_in_direction 'up')
+  end, { description = 'move to up screen', group = 'client' }),
+  awful.key({ modkey, 'Shift' }, 'Down', function(c)
+    c:move_to_screen(c.screen:get_next_in_direction 'down')
+  end, { description = 'move to down screen', group = 'client' }),
   -- awful.key({ modkey }, 't', function(c)
   --   c.ontop = not c.ontop
   -- end, { description = 'toggle keep on top', group = 'client' }),
