@@ -16,6 +16,8 @@ vim.opt.smartcase = true
 
 vim.opt.signcolumn = 'yes'
 
+vim.opt.colorcolumn = '80'
+
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
