@@ -146,6 +146,32 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
+-- Create a battery widget
+mybattery = wibox.widget {
+  {
+    id = 'mytextbox',
+    text = '100%',
+    widget = wibox.widget.textbox,
+  },
+  layout = wibox.layout.align.horizontal,
+  set_battery = function(self, val)
+    self.mytextbox.text = 'BAT ' .. tonumber(val) .. '%'
+  end,
+}
+
+gears.timer {
+  timeout = 10,
+  call_now = true,
+  autostart = true,
+  callback = function()
+    -- You should read it from `/sys/class/power_supply/` (on Linux)
+    -- instead of spawning a shell. This is only an example.
+    awful.spawn.easy_async('cat /sys/class/power_supply/BAT0/capacity', function(out)
+      mybattery.battery = out
+    end)
+  end,
+}
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
   awful.button({}, 1, function(t)
@@ -259,6 +285,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
+      mybattery,
       mykeyboardlayout,
       wibox.widget.systray(),
       mytextclock,
@@ -345,7 +372,7 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, 'o', function()
     awful.tag.incmwfact(-0.05)
   end, { description = 'decrease master width factor', group = 'layout' }),
-  awful.key({ modkey }, 'r', function()
+  awful.key({ modkey }, 'i', function()
     awful.tag.setmwfact(0.5)
   end, { description = 'reset master width factor', group = 'layout' }),
   awful.key({ modkey, 'Shift' }, 'p', function()
