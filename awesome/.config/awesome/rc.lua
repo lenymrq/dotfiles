@@ -750,6 +750,6 @@ end)
 -- Autostart
 awful.spawn.with_shell 'xss-lock --transfer-sleep-lock -- i3lock --nofork'
 awful.spawn.with_shell 'killall nm-applet; nm-applet'
-awful.spawn.easy_async_with_shell 'killall picom; picom'
+awful.spawn.easy_async_with_shell 'killall picom; picom --experimental-backends'
 awful.spawn.easy_async_with_shell 'killall unclutter; unclutter --timeout 0.5'
 awful.spawn.easy_async_with_shell 'setxkbmap us'
