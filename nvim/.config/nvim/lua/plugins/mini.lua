@@ -37,6 +37,14 @@ return {
 
       require('mini.statusline').setup()
       require('mini.tabline').setup()
+
+      local mini_files = require 'mini.files'
+      mini_files.setup {
+        mappings = {
+          close = 'q',
+        },
+      }
+      vim.keymap.set('n', '<leader><leader>', mini_files.open, { desc = 'File explorer' })
     end,
   },
 }

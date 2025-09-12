@@ -21,6 +21,8 @@ return {
         -- python = { 'isort', 'black' },
         python = { 'black' },
         json = { 'jq' },
+        javascript = { 'prettier' },
+        html = { 'prettier' },
       },
     },
   },
