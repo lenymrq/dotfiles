@@ -41,7 +41,7 @@ return {
       local mini_files = require 'mini.files'
       mini_files.setup {
         mappings = {
-          close = 'q',
+          close = '<esc>',
         },
       }
       vim.keymap.set('n', '<leader><leader>', mini_files.open, { desc = 'File explorer' })
