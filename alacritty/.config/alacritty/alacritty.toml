@@ -1,0 +1,23 @@
+import = [
+  "~/.config/alacritty/cyberdream.toml"
+]
+
+shell = "/bin/zsh"
+
+
+[cursor]
+style = "beam"
+
+[window]
+padding = { x = 8, y = 8 }
+opacity = 0.7
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+size = 12
+
+[keyboard]
+bindings = [
+  { key = "Enter", mods = "Super | Shift", action = "CreateNewWindow" },
+  { key = "Enter", mods = "Super | Alt", action = "SpawnNewInstance" }
+]
