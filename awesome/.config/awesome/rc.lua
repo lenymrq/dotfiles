@@ -58,12 +58,12 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. 'default/theme.lua')
 -- beautiful.font = 'JetBrainsMono Nerd Font Mono 10'
 beautiful.wallpaper = '/home/lmarques/.local/share/backgrounds/sakurajima-mai-1.png'
-beautiful.useless_gap = 8
--- beautiful.border_width = 2
+beautiful.useless_gap = 0
+beautiful.border_width = 2
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = 'x-terminal-emulator'
-terminal = 'ghostty'
+terminal = 'kitty'
 editor = os.getenv 'EDITOR' or 'editor'
 editor_cmd = terminal .. ' -e ' .. editor
 
@@ -78,9 +78,9 @@ modkey = 'Mod4'
 awful.layout.layouts = {
   -- awful.layout.suit.floating,
   awful.layout.suit.tile,
-  awful.layout.suit.magnifier,
+  -- awful.layout.suit.magnifier,
   -- awful.layout.suit.tile.left,
-  -- awful.layout.suit.tile.bottom,
+  awful.layout.suit.tile.bottom,
   -- awful.layout.suit.tile.top,
   -- awful.layout.suit.fair,
   -- awful.layout.suit.fair.horizontal,
@@ -147,10 +147,10 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 mytextclock = wibox.widget.textclock()
 
 -- Create a battery widget
-mybattery = wibox.widget {
+mybat = wibox.widget {
   {
     id = 'mytextbox',
-    text = '100%',
+    text = 'BAT 100%',
     widget = wibox.widget.textbox,
   },
   layout = wibox.layout.align.horizontal,
@@ -164,12 +164,68 @@ gears.timer {
   call_now = true,
   autostart = true,
   callback = function()
-    -- You should read it from `/sys/class/power_supply/` (on Linux)
-    -- instead of spawning a shell. This is only an example.
     awful.spawn.easy_async('cat /sys/class/power_supply/BAT0/capacity', function(out)
-      mybattery.battery = out
+      mybat.battery = out
     end)
   end,
+}
+
+-- Create a ram usage widget
+myram = wibox.widget {
+  {
+    id = 'mytextbox',
+    text = 'RAM 0%',
+    widget = wibox.widget.textbox,
+  },
+  layout = wibox.layout.align.horizontal,
+  set_usage = function(self, val)
+    self.mytextbox.text = 'RAM ' .. tonumber(val) .. '%'
+  end,
+}
+
+gears.timer {
+  timeout = 10,
+  call_now = true,
+  autostart = true,
+  callback = function()
+    awful.spawn.easy_async_with_shell('awk \'/MemTotal/ {t=$2} /MemAvailable/ {a=$2} END {printf "%.0f", 100-(a/t)*100}\' /proc/meminfo', function(out)
+      myram.usage = out
+    end)
+  end,
+}
+
+-- Create a cpu usage widget
+mycpu = wibox.widget {
+  {
+    id = 'mytextbox',
+    text = 'CPU 0%',
+    widget = wibox.widget.textbox,
+  },
+  layout = wibox.layout.align.horizontal,
+  set_usage = function(self, val)
+    self.mytextbox.text = 'CPU ' .. tonumber(val) .. '%'
+  end,
+}
+
+gears.timer {
+  timeout = 10,
+  call_now = true,
+  autostart = true,
+  callback = function()
+    awful.spawn.easy_async_with_shell('top -bn2 | grep "Cpu(s)" | sed -n 2p | awk \'{printf "%.0f", 100 - $8}\'', function(out)
+      mycpu.usage = out
+    end)
+  end,
+}
+
+-- Create a system monitor widget
+mysystemmonitor = wibox.widget {
+  mycpu,
+  wibox.widget.textbox ' ',
+  myram,
+  wibox.widget.textbox ' ',
+  mybat,
+  layout = wibox.layout.fixed.horizontal,
 }
 
 -- Create a wibox for each screen and add it
@@ -285,7 +341,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      mybattery,
+      mysystemmonitor,
       mykeyboardlayout,
       wibox.widget.systray(),
       mytextclock,
@@ -297,11 +353,11 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-  awful.button({}, 3, function()
-    mymainmenu:toggle()
-  end),
-  awful.button({}, 4, awful.tag.viewnext),
-  awful.button({}, 5, awful.tag.viewprev)
+  -- awful.button({}, 3, function()
+  --   mymainmenu:toggle()
+  -- end),
+  -- awful.button({}, 4, awful.tag.viewnext),
+  -- awful.button({}, 5, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -310,17 +366,17 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, 's', hotkeys_popup.show_help, { description = 'show help', group = 'awesome' }),
   awful.key({ modkey }, 'Left', function()
     awful.client.focus.global_bydirection 'left'
-  end, { description = 'focus client left client', group = 'client' }),
+  end, { description = 'focus left', group = 'client' }),
   awful.key({ modkey }, 'Right', function()
     awful.client.focus.global_bydirection 'right'
-  end, { description = 'focus client right client', group = 'client' }),
+  end, { description = 'focus right', group = 'client' }),
   awful.key({ modkey }, 'Up', function()
     awful.client.focus.global_bydirection 'up'
-  end, { description = 'focus client up client', group = 'client' }),
+  end, { description = 'focus up', group = 'client' }),
   awful.key({ modkey }, 'Down', function()
     awful.client.focus.global_bydirection 'down'
-  end, { description = 'focus client down client', group = 'client' }),
-  -- awful.key({ modkey }, 'Escape', awful.tag.history.restore, { description = 'go back', group = 'tag' }),
+  end, { description = 'focus down', group = 'client' }),
+  awful.key({ modkey }, 'Escape', awful.tag.history.restore, { description = 'go back', group = 'tag' }),
 
   awful.key({ modkey }, 'k', function()
     awful.client.focus.byidx(1)
@@ -328,9 +384,9 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, 'j', function()
     awful.client.focus.byidx(-1)
   end, { description = 'focus previous by index', group = 'client' }),
-  awful.key({ modkey }, 'w', function()
-    mymainmenu:show()
-  end, { description = 'show main menu', group = 'awesome' }),
+  -- awful.key({ modkey }, 'w', function()
+  --   mymainmenu:show()
+  -- end, { description = 'show main menu', group = 'awesome' }),
 
   -- Layout manipulation
   awful.key({ modkey, 'Shift' }, 'k', function()
@@ -361,7 +417,11 @@ globalkeys = gears.table.join(
 
   -- Standard program
   awful.key({ modkey }, 'Return', function()
-    awful.spawn(terminal)
+    if terminal == 'kitty' then
+      awful.spawn(terminal .. ' -1')
+    else
+      awful.spawn(terminal)
+    end
   end, { description = 'open a terminal', group = 'launcher' }),
   awful.key({ modkey, 'Shift' }, 'r', awesome.restart, { description = 'reload awesome', group = 'awesome' }),
   awful.key({ modkey, 'Shift' }, 'e', awesome.quit, { description = 'quit awesome', group = 'awesome' }),
@@ -483,7 +543,8 @@ clientkeys = gears.table.join(
   awful.key({ modkey }, 'm', function(c)
     c.maximized = not c.maximized
     c:raise()
-  end, { description = '(un)maximize', group = 'client' })
+  end, { description = '(un)maximize', group = 'client' }),
+  awful.key({ modkey }, 't', awful.titlebar.toggle, { description = 'toggle titlebar', group = 'client' })
   -- awful.key({ modkey, 'Control' }, 'm', function(c)
   --   c.maximized_vertical = not c.maximized_vertical
   --   c:raise()
@@ -610,7 +671,7 @@ awful.rules.rules = {
   },
 
   -- Add titlebars to normal clients and dialogs
-  { rule_any = { type = { 'normal', 'dialog' } }, properties = { titlebars_enabled = true } },
+  { rule_any = { type = { 'normal', 'dialog' } }, properties = { titlebars_enabled = false } },
 
   -- Set Firefox to always map on the tag named "2" on screen 1.
   -- { rule = { class = "Firefox" },
