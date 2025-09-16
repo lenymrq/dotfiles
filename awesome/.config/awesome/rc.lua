@@ -57,7 +57,7 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. 'default/theme.lua')
 -- beautiful.font = 'JetBrainsMono Nerd Font Mono 10'
-beautiful.wallpaper = '/home/lmarques/.local/share/backgrounds/sakurajima-mai-1.png'
+beautiful.wallpaper = '/home/leny/.local/share/backgrounds/sakurajima-mai-1.png'
 beautiful.useless_gap = 0
 beautiful.border_width = 2
 
@@ -149,14 +149,26 @@ mytextclock = wibox.widget.textclock()
 -- Create a battery widget
 mybat = wibox.widget {
   {
-    id = 'mytextbox',
-    text = 'BAT 100%',
+    id = 'status_textbox',
+    text = 'BAT',
     widget = wibox.widget.textbox,
   },
-  layout = wibox.layout.align.horizontal,
-  set_battery = function(self, val)
-    self.mytextbox.text = 'BAT ' .. tonumber(val) .. '%'
+  {
+    id = 'battery_textbox',
+    text = '100',
+    widget = wibox.widget.textbox,
+  },
+  {
+    text = '%',
+    widget = wibox.widget.textbox,
+  },
+  set_status = function(self, val)
+    self.status_textbox.text = val .. ' '
   end,
+  set_battery = function(self, val)
+    self.battery_textbox.text = val
+  end,
+  layout = wibox.layout.align.horizontal,
 }
 
 gears.timer {
@@ -166,6 +178,13 @@ gears.timer {
   callback = function()
     awful.spawn.easy_async('cat /sys/class/power_supply/BAT0/capacity', function(out)
       mybat.battery = out
+    end)
+    awful.spawn.easy_async('cat /sys/class/power_supply/BAT0/status', function(out)
+      if out:find 'Charging' ~= nil then
+        mybat.status = 'CHR'
+      else
+        mybat.status = 'BAT'
+      end
     end)
   end,
 }
