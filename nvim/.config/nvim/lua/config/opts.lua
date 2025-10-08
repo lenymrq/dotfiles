@@ -36,3 +36,5 @@ vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 
 vim.opt.winborder = 'rounded'
+
+vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }

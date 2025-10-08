@@ -22,3 +22,30 @@ vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
 vim.keymap.set('n', '<S-h>', '<cmd>:bprev<CR>', { silent = true, desc = 'Focus previous buffer' })
 vim.keymap.set('n', '<S-l>', '<cmd>:bnext<CR>', { silent = true, desc = 'Focus next buffer' })
 vim.keymap.set('n', '<C-x>', '<cmd>:bdelete<CR>', { silent = true, desc = 'Delete current buffer' })
+
+-- Completion
+local function cmp_active()
+  return vim.fn.pumvisible() ~= 0
+end
+
+vim.keymap.set('i', '<CR>', function()
+  if cmp_active() then
+    return '<C-y>'
+  else
+    return '<CR>'
+  end
+end, { expr = true, silent = true })
+vim.keymap.set('i', '<Tab>', function()
+  if cmp_active() then
+    return '<C-n>'
+  else
+    return '<Tab>'
+  end
+end, { expr = true, silent = true })
+vim.keymap.set('i', '<S-Tab>', function()
+  if cmp_active() then
+    return '<C-p>'
+  else
+    return '<S-Tab>'
+  end
+end, { expr = true, silent = true })
