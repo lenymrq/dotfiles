@@ -20,6 +20,7 @@ return {
         lua = { 'stylua' },
         -- python = { 'isort', 'black' },
         python = { 'black' },
+        c = { 'clang-format' },
         json = { 'jq' },
         javascript = { 'prettier' },
         html = { 'prettier' },
