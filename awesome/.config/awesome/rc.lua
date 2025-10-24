@@ -505,16 +505,16 @@ globalkeys = gears.table.join(
     awful.spawn.with_shell 'i3lock'
   end, { description = 'lock screen', group = 'awesome' }),
   awful.key({}, 'XF86AudioRaiseVolume', function()
-    awful.spawn.easy_async_with_shell 'amixer set Master 10%+'
+    awful.spawn.easy_async_with_shell 'pactl set-sink-volume @DEFAULT_SINK@ +10%'
   end),
   awful.key({}, 'XF86AudioLowerVolume', function()
-    awful.spawn.easy_async_with_shell 'amixer set Master 10%-'
+    awful.spawn.easy_async_with_shell 'pactl set-sink-volume @DEFAULT_SINK@ -10%'
   end),
   awful.key({}, 'XF86AudioMute', function()
-    awful.spawn.easy_async_with_shell 'amixer set Master toggle'
+    awful.spawn.easy_async_with_shell 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
   end),
   awful.key({}, 'XF86AudioMicMute', function()
-    awful.spawn.easy_async_with_shell 'amixer set Capture toggle'
+    awful.spawn.easy_async_with_shell 'pactl set-source-mute @DEFAULT_SOURCE@ toggle'
   end),
   awful.key({}, 'XF86MonBrightnessUp', function()
     awful.spawn.easy_async_with_shell 'brightnessctl set 10%+'
