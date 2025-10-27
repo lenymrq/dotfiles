@@ -118,6 +118,16 @@ bindsym $mod+c focus child
 bindsym $mod+x exec --no-startup-id i3lock --nofork
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 
+bindsym $mod+Ctrl+h focus output left
+bindsym $mod+Ctrl+j focus output down
+bindsym $mod+Ctrl+k focus output up
+bindsym $mod+Ctrl+l focus output right
+
+bindsym $mod+Shift+Ctrl+h move workspace to output left
+bindsym $mod+Shift+Ctrl+j move workspace to output down
+bindsym $mod+Shift+Ctrl+k move workspace to output up
+bindsym $mod+Shift+Ctrl+l move workspace to output right
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
