@@ -34,7 +34,7 @@ return {
         },
       }
 
-      require('mini.hues').setup { background = '#000000', foreground = '#ffffff', saturation = 'high', accent = 'azure' }
+      -- require('mini.hues').setup { background = '#000000', foreground = '#ffffff', saturation = 'high', accent = 'azure' }
 
       require('mini.icons').setup()
       MiniIcons.tweak_lsp_kind()
