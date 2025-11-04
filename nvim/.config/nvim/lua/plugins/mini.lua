@@ -5,8 +5,17 @@ return {
       require('mini.ai').setup()
       require('mini.comment').setup()
 
+      local gen_loader = require('mini.snippets').gen_loader
+      require('mini.snippets').setup {
+        snippets = {
+          gen_loader.from_lang(),
+        },
+      }
       require('mini.completion').setup {
         delay = { completion = 0, info = 0, signature = 0 },
+        lsp_completion = {
+          source_func = 'omnifunc',
+        },
       }
 
       require('mini.pairs').setup()
