@@ -6,6 +6,9 @@ return {
     opts = {
       indent = {
         enabled = true,
+        animate = {
+          enabled = false,
+        },
         scope = {
           char = '╎',
         },

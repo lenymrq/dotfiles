@@ -18,10 +18,9 @@ return {
       format_on_save = false,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- python = { 'isort', 'black' },
         python = { 'black' },
         c = { 'clang-format' },
-        json = { 'jq' },
+        json = { 'fixjson' },
         javascript = { 'prettier' },
         html = { 'prettier' },
       },
