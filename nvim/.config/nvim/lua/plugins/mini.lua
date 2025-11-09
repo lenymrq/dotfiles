@@ -41,7 +41,7 @@ return {
 
       require('mini.comment').setup()
 
-      local process_items_opts = { kind_priority = { Text = -1, Snippet = 99 } }
+      local process_items_opts = { kind_priority = { Text = -1, Snippet = -1 } }
       local process_items = function(items, base)
         return MiniCompletion.default_process_items(items, base, process_items_opts)
       end
