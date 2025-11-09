@@ -272,8 +272,8 @@ static unsigned int cursorshape = 6;
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 80;
-static unsigned int rows = 24;
+static unsigned int cols = 88;
+static unsigned int rows = 32;
 
 #if ANYGEOMETRY_PATCH
 /*
