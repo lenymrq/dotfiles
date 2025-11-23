@@ -34,26 +34,12 @@ return {
       require('mini.bracketed').setup()
 
       require('mini.bufremove').setup()
-      vim.keymap.set('n', '<C-x>', MiniBufremove.delete, { desc = 'Delete Current Buffer' })
-      vim.keymap.set('n', '<C-X>', function()
+      vim.keymap.set('n', '<leader>bd', MiniBufremove.delete, { desc = '[D]elete Current [B]uffer' })
+      vim.keymap.set('n', '<leader>bD', function()
         MiniBufremove.delete(0, true)
-      end, { desc = 'Force Delete Current Buffer' })
+      end, { desc = 'Force [D]elete Current [B]uffer' })
 
       require('mini.comment').setup()
-
-      local process_items_opts = { kind_priority = { Text = -1, Snippet = -1 } }
-      local process_items = function(items, base)
-        return MiniCompletion.default_process_items(items, base, process_items_opts)
-      end
-      require('mini.completion').setup {
-        lsp_completion = {
-          source_func = 'omnifunc',
-          auto_setup = true,
-          process_items = process_items,
-        },
-      }
-
-      vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
 
       require('mini.diff').setup()
 
@@ -85,24 +71,6 @@ return {
       MiniKeymap.map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
       MiniKeymap.map_multistep('i', '<CR>', { 'pmenu_accept', 'minipairs_cr' })
       MiniKeymap.map_multistep('i', '<BS>', { 'minipairs_bs' })
-
-      local map = require 'mini.map'
-      map.setup {
-        symbols = { encode = map.gen_encode_symbols.dot '4x2' },
-        integrations = {
-          map.gen_integration.builtin_search(),
-          map.gen_integration.diff(),
-          map.gen_integration.diagnostic(),
-        },
-      }
-      for _, key in ipairs { 'n', 'N', '*', '#' } do
-        local rhs = key .. 'zv' .. '<cmd>lua MiniMap.refresh({}, { lines = false, scrollbar = false })<CR>'
-        vim.keymap.set('n', key, rhs)
-      end
-      vim.keymap.set('n', '<leader>tm', MiniMap.toggle, { desc = '[T]oggle [M]ap' })
-      vim.keymap.set('n', '<leader>mf', MiniMap.toggle_focus, { desc = '[F]ocus [M]ap' })
-      vim.keymap.set('n', '<leader>mr', MiniMap.refresh, { desc = '[R]efresh [M]ap' })
-      vim.keymap.set('n', '<leader>ms', MiniMap.toggle_side, { desc = 'Change [M]ap [S]ide' })
 
       require('mini.move').setup()
 
