@@ -38,7 +38,16 @@ alias cat='batcat'
 alias exegol='sudo -E /home/leny/.local/bin/exegol'
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+function version_greater_equal() {
+    printf '%s\n%s\n' "$2" "$1" | sort --check=quiet --version-sort
+}
+
+if version_greater_equal $(fzf --version) '0.48.0'; then
+    source <(fzf --zsh)
+else
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 # Foot terminal spawn new terminal in same cwd
 function osc7-pwd() {
