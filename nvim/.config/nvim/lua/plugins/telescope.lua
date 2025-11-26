@@ -35,16 +35,16 @@ return {
       pcall(require('telescope').load_extension, 'ui-select')
 
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch [B]uffers' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch By [G]rep' })
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>st', builtin.builtin, { desc = '[S]earch [T]elescope builtins' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch Current [W]ord' })
-      vim.keymap.set('n', '<leader>s/', builtin.current_buffer_fuzzy_find, { desc = '[S]earch In [B]uffer' })
+      vim.keymap.set('n', '<leader>tb', builtin.buffers, { desc = 'Search [B]uffers' })
+      vim.keymap.set('n', '<leader>td', builtin.diagnostics, { desc = 'Search [D]iagnostics' })
+      vim.keymap.set('n', '<leader>tf', builtin.find_files, { desc = 'Search [F]iles' })
+      vim.keymap.set('n', '<leader>tg', builtin.live_grep, { desc = 'Search By [G]rep' })
+      vim.keymap.set('n', '<leader>th', builtin.help_tags, { desc = 'Search [H]elp' })
+      vim.keymap.set('n', '<leader>tk', builtin.keymaps, { desc = 'Search [K]eymaps' })
+      vim.keymap.set('n', '<leader>tr', builtin.resume, { desc = 'Search [R]esume' })
+      vim.keymap.set('n', '<leader>tt', builtin.builtin, { desc = 'Search [T]elescope builtins' })
+      vim.keymap.set('n', '<leader>tw', builtin.grep_string, { desc = 'Search Current [W]ord' })
+      vim.keymap.set('n', '<leader>t/', builtin.current_buffer_fuzzy_find, { desc = 'Search In [B]uffer' })
 
       -- LSP
       vim.keymap.set('n', 'gri', builtin.lsp_implementations, { desc = 'LSP Search [I]mplementations' })

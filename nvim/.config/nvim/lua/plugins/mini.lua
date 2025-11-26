@@ -17,8 +17,6 @@ return {
       MiniMisc.setup_auto_root()
       MiniMisc.setup_restore_cursor()
       MiniMisc.setup_termbg_sync()
-      vim.keymap.set('n', '<leader>or', MiniMisc.resize_window, { desc = '[R]estore Window Size' })
-      vim.keymap.set('n', '<leader>tz', MiniMisc.zoom, { desc = '[T]oggle [Z]oom' })
 
       require('mini.notify').setup()
       vim.keymap.set('n', '<leader>en', MiniNotify.show_history, { desc = '[E]xplore [N]otifications' })
@@ -30,6 +28,18 @@ return {
       require('mini.tabline').setup()
 
       require('mini.extra').setup()
+
+      local animate = require 'mini.animate'
+      animate.setup {
+        cursor = { enable = false },
+        scroll = {
+          enable = true,
+          timing = animate.gen_timing.linear { duration = 4, unit = 'step' },
+        },
+        resize = { enable = true },
+        open = { enable = true },
+        close = { enable = true },
+      }
 
       require('mini.bracketed').setup()
 
@@ -76,7 +86,21 @@ return {
 
       require('mini.pairs').setup()
 
-      require('mini.surround').setup()
+      local surround = require 'mini.surround'
+      surround.setup {
+        highlight_duration = 1000,
+        mappings = {
+          add = '<leader>sa',
+          delete = '<leader>sd',
+          find = '<leader>sf',
+          find_left = '<leader>sF',
+          highlight = '<leader>sh',
+          replace = '<leader>sr',
+
+          suffix_last = '',
+          suffix_next = '',
+        },
+      }
 
       require('mini.trailspace').setup()
       vim.keymap.set('n', '<leader>ot', MiniTrailspace.trim, { desc = 'Remove [T]railing whitespace' })
