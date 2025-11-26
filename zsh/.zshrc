@@ -62,6 +62,14 @@ function chpwd-osc7-pwd() {
 }
 add-zsh-hook -Uz chpwd chpwd-osc7-pwd
 
-# Vim-like word selection
-autoload -U select-word-style
-select-word-style bash
+# Adjust word delimiters
+WORDCHARS=${WORDCHARS/\/}
+WORDCHARS=${WORDCHARS/_}
+WORDCHARS=${WORDCHARS/-}
+WORDCHARS=${WORDCHARS/.}
+
+# Fix escape sequences keybinds
+bindkey -s $';2u' ' '
+bindkey -s $';3u' ' '
+bindkey $'7;2u' backward-delete-char
+bindkey $'7;5u' backward-delete-char
