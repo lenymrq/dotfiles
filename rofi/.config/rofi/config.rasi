@@ -23,7 +23,9 @@ configuration {
 
 mainbox {
     padding: 0.5em;
+    border: 2px;
     border-radius: 0.5em;
+    border-color: @active-background;
 }
 
 #window {
