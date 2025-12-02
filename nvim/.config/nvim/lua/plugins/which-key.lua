@@ -25,6 +25,11 @@ return {
           { 'gra', desc = 'LSP Code [A]ctions' },
           { 'grn', desc = 'LSP Re[n]ame' },
         },
+        {
+          '<leader>d',
+          group = '[D]AP',
+          { '<leader>ds', desc = '[S]tep' },
+        },
       },
     },
   },
