@@ -17,6 +17,7 @@ return {
       MiniMisc.setup_auto_root()
       MiniMisc.setup_restore_cursor()
       MiniMisc.setup_termbg_sync()
+      vim.keymap.set('n', '<leader>oz', MiniMisc.zoom, { desc = '[Z]oom Current Buffer' })
 
       require('mini.notify').setup()
       vim.keymap.set('n', '<leader>en', MiniNotify.show_history, { desc = '[E]xplore [N]otifications' })
