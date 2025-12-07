@@ -3,13 +3,9 @@ vim.g.maplocalleader = ' '
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open Diagnostic Quickfix list' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
-vim.keymap.set('n', '<leader>ow', function()
-  vim.o.wrap = not vim.o.wrap
-end, { desc = 'Toggle Line [W]rap' })
 
 -- Window navigation
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -21,6 +17,11 @@ vim.keymap.set('n', '<C-S-h>', '<C-w>H', { desc = 'Move window left' })
 vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window down' })
 vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window up' })
 vim.keymap.set('n', '<C-S-l>', '<C-w>L', { desc = 'Move window right' })
+
+vim.keymap.set('n', '<C-A-h>', '<C-w><', { desc = 'Decrease width' })
+vim.keymap.set('n', '<C-A-j>', '<C-w>-', { desc = 'Decrease height' })
+vim.keymap.set('n', '<C-A-k>', '<C-w>+', { desc = 'Increase height' })
+vim.keymap.set('n', '<C-A-l>', '<C-w>>', { desc = 'Increase width' })
 
 -- Buffer navigation
 vim.keymap.set('n', '<S-h>', '<cmd>:bprev<CR>', { silent = true, desc = 'Focus previous buffer' })
