@@ -3,9 +3,19 @@ return {
     'echasnovski/mini.nvim',
     config = function()
       require('mini.basics').setup {
-        options = { basic = false, extra_ui = true },
+        options = {
+          basic = false,
+          extra_ui = true,
+          win_borders = 'double',
+        },
         mappings = {
+          basic = false,
+          option_toggle_prefix = [[\]],
+          windows = false,
           move_with_alt = true,
+        },
+        autocommands = {
+          basic = true,
         },
       }
 
@@ -17,10 +27,10 @@ return {
       MiniMisc.setup_auto_root()
       MiniMisc.setup_restore_cursor()
       MiniMisc.setup_termbg_sync()
-      vim.keymap.set('n', '<leader>oz', MiniMisc.zoom, { desc = '[Z]oom Current Buffer' })
+      vim.keymap.set('n', '<leader>oz', MiniMisc.zoom, { desc = 'Zoom Current Buffer' })
 
       require('mini.notify').setup()
-      vim.keymap.set('n', '<leader>en', MiniNotify.show_history, { desc = '[E]xplore [N]otifications' })
+      vim.keymap.set('n', '<leader>en', MiniNotify.show_history, { desc = 'Explore Notifications' })
 
       require('mini.starter').setup()
 
@@ -41,26 +51,39 @@ return {
         open = { enable = true },
         close = { enable = true },
       }
+      vim.keymap.set('n', '<leader>ota', function()
+        MiniAnimate.config.scroll.enable = not MiniAnimate.config.scroll.enable
+      end, { desc = 'Toggle Scroll Animations' })
 
       require('mini.bracketed').setup()
 
       require('mini.bufremove').setup()
-      vim.keymap.set('n', '<leader>bd', MiniBufremove.delete, { desc = '[D]elete Current [B]uffer' })
+      vim.keymap.set('n', '<leader>bd', MiniBufremove.delete, { desc = 'Delete Current Buffer' })
       vim.keymap.set('n', '<leader>bD', function()
         MiniBufremove.delete(0, true)
-      end, { desc = 'Force [D]elete Current [B]uffer' })
+      end, { desc = 'Force Delete Current Buffer' })
 
       require('mini.comment').setup()
 
-      require('mini.diff').setup()
+      require('mini.diff').setup {
+        mappings = {
+          apply = '<leader>gh',
+          reset = '<leader>gH',
+          textobject = '<leader>gh',
+        },
+      }
+      vim.keymap.set('n', '<leader>go', MiniDiff.toggle_overlay, { desc = 'Toggle Diff Overlay' })
 
       require('mini.files').setup()
-      vim.keymap.set('n', '<leader>ed', MiniFiles.open, { desc = '[E]xplore Current Working [D]irectory' })
+      vim.keymap.set('n', '<leader>ed', MiniFiles.open, { desc = 'Explore Current Working Directory' })
       vim.keymap.set('n', '<leader>ef', function()
         MiniFiles.open(vim.api.nvim_buf_get_name(0))
-      end, { desc = '[E]xplore Current [F]ile Directory' })
+      end, { desc = 'Explore Current File Directory' })
 
       require('mini.git').setup()
+      vim.keymap.set({ 'n', 'x' }, '<leader>gs', MiniGit.show_at_cursor, { desc = 'Show At Cursor' })
+      local diff_folds = 'foldmethod=expr foldexpr=v:lua.MiniGit.diff_foldexpr() foldlevel=0'
+      vim.cmd('au FileType git,diff setlocal ' .. diff_folds)
 
       local hipatterns = require 'mini.hipatterns'
       local hi_words = MiniExtra.gen_highlighter.words
@@ -75,7 +98,23 @@ return {
         },
       }
 
+      local indentscope = require 'mini.indentscope'
+      indentscope.setup {
+        symbol = '│',
+        draw = {
+          delay = 0,
+          animation = indentscope.gen_animation.none(),
+        },
+        options = {
+          try_as_border = true,
+        },
+      }
+
       require('mini.jump').setup()
+
+      require('mini.jump2d').setup {
+        mappings = { start_jumping = '<leader>j' },
+      }
 
       require('mini.keymap').setup()
       MiniKeymap.map_multistep('i', '<Tab>', { 'pmenu_next' })
@@ -104,7 +143,7 @@ return {
       }
 
       require('mini.trailspace').setup()
-      vim.keymap.set('n', '<leader>ot', MiniTrailspace.trim, { desc = 'Remove [T]railing whitespace' })
+      vim.keymap.set('n', '<leader>ow', MiniTrailspace.trim, { desc = 'Remove Trailing Whitespace' })
     end,
   },
 }

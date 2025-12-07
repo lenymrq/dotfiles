@@ -13,49 +13,49 @@ return {
       function()
         require('dap').continue()
       end,
-      desc = '[D]ap [C]ontinue',
+      desc = 'Dap Continue',
     },
     {
       '<leader>dsi',
       function()
         require('dap').step_into()
       end,
-      desc = '[D]ap [S]tep [I]n',
+      desc = 'Dap Step In',
     },
     {
       '<leader>dso',
       function()
         require('dap').step_over()
       end,
-      desc = '[D]ap [S]tep [O]ver',
+      desc = 'Dap Step Over',
     },
     {
       '<leader>dsx',
       function()
         require('dap').step_out()
       end,
-      desc = '[D]ap [S]tep Out',
+      desc = 'Dap Step Out',
     },
     {
       '<leader>db',
       function()
         require('dap').toggle_breakpoint()
       end,
-      desc = '[D]ap Toggle [B]reakpoint',
+      desc = 'Dap Toggle Breakpoint',
     },
     {
       '<leader>dx',
       function()
         require('dap').terminate()
       end,
-      desc = '[D]ap Terminate Session',
+      desc = 'Dap Terminate Session',
     },
     {
       '<leader>du',
       function()
         require('dapui').toggle()
       end,
-      desc = '[D]ap Toggle [U]I',
+      desc = 'Dap Toggle UI',
     },
   },
   config = function()

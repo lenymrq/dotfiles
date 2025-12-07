@@ -35,22 +35,22 @@ return {
       pcall(require('telescope').load_extension, 'ui-select')
 
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>tb', builtin.buffers, { desc = 'Search [B]uffers' })
-      vim.keymap.set('n', '<leader>td', builtin.diagnostics, { desc = 'Search [D]iagnostics' })
-      vim.keymap.set('n', '<leader>tf', builtin.find_files, { desc = 'Search [F]iles' })
-      vim.keymap.set('n', '<leader>tg', builtin.live_grep, { desc = 'Search By [G]rep' })
-      vim.keymap.set('n', '<leader>th', builtin.help_tags, { desc = 'Search [H]elp' })
-      vim.keymap.set('n', '<leader>tk', builtin.keymaps, { desc = 'Search [K]eymaps' })
-      vim.keymap.set('n', '<leader>tr', builtin.resume, { desc = 'Search [R]esume' })
-      vim.keymap.set('n', '<leader>tt', builtin.builtin, { desc = 'Search [T]elescope builtins' })
-      vim.keymap.set('n', '<leader>tw', builtin.grep_string, { desc = 'Search Current [W]ord' })
-      vim.keymap.set('n', '<leader>t/', builtin.current_buffer_fuzzy_find, { desc = 'Search In [B]uffer' })
+      vim.keymap.set('n', '<leader>tb', builtin.buffers, { desc = 'Find Buffers' })
+      vim.keymap.set('n', '<leader>td', builtin.diagnostics, { desc = 'Find Diagnostics' })
+      vim.keymap.set('n', '<leader>tf', builtin.find_files, { desc = 'Find Files' })
+      vim.keymap.set('n', '<leader>tg', builtin.live_grep, { desc = 'Find By Grep' })
+      vim.keymap.set('n', '<leader>th', builtin.help_tags, { desc = 'Find Help' })
+      vim.keymap.set('n', '<leader>tk', builtin.keymaps, { desc = 'Find Keymaps' })
+      vim.keymap.set('n', '<leader>tr', builtin.resume, { desc = 'Find Resume' })
+      vim.keymap.set('n', '<leader>tt', builtin.builtin, { desc = 'Find Telescope Builtins' })
+      vim.keymap.set('n', '<leader>tw', builtin.grep_string, { desc = 'Find Current Word' })
+      vim.keymap.set('n', '<leader>t/', builtin.current_buffer_fuzzy_find, { desc = 'Find In Buffer' })
 
       -- LSP
-      vim.keymap.set('n', 'gri', builtin.lsp_implementations, { desc = 'LSP Search [I]mplementations' })
-      vim.keymap.set('n', 'grr', builtin.lsp_references, { desc = 'LSP Search [R]eferences' })
-      vim.keymap.set('n', 'grt', builtin.lsp_type_definitions, { desc = 'LSP Search [T]ype Definitions' })
-      vim.keymap.set('n', 'grd', builtin.lsp_definitions, { desc = 'LSP Search [D]efinitions' })
+      vim.keymap.set('n', 'gri', builtin.lsp_implementations, { desc = 'LSP Find Implementations' })
+      vim.keymap.set('n', 'grr', builtin.lsp_references, { desc = 'LSP Find References' })
+      vim.keymap.set('n', 'grt', builtin.lsp_type_definitions, { desc = 'LSP Find Type Definitions' })
+      vim.keymap.set('n', 'grd', builtin.lsp_definitions, { desc = 'LSP Find Definitions' })
     end,
   },
 }
