@@ -1,7 +1,7 @@
 return {
   settings = {
     basedpyright = {
-      typeCheckingMode = 'off',
+      typeCheckingMode = 'strict',
       analysis = {
         diagnosticSeverityOverrides = {
           reportMissingTypeStubs = false,
