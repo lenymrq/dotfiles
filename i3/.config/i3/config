@@ -57,12 +57,13 @@ bindsym $mod+Return exec st
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startup-id dmenu_run -i -l 16
+bindsym $mod+d exec --no-startup-id dmenu_run -i -fn "JetBrainsMono Nerd Font Mono:size=12" -nb "#16181a" -nf "#ffffff" -sb "#3c4048" -sf "#ffbd5e" -l 8
+
 # A more modern dmenu replacement is rofi:
-bindsym $mod+d exec "rofi -modi drun,run -show drun"
+# bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -fn "JetBrainsMono Nerd Font Mono:size=12" -nb "#16181a" -nf "#ffffff" -sb "#3c4048" -sf "#ffbd5e" -l 8'
 
 # change focus
 bindsym $mod+h focus left
@@ -232,9 +233,11 @@ client.background       #ffffff
 # }
 
 default_border pixel 3
+gaps outer 8
+gaps inner 16
 
 exec_always --no-startup-id setxkbmap us
-exec_always --no-startup-id feh --bg-scale ~/.local/share/backgrounds/sakurajima-mai-1.png
+exec_always --no-startup-id feh --bg-scale ~/.local/share/backgrounds/background.png
 exec_always --no-startup-id killall -q polybar; ~/.config/polybar/start.sh
 exec --no-startup-id picom
 exec --no-startup-id unclutter --timeout 0.5
