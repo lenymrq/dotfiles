@@ -65,6 +65,34 @@ return {
 
       require('mini.comment').setup()
 
+      local process_items_opts = { kind_priority = { Text = -1, Snippet = 0 } }
+      local process_items = function(items, base)
+        return MiniCompletion.default_process_items(items, base, process_items_opts)
+      end
+      require('mini.completion').setup {
+        lsp_completion = {
+          source_func = 'omnifunc',
+          auto_setup = true,
+          process_items = process_items,
+        },
+      }
+      vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
+
+      require('mini.snippets').setup {
+        mappings = { expand = '', jump_next = '<Tab>', jump_prev = '<S-Tab>' },
+      }
+      local make_stop = function()
+        local au_opts = { pattern = '*:n', once = true }
+        au_opts.callback = function()
+          while MiniSnippets.session.get() do
+            MiniSnippets.session.stop()
+          end
+        end
+        vim.api.nvim_create_autocmd('ModeChanged', au_opts)
+      end
+      local opts = { pattern = 'MiniSnippetsSessionStart', callback = make_stop }
+      vim.api.nvim_create_autocmd('User', opts)
+
       require('mini.diff').setup {
         mappings = {
           apply = '<leader>gh',
