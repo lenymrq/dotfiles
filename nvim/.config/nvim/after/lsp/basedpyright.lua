@@ -17,6 +17,8 @@ return {
           reportUnusedClass = 'hint',
           reportUnusedFunction = 'hint',
           reportUnusedVariable = 'hint',
+          -- Report Any
+          reportExplicitAny = false,
         },
       },
     },

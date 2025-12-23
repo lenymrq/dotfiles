@@ -2,6 +2,7 @@ return {
   {
     'echasnovski/mini.nvim',
     config = function()
+      vim.cmd.colorscheme 'miniautumn'
       require('mini.basics').setup {
         options = {
           basic = false,
@@ -27,7 +28,6 @@ return {
       MiniMisc.setup_auto_root()
       MiniMisc.setup_restore_cursor()
       MiniMisc.setup_termbg_sync()
-      vim.keymap.set('n', '<leader>oz', MiniMisc.zoom, { desc = 'Zoom Current Buffer' })
 
       require('mini.notify').setup()
       vim.keymap.set('n', '<leader>en', MiniNotify.show_history, { desc = 'Explore Notifications' })
@@ -40,12 +40,29 @@ return {
 
       require('mini.extra').setup()
 
+      local mouse_scrolled = false
+      for _, scroll in ipairs { 'Up', 'Down' } do
+        local key = '<ScrollWheel' .. scroll .. '>'
+        vim.keymap.set({ '', 'i' }, key, function()
+          mouse_scrolled = true
+          return key
+        end, { expr = true })
+      end
       local animate = require 'mini.animate'
       animate.setup {
         cursor = { enable = false },
         scroll = {
           enable = true,
           timing = animate.gen_timing.linear { duration = 4, unit = 'step' },
+          subscroll = animate.gen_subscroll.equal {
+            predicate = function(total_scroll)
+              if mouse_scrolled then
+                mouse_scrolled = false
+                return false
+              end
+              return total_scroll > 1
+            end,
+          },
         },
         resize = { enable = true },
         open = { enable = true },
@@ -77,6 +94,12 @@ return {
         },
       }
       vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'snacks_picker_input',
+        desc = 'Disable mini.completion for snacks picker',
+        group = vim.api.nvim_create_augroup('user_mini', {}),
+        command = 'lua vim.b.minicompletion_disable=true',
+      })
 
       require('mini.snippets').setup {
         mappings = { expand = '', jump_next = '<Tab>', jump_prev = '<S-Tab>' },
@@ -109,7 +132,6 @@ return {
       end, { desc = 'Explore Current File Directory' })
 
       require('mini.git').setup()
-      vim.keymap.set({ 'n', 'x' }, '<leader>gs', MiniGit.show_at_cursor, { desc = 'Show At Cursor' })
       local diff_folds = 'foldmethod=expr foldexpr=v:lua.MiniGit.diff_foldexpr() foldlevel=0'
       vim.cmd('au FileType git,diff setlocal ' .. diff_folds)
 
@@ -138,10 +160,32 @@ return {
         },
       }
 
-      require('mini.jump').setup()
+      require('mini.jump').setup {
+        delay = {
+          highlight = 0,
+        },
+      }
+      local jump_stop = function()
+        if not MiniJump.state.jumping then
+          if vim.api.nvim_get_mode()['mode'] == 'n' then
+            return '<cmd>nohlsearch<CR>'
+          end
+          return '<Esc>'
+        end
+        MiniJump.stop_jumping()
+      end
+      vim.keymap.set({ 'n', 'x', 'o' }, '<Esc>', jump_stop, { expr = true })
 
       require('mini.jump2d').setup {
+        allowed_lines = {
+          blank = false,
+          cursor_at = false,
+        },
+        labels = 'sadfjklewcmpgh',
         mappings = { start_jumping = '<leader>j' },
+        view = {
+          dim = true,
+        },
       }
 
       require('mini.keymap').setup()
