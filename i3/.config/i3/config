@@ -214,6 +214,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+minus move scratchpad
+
 set $accent #ffbd5e
 
 # class                 border  backgr. text    indicator child_border
