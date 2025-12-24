@@ -2,7 +2,18 @@ return {
   {
     'echasnovski/mini.nvim',
     config = function()
-      vim.cmd.colorscheme 'miniautumn'
+      require('mini.hues').setup {
+        background = '#16181a',
+        foreground = '#ffffff',
+        saturation = 'high',
+        accent = 'orange',
+        n_hues = 8
+      }
+
+      require('mini.colors').setup()
+      local colorscheme = MiniColors.get_colorscheme()
+      colorscheme:add_transparency():apply()
+
       require('mini.basics').setup {
         options = {
           basic = false,
