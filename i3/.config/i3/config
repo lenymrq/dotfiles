@@ -238,7 +238,7 @@ client.background       #ffffff
 default_border pixel 4
 
 exec_always --no-startup-id setxkbmap us
-exec_always --no-startup-id feh --bg-scale ~/.local/share/backgrounds/background.png
+exec_always --no-startup-id feh --bg-fill ~/.local/share/backgrounds/background.png
 exec_always --no-startup-id killall -q polybar; ~/.config/polybar/start.sh
 exec --no-startup-id picom
 exec --no-startup-id unclutter --timeout 0.5
