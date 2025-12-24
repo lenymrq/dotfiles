@@ -35,6 +35,6 @@ vim.opt.confirm = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 
-vim.opt.winborder = 'single'
+vim.opt.winborder = 'rounded'
 
 vim.opt.wrap = false
