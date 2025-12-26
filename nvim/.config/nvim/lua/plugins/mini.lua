@@ -6,8 +6,8 @@ return {
         background = '#16181a',
         foreground = '#ffffff',
         saturation = 'high',
-        accent = 'orange',
-        n_hues = 8
+        accent = 'bg',
+        n_hues = 8,
       }
 
       require('mini.colors').setup()
@@ -16,18 +16,19 @@ return {
 
       require('mini.basics').setup {
         options = {
-          basic = false,
+          basic = true,
           extra_ui = true,
-          win_borders = 'double',
+          win_borders = 'auto',
         },
         mappings = {
-          basic = false,
+          basic = true,
           option_toggle_prefix = [[\]],
-          windows = false,
+          windows = true,
           move_with_alt = true,
         },
         autocommands = {
           basic = true,
+          relnum_in_visual_mode = false,
         },
       }
 
@@ -36,12 +37,10 @@ return {
       MiniIcons.tweak_lsp_kind()
 
       require('mini.misc').setup()
-      MiniMisc.setup_auto_root()
       MiniMisc.setup_restore_cursor()
-      MiniMisc.setup_termbg_sync()
+      vim.keymap.set('n', '<Leader>bz', MiniMisc.zoom, { desc = 'Zoom Current Buffer' })
 
       require('mini.notify').setup()
-      vim.keymap.set('n', '<leader>en', MiniNotify.show_history, { desc = 'Explore Notifications' })
 
       require('mini.starter').setup()
 
@@ -76,8 +75,8 @@ return {
           },
         },
         resize = { enable = true },
-        open = { enable = true },
-        close = { enable = true },
+        open = { enable = false },
+        close = { enable = false },
       }
       vim.keymap.set('n', '<leader>ota', function()
         MiniAnimate.config.scroll.enable = not MiniAnimate.config.scroll.enable
@@ -209,8 +208,8 @@ return {
 
       require('mini.pairs').setup()
 
-      local surround = require 'mini.surround'
-      surround.setup {
+      vim.keymap.set('n', 's', '<Nop>', { silent = true, desc = 'Surround' })
+      require('mini.surround').setup {
         highlight_duration = 1000,
         mappings = {
           add = '<leader>sa',

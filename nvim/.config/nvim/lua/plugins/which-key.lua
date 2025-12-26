@@ -25,7 +25,7 @@ return {
           { '<leader>sh', desc = 'Highlight Surrounding' },
           { '<leader>sr', desc = 'Replace Surrounding' },
         },
-        { '<leader>t', group = 'Telescope' },
+        { '<leader>f', group = 'Find' },
         {
           'gr',
           group = 'LSP',
@@ -38,6 +38,11 @@ return {
           { '<leader>ds', desc = 'Step' },
         },
         { '<leader>g', group = 'Git' },
+        {
+          '<leader>w',
+          group = 'Window',
+          { '<leader>wr', group = 'Restore' },
+        },
       },
     },
   },
