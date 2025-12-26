@@ -1,0 +1,18 @@
+[global]
+frame_color = "#ffbd5e"
+separator_color= frame
+highlight = "#ffbd5e"
+font = JetBrainsMono Nerd Font Mono 12
+
+[urgency_low]
+background = "#16181a"
+foreground = "#ffffff"
+
+[urgency_normal]
+background = "#16181a"
+foreground = "#ffffff"
+
+[urgency_critical]
+background = "#16181a"
+foreground = "#ffffff"
+frame_color = "#ff6e5e"
