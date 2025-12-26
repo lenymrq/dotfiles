@@ -234,20 +234,6 @@ return {
         desc = 'Goto Type Definition',
       },
       {
-        'grai',
-        function()
-          Snacks.picker.lsp_incoming_calls()
-        end,
-        desc = 'Calls Incoming',
-      },
-      {
-        'grao',
-        function()
-          Snacks.picker.lsp_outgoing_calls()
-        end,
-        desc = 'Calls Outgoing',
-      },
-      {
         'grs',
         function()
           Snacks.picker.lsp_symbols()
