@@ -1,6 +1,8 @@
 return {
   {
     'folke/snacks.nvim',
+    lazy = false,
+    priority = 500,
     opts = {
       picker = {
         win = {

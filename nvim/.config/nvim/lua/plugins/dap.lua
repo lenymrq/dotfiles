@@ -16,21 +16,21 @@ return {
       desc = 'Dap Continue',
     },
     {
-      '<leader>dsi',
+      '<leader>di',
       function()
         require('dap').step_into()
       end,
       desc = 'Dap Step In',
     },
     {
-      '<leader>dso',
+      '<leader>do',
       function()
         require('dap').step_over()
       end,
       desc = 'Dap Step Over',
     },
     {
-      '<leader>dsx',
+      '<leader>dO',
       function()
         require('dap').step_out()
       end,
@@ -56,6 +56,20 @@ return {
         require('dapui').toggle()
       end,
       desc = 'Dap Toggle UI',
+    },
+    {
+      '<leader>dsu',
+      function()
+        require('dap').up()
+      end,
+      desc = 'Dap Go Up Call Stack',
+    },
+    {
+      '<leader>dsd',
+      function()
+        require('dap').down()
+      end,
+      desc = 'Dap Go Down Call Stack',
     },
   },
   config = function()

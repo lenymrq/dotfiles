@@ -1,19 +1,8 @@
 return {
   {
     'echasnovski/mini.nvim',
+    lazy = false,
     config = function()
-      require('mini.hues').setup {
-        background = '#16181a',
-        foreground = '#ffffff',
-        saturation = 'high',
-        accent = 'bg',
-        n_hues = 8,
-      }
-
-      require('mini.colors').setup()
-      local colorscheme = MiniColors.get_colorscheme()
-      colorscheme:add_transparency():apply()
-
       require('mini.basics').setup {
         options = {
           basic = true,
@@ -37,8 +26,9 @@ return {
       MiniIcons.tweak_lsp_kind()
 
       require('mini.misc').setup()
+      MiniMisc.setup_auto_root()
       MiniMisc.setup_restore_cursor()
-      vim.keymap.set('n', '<Leader>bz', MiniMisc.zoom, { desc = 'Zoom Current Buffer' })
+      vim.keymap.set('n', '<leader>bz', MiniMisc.zoom, { desc = 'Zoom Current Buffer' })
 
       require('mini.notify').setup()
 

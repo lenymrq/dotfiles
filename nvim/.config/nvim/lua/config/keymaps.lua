@@ -12,3 +12,8 @@ vim.keymap.set('n', '<C-S-h>', '<C-w>H', { desc = 'Move window left' })
 vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window down' })
 vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window up' })
 vim.keymap.set('n', '<C-S-l>', '<C-w>L', { desc = 'Move window right' })
+
+-- Current working directory
+vim.keymap.set('n', '<leader>od', function()
+  vim.cmd.cd '%:h'
+end, { silent = true, desc = 'Change CWD to Current Directory' })

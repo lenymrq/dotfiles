@@ -35,7 +35,7 @@ return {
         {
           '<leader>d',
           group = 'DAP',
-          { '<leader>ds', desc = 'Step' },
+          { '<leader>ds', desc = 'Stack' },
         },
         { '<leader>g', group = 'Git' },
         {
