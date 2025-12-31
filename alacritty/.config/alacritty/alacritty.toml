@@ -10,11 +10,11 @@ style = "block"
 
 [window]
 padding = { x = 6, y = 6 }
-opacity = 0.85
+opacity = 0.80
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
-size = 12
+size = 16
 
 [keyboard]
 bindings = [
