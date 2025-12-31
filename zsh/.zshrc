@@ -22,7 +22,6 @@ compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
 eval "$(dircolors -b)"
@@ -32,9 +31,6 @@ zstyle ':completion:*' highlight-lines color bg=green
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose false
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Keybinds
 bindkey '^[[Z' reverse-menu-complete
@@ -71,17 +67,20 @@ else
 fi
 
 # Foot terminal spawn new terminal in same cwd
-function osc7-pwd() {
-    emulate -L zsh
-    setopt extendedglob
-    local LC_ALL=C
-    printf '\e]7;file://%s%s\e\' $HOST ${PWD//(#m)([^@-Za-z&-;_~])/%${(l:2::0:)$(([##16]#MATCH))}}
-}
+if [[ $TERM == "foot" ]]; then
+    function osc7-pwd() {
+	emulate -L zsh
+	setopt extendedglob
+	local LC_ALL=C
+	printf '\e]7;file://%s%s\e\' $HOST ${PWD//(#m)([^@-Za-z&-;_~])/%${(l:2::0:)$(([##16]#MATCH))}}
+    }
 
-function chpwd-osc7-pwd() {
-    (( ZSH_SUBSHELL )) || osc7-pwd
-}
-add-zsh-hook -Uz chpwd chpwd-osc7-pwd
+    function chpwd-osc7-pwd() {
+	(( ZSH_SUBSHELL )) || osc7-pwd
+    }
+
+    add-zsh-hook -Uz chpwd chpwd-osc7-pwd
+fi
 
 # Adjust word delimiters
 WORDCHARS=${WORDCHARS/\/}
@@ -90,7 +89,9 @@ WORDCHARS=${WORDCHARS/-}
 WORDCHARS=${WORDCHARS/.}
 
 # Fix escape sequences keybinds
-bindkey -s $';2u' ' '
-bindkey -s $';3u' ' '
-bindkey $'7;2u' backward-delete-char
-bindkey $'7;5u' backward-delete-char
+if [[ $TERM == "st-256color" ]]; then
+    bindkey -s $';2u' ' '
+    bindkey -s $';3u' ' '
+    bindkey $'7;2u' backward-delete-char
+    bindkey $'7;5u' backward-delete-char
+fi
