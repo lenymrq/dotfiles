@@ -145,16 +145,16 @@ return {
       {
         '<leader>fd',
         function()
-          Snacks.picker.diagnostics()
+          Snacks.picker.diagnostics_buffer()
         end,
-        desc = 'Diagnostics',
+        desc = 'Buffer Diagnostics',
       },
       {
         '<leader>fD',
         function()
-          Snacks.picker.diagnostics_buffer()
+          Snacks.picker.diagnostics()
         end,
-        desc = 'Buffer Diagnostics',
+        desc = 'Diagnostics',
       },
       {
         '<leader>fh',

@@ -7,23 +7,25 @@ return {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
     config = function()
-      local ensure_installed = {
+      local lsps = {
         'basedpyright',
-        'black',
-        'lua_ls',
-        'stylua',
         'clangd',
-        'clang-format',
+        'lua_ls',
       }
-      vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua',
+
+      local formatters = {
         'black',
         'clang-format',
-      })
+        'stylua',
+      }
+
+      local ensure_installed = {}
+      vim.list_extend(ensure_installed, lsps)
+      vim.list_extend(ensure_installed, formatters)
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      require('mason-lspconfig').setup { automatic_enable = ensure_installed }
+      require('mason-lspconfig').setup { automatic_enable = lsps }
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
