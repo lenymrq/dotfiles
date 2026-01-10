@@ -56,14 +56,15 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
+set $dmenu_args -i -fn "JetBrainsMono Nerd Font Mono:size=12" -l 8 -nb "#2e3440" -nf "#d8dee9" -sb "#5e81ac" -sf "#eceff4"
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -i -fn "JetBrainsMono Nerd Font Mono:size=12" -nb "#16181a" -nf "#ffffff" -sb "#3c4048" -sf "#ffbd5e" -l 8
+bindsym $mod+d exec --no-startup-id dmenu_run $dmenu_args
 
 # A more modern dmenu replacement is rofi:
 # bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
-bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -fn "JetBrainsMono Nerd Font Mono:size=12" -nb "#16181a" -nf "#ffffff" -sb "#3c4048" -sf "#ffbd5e" -l 8'
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu $dmenu_args'
 
 # change focus
 bindsym $mod+h focus left
@@ -217,23 +218,21 @@ bindsym $mod+r mode "resize"
 bindsym $mod+minus scratchpad show
 bindsym $mod+Shift+minus move scratchpad
 
-set $accent #ffbd5e
-
-# class                 border  backgr. text    indicator child_border
-client.focused          $accent #3c4048 #ffffff #ffffff   $accent
-client.focused_inactive #3c4048 #1e2124 #ffffff #3c4048   #3c4048
-client.unfocused        #1e2124 #16181a #7b8496 #3c4048   #1e2124
-client.urgent           #ff6e5e #3c4048 #ffffff #ff6e5e   #ff6e5e
-client.placeholder      #1e2124 #1e2124 #7b8496 #1e2124   #1e2124
-
-client.background       #ffffff
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
 #         position bottom
 #         status_command i3status
 # }
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #000000 #000000 #000000 #88c0d0   #5e81ac
+client.focused_inactive #000000 #000000 #000000 #4c566a   #4c566a
+client.unfocused        #000000 #000000 #000000 #2e3440   #2e3440
+client.urgent           #000000 #000000 #000000 #bf616a   #bf616a
+client.placeholder      #000000 #000000 #000000 #000000   #0c0c0c
+
+client.background       #ffffff
 
 default_border pixel 4
 
