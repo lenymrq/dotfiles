@@ -1,12 +1,5 @@
-import = [
-  "~/.config/alacritty/cyberdream.toml"
-]
-
-shell = "/bin/zsh"
-
-
 [cursor]
-style = "block"
+style = "beam"
 
 [window]
 padding = { x = 6, y = 6 }
@@ -27,3 +20,11 @@ cursor = { text = "0x16181a", cursor = "0xffffff" }
 
 [env]
 WINIT_X11_SCALE_FACTOR = "1.0"
+
+[general]
+import = [
+  "~/.config/alacritty/nord.toml"
+]
+
+[terminal]
+shell = "/bin/zsh"
