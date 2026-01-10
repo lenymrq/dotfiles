@@ -1,1 +1,1 @@
-vim.opt_local.colorcolumn = '88'
+vim.cmd 'setlocal shiftwidth=4'

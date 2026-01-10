@@ -1,24 +1,24 @@
 return {
   settings = {
     basedpyright = {
-      typeCheckingMode = 'strict',
+      typeCheckingMode = 'all',
       analysis = {
         diagnosticSeverityOverrides = {
-          reportMissingTypeStubs = false,
+          reportMissingTypeStubs = 'none',
           -- Report unknown
-          reportUnknownArgumentType = false,
-          reportUnknownLambdaType = false,
-          reportUnknownMemberType = false,
-          reportUnknownParameterType = false,
-          reportUnknownVariableType = false,
+          reportUnknownArgumentType = 'none',
+          reportUnknownLambdaType = 'none',
+          reportUnknownMemberType = 'none',
+          reportUnknownParameterType = 'none',
+          reportUnknownVariableType = 'none',
           -- Report unused
-          reportUnusedCallResult = false,
+          reportUnusedCallResult = 'none',
           reportUnusedImport = 'hint',
           reportUnusedClass = 'hint',
           reportUnusedFunction = 'hint',
           reportUnusedVariable = 'hint',
           -- Report Any
-          reportExplicitAny = false,
+          reportExplicitAny = 'none',
         },
       },
     },
