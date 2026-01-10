@@ -2,13 +2,13 @@
 eval "$(starship init zsh)"
 
 # Reset the cursor shape to a bar, useful for NeoVim
-# if [[ $TERM == "st-256color" ]] || [[ $TERM == "foot" ]]; then
-# 	precmd() { echo -ne '\e[5 q' }
-# fi
+if [[ $TERM == "st-256color" ]] || [[ $TERM == "foot" ]] || [[ $TERM == "alacritty" ]]; then
+	precmd() { echo -ne '\e[5 q' }
+fi
 
 setopt histignorealldups sharehistory
 
-# Use emacs keybindings even if our EDITOR is set to vi
+# Use emacs keybindings
 bindkey -e
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
