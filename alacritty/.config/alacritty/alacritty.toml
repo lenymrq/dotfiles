@@ -1,9 +1,10 @@
 [cursor]
 style = "beam"
+vi_mode_style = "block"
 
 [window]
-padding = { x = 6, y = 6 }
-opacity = 0.80
+padding = { x = 12, y = 12 }
+opacity = 1
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
@@ -15,15 +16,12 @@ bindings = [
   { key = "Enter", mods = "Control | Alt", action = "SpawnNewInstance" }
 ]
 
-[colors]
-cursor = { text = "0x16181a", cursor = "0xffffff" }
-
 [env]
 WINIT_X11_SCALE_FACTOR = "1.0"
 
 [general]
 import = [
-  "~/.config/alacritty/nord.toml"
+  "~/.config/alacritty/carbonfox.toml"
 ]
 
 [terminal]

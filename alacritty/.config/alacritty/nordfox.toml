@@ -3,8 +3,7 @@
 ## upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/nordfox/alacritty.toml
 
 [colors.primary]
-background = "#16181a"
-# background = "#2e3440"
+background = "#2e3440"
 foreground = "#cdcecf"
 dim_foreground = "#abb1bb"
 bright_foreground = "#c7cdd9"
