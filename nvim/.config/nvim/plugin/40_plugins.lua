@@ -9,7 +9,7 @@
 -- Use this file to install and configure other such plugins.
 
 -- Make concise helpers for installing/adding plugins in two stages
-local add, later = MiniDeps.add, MiniDeps.later
+local add, later, now = MiniDeps.add, MiniDeps.later, MiniDeps.now
 local now_if_args = _G.Config.now_if_args
 
 -- Tree-sitter ================================================================
@@ -157,40 +157,83 @@ now_if_args(function()
   require('mason-lspconfig').setup()
 end)
 
+now_if_args(function()
+  add 'NMAC427/guess-indent.nvim'
+  require('guess-indent').setup()
+end)
+
 -- Beautiful, usable, well maintained color schemes outside of 'mini.nvim' and
 -- have full support of its highlight groups. Use if you don't like 'miniwinter'
 -- enabled in 'plugin/30_mini.lua' or other suggested 'mini.hues' based ones.
-MiniDeps.now(function()
-  -- add 'scottmckendry/cyberdream.nvim'
-  -- require('cyberdream').setup { transparent = true }
-
+now(function()
   add 'EdenEast/nightfox.nvim'
-  local transparent = true
   require('nightfox').setup {
-    options = { transparent = transparent },
+    options = { transparent = false },
     groups = {
       all = {
-        NormalFloat = transparent and { bg = 'none' } or {},
-        FloatBorder = transparent and { bg = 'none' } or {},
-      },
-      nordfox = {
-        Search = { fg = 'palette.fg0', bg = 'palette.red' },
-        IncSearch = { fg = 'palette.fg0', bg = 'palette.red' },
-        CurSearch = { fg = 'palette.fg0', bg = 'palette.blue' },
-        MiniTablineCurrent = { fg = 'palette.fg0', bg = 'palette.bg3' },
-        MiniTablineVisible = { fg = 'palette.fg3', bg = 'palette.bg1' },
-        MiniTablineHidden = { fg = 'palette.fg3', bg = 'palette.bg0' },
-        MiniTablineModifiedCurrent = { fg = 'palette.yellow', bg = 'palette.bg3' },
-        MiniTablineModifiedVisible = { fg = 'palette.yellow', bg = 'palette.bg1' },
-        MiniTablineModifiedHidden = { fg = 'palette.yellow', bg = 'palette.bg0' },
+        -- Floating windows
+        NormalFloat = { bg = 'none' },
+
+        FloatBorder = { bg = 'none' },
+
+        -- Tabline
+        MiniTablineCurrent = { fg = 'fg', bg = 'bg' },
+        MiniTablineVisible = { fg = 'palette.fg2', bg = 'palette.bg2' },
+        MiniTablineHidden = { fg = 'palette.fg3', bg = 'palette.bg3' },
+        MiniTablineModifiedCurrent = { fg = 'bg', bg = 'palette.cyan' },
+        MiniTablineModifiedVisible = { fg = 'palette.cyan', bg = 'palette.bg2' },
+        MiniTablineModifiedHidden = { fg = 'palette.cyan', bg = 'palette.bg3' },
+
+        -- Diagnostic
         DiagnosticVirtualTextError = { bg = 'none' },
         DiagnosticVirtualTextWarn = { bg = 'none' },
         DiagnosticVirtualTextInfo = { bg = 'none' },
         DiagnosticVirtualTextHint = { bg = 'none' },
         DiagnosticVirtualTextOk = { bg = 'none' },
+
+        -- Blink
+        BlinkCmpMenu = { bg = 'bg' },
+        BlinkCmpMenuSelection = { bg = 'palette.bg2' },
+        BlinkCmpMenuBorder = { bg = 'bg' },
+        BlinkCmpKind = { bg = 'bg' },
+        BlinkCmpDoc = { bg = 'bg' },
+        BlinkCmpDocBorder = { bg = 'bg' },
       },
     },
   }
 
-  vim.cmd.colorscheme 'nordfox'
+  vim.cmd.colorscheme 'carbonfox'
+end)
+
+now_if_args(function()
+  add {
+    source = 'saghen/blink.cmp',
+    depends = { 'rafamadriz/friendly-snippets' },
+    checkout = 'v1.8.0',
+  }
+
+  require('blink.cmp').setup {
+    keymap = { preset = 'default' },
+
+    appearance = {
+      nerd_font_variant = 'mono',
+    },
+
+    completion = {
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 0,
+      },
+    },
+
+    signature = { enabled = true },
+
+    snippets = { preset = 'mini_snippets' },
+
+    sources = {
+      default = { 'lsp', 'path', 'snippets' },
+    },
+
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
+  }
 end)

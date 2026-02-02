@@ -248,38 +248,38 @@ end)
 -- It is not enabled by default because its effects are a matter of taste.
 -- Also scroll and resize have some unwanted side effects (see `:h mini.animate`).
 -- Uncomment next line (use `gcc`) to enable.
-later(function()
-  local mouse_scrolled = false
-  for _, scroll in ipairs { 'Up', 'Down' } do
-    local key = '<ScrollWheel' .. scroll .. '>'
-    vim.keymap.set({ '', 'i' }, key, function()
-      mouse_scrolled = true
-      return key
-    end, { expr = true })
-  end
-  local minianimate = require 'mini.animate'
-  minianimate.setup {
-    cursor = {
-      enable = false,
-    },
-    scroll = {
-      enable = true,
-      timing = minianimate.gen_timing.linear { duration = 4, unit = 'step' },
-      subscroll = minianimate.gen_subscroll.equal {
-        predicate = function(total_scroll)
-          if mouse_scrolled then
-            mouse_scrolled = false
-            return false
-          end
-          return total_scroll > 1
-        end,
-      },
-    },
-    resise = { enable = false },
-    open = { enable = false },
-    close = { enable = false },
-  }
-end)
+-- later(function()
+--   local mouse_scrolled = false
+--   for _, scroll in ipairs { 'Up', 'Down' } do
+--     local key = '<ScrollWheel' .. scroll .. '>'
+--     vim.keymap.set({ '', 'i' }, key, function()
+--       mouse_scrolled = true
+--       return key
+--     end, { expr = true })
+--   end
+--   local minianimate = require 'mini.animate'
+--   minianimate.setup {
+--     cursor = {
+--       enable = false,
+--     },
+--     scroll = {
+--       enable = true,
+--       timing = minianimate.gen_timing.linear { duration = 4, unit = 'step' },
+--       subscroll = minianimate.gen_subscroll.equal {
+--         predicate = function(total_scroll)
+--           if mouse_scrolled then
+--             mouse_scrolled = false
+--             return false
+--           end
+--           return total_scroll > 1
+--         end,
+--       },
+--     },
+--     resize = { enable = false },
+--     open = { enable = false },
+--     close = { enable = false },
+--   }
+-- end)
 
 -- Go forward/backward with square brackets. Implements consistent sets of mappings
 -- for selected targets (like buffers, diagnostic, quickfix list entries, etc.).
@@ -433,6 +433,8 @@ end)
 --
 -- It also works with snippet candidates provided by LSP server. Best experience
 -- when paired with 'mini.snippets' (which is set up in this file).
+
+--[[ Disable mini.completion because we are using blink
 later(function()
   -- Customize post-processing of LSP responses for a better user experience.
   -- Don't show 'Text' suggestions (usually noisy) and show snippets last.
@@ -461,6 +463,7 @@ later(function()
   -- signature features through 'mini.completion'.
   vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
 end)
+--]]
 
 -- Autohighlight word under cursor with a customizable delay.
 -- Word boundaries are defined based on `:h 'iskeyword'` option.
@@ -631,12 +634,14 @@ end)
 later(function()
   require('mini.keymap').setup()
   -- Navigate 'mini.completion' menu with `<Tab>` /  `<S-Tab>`
-  MiniKeymap.map_multistep('i', '<Tab>', { 'pmenu_next' })
-  MiniKeymap.map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
+  -- MiniKeymap.map_multistep('i', '<Tab>', { 'pmenu_next' })
+  -- MiniKeymap.map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
   -- On `<CR>` try to accept current completion item, fall back to accounting
   -- for pairs from 'mini.pairs'
-  MiniKeymap.map_multistep('i', '<CR>', { 'pmenu_accept', 'minipairs_cr' })
+  -- MiniKeymap.map_multistep('i', '<CR>', { 'pmenu_accept', 'minipairs_cr' })
   -- On `<BS>` just try to account for pairs from 'mini.pairs'
+  -- MiniKeymap.map_multistep('i', '<BS>', { 'minipairs_bs' })
+  MiniKeymap.map_multistep('i', '<CR>', { 'minipairs_cr' })
   MiniKeymap.map_multistep('i', '<BS>', { 'minipairs_bs' })
 end)
 
