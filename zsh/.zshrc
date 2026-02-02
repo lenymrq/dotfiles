@@ -2,8 +2,22 @@
 eval "$(starship init zsh)"
 
 # Reset the cursor shape to a bar, useful for NeoVim
-if [[ $TERM == "st-256color" ]] || [[ $TERM == "foot" ]] || [[ $TERM == "alacritty" ]]; then
+if [[ $TERM == "st-256color" ]] || [[ $TERM == "foot" ]]; then
 	precmd() { echo -ne '\e[5 q' }
+fi
+
+# Disable padding on Alacritty when launching NeoVim
+if [[ $TERM == "alacritty" ]]; then
+	precmd() {
+		alacritty msg config -r
+		echo -ne '\e[5 q'  # Restore cursor if using beam cursor
+	}
+	preexec() {
+		if [[ "$1" == nvim* ]]; then
+			alacritty msg config "window.padding.x=0"
+			alacritty msg config "window.padding.y=0"
+		fi
+	}
 fi
 
 setopt histignorealldups sharehistory
@@ -47,12 +61,14 @@ export PATH="$PATH:/opt/nvim/"
 export PATH="$PATH:/home/leny/.local/bin"
 
 # Aliases
-alias ls='lsd'
-alias la='lsd -A'
-alias l='lsd -AlF'
-alias cat='batcat'
+# alias ls='lsd'
+# alias la='lsd -A'
+# alias l='lsd -AlF'
+alias ls='ls --color=auto'
+alias la='ls -A'
+alias l='ls -AlF'
 
-alias exegol='sudo -E /home/leny/.local/bin/exegol'
+alias bat='batcat'
 
 # Set up fzf key bindings and fuzzy completion
 function version_greater_equal() {
