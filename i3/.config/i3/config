@@ -107,6 +107,9 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
+# center floating container
+bindsym $mod+Ctrl+space move position center
+
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
@@ -227,7 +230,7 @@ bar {
         padding 2px 0
 }
 
-gaps inner 12px
+# gaps inner 12px
 
 exec_always --no-startup-id setxkbmap us
 exec_always --no-startup-id feh --bg-fill ~/.local/share/backgrounds/background.jpg
