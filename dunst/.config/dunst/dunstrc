@@ -1,18 +1,16 @@
 [global]
-frame_color = "#5e81ac"
-separator_color= frame
-highlight = "#5e81ac"
-font = JetBrainsMono Nerd Font Mono 12
+background = "#222222"
+foreground = "#ffffff"
+frame_color = "#4c7899"
+highlight = "#4c7899"
+
+frame_width = 2
+gap_size = 2
 
 [urgency_low]
-background = "#2e3440"
-foreground = "#eceff4"
+frame_color = "#333333"
 
 [urgency_normal]
-background = "#2e3440"
-foreground = "#eceff4"
 
 [urgency_critical]
-background = "#2e3440"
-foreground = "#eceff4"
-frame_color = "#bf616a"
+frame_color = "#900000"
