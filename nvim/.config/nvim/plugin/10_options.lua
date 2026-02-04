@@ -37,15 +37,16 @@ vim.o.list = true -- Show helpful text indicators
 vim.o.number = true -- Show line numbers
 vim.o.pumheight = 10 -- Make popup menu smaller
 vim.o.ruler = false -- Don't show cursor coordinates
+vim.o.scrolloff = 10 -- Have a minimum number of lines arround cursor
 vim.o.shortmess = 'CFOSWaco' -- Disable some built-in completion messages
 vim.o.showmode = false -- Don't show mode in command line
+vim.o.sidescrolloff = 8 -- Have a minimum number of columns arround cursor
 vim.o.signcolumn = 'yes' -- Always show signcolumn (less flicker)
 vim.o.splitbelow = true -- Horizontal splits will be below
 vim.o.splitkeep = 'screen' -- Reduce scroll during window split
 vim.o.splitright = true -- Vertical splits will be to the right
 vim.o.winborder = 'single' -- Use border in floating windows
 vim.o.wrap = false -- Don't visually wrap lines (toggle with \w)
-vim.o.scrolloff = 10 -- Have a minimum number of lines arround cursor
 
 vim.o.cursorlineopt = 'screenline,number' -- Show cursor line per screen line
 
@@ -111,8 +112,8 @@ local diagnostic_opts = {
   underline = { severity = { min = 'HINT', max = 'ERROR' } },
 
   -- Show more details immediately for errors on the current line
-  virtual_lines = { current_line = true },
-  virtual_text = true,
+  virtual_lines = false,
+  virtual_text = { current_line = true },
 
   -- Don't update diagnostics when typing
   update_in_insert = false,

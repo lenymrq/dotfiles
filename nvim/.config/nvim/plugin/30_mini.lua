@@ -586,7 +586,7 @@ end)
 -- See also:
 -- - `:h MiniIndentscope.gen_animation` - available animation rules
 later(function()
-  require('mini.indentscope').setup()
+  require('mini.indentscope').setup { symbol = '▏' }
   local jump_stop = function()
     if not MiniJump.state.jumping then
       return '<Esc>'
@@ -677,6 +677,9 @@ later(function()
       .. '<Cmd>lua MiniMap.refresh({}, { lines = false, scrollbar = false })<CR>'
     vim.keymap.set('n', key, rhs)
   end
+
+  -- Open map by default
+  map.open()
 end)
 
 -- Move any selection in any direction. Example usage in Normal mode:
