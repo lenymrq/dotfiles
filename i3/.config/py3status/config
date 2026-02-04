@@ -12,6 +12,11 @@ order += sysdata
 order += battery_level
 order += clock
 
+backlight {
+        button_up = 0
+        button_down = 0
+}
+
 battery_level {
         format = "{icon}: {percent}%"
 }
