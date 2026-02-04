@@ -31,20 +31,13 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-autoload -Uz compinit
+autoload -U compinit
 compinit
 
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
 eval "$(dircolors -b)"
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' highlight-lines color bg=green
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose false
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  # add colors to entries
+zstyle ':completion:*' menu select  # display cool menu
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'  # case-insensitive matching
 
 # Keybinds
 bindkey '^[[Z' reverse-menu-complete
