@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMono Nerd Font Mono:pixelsize=18:antialias=true:autohint=true";
+static char *font = "Hack Nerd Font Mono:pixelsize=20:antialias=true:autohint=true";
 #if FONT2_PATCH
 /* Spare fonts */
 static char *font2[] = {
@@ -46,7 +46,7 @@ static char *url_opener = "xdg-open";
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/usr/bin/zsh";
+static char *shell = "/bin/bash";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;
@@ -186,33 +186,63 @@ char *xdndescchar = " !\"#$&'()*;<>?[\\]^`{|}~";
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
+	/* Cyberdream */
+        // /* 8 normal colors */
+        // "#16181a",
+        // "#ff6e5e",
+        // "#5eff6c",
+        // "#f1ff5e",
+        // "#5ea1ff",
+        // "#bd5eff",
+        // "#5ef1ff",
+        // "#ffffff",
+        //
+        // /* 8 bright colors */
+        // "#3c4048",
+        // "#ff6e5e",
+        // "#5eff6c",
+        // "#f1ff5e",
+        // "#5ea1ff",
+        // "#bd5eff",
+        // "#5ef1ff",
+        // "#ffffff",
+        //
+        // [255] = 0,
+        //
+        // /* more colors can be added after 255 to use with DefaultXX */
+        // "#ffffff", /* 256 -> cursor */
+        // "#3c4048", /* 257 -> rev cursor*/
+        // "#16181a", /* 258 -> bg */
+        // "#ffffff", /* 259 -> fg */
+
+	/* Carbonfox */
         /* 8 normal colors */
-        "#16181a",
-        "#ff6e5e",
-        "#5eff6c",
-        "#f1ff5e",
-        "#5ea1ff",
-        "#bd5eff",
-        "#5ef1ff",
-        "#ffffff",
+        "#161616",
+        "#ee5396",
+        "#25be6a",
+        "#08bdba",
+        "#78a9ff",
+        "#be95ff",
+        "#33b1ff",
+        "#dfdfe0",
 
         /* 8 bright colors */
-        "#3c4048",
-        "#ff6e5e",
-        "#5eff6c",
-        "#f1ff5e",
-        "#5ea1ff",
-        "#bd5eff",
-        "#5ef1ff",
-        "#ffffff",
+        "#484848",
+        "#f16da6",
+        "#46c880",
+        "#2dc7c4",
+        "#8cb6ff",
+        "#c8a5ff",
+        "#52bdff",
+        "#e4e4e5",
 
         [255] = 0,
 
         /* more colors can be added after 255 to use with DefaultXX */
-        "#ffffff", /* 256 -> cursor */
-        "#3c4048", /* 257 -> rev cursor*/
-        "#16181a", /* 258 -> bg */
-        "#ffffff", /* 259 -> fg */
+        "#b6b8bb", /* 256 -> cursor */
+        "#f2f4f8", /* 257 -> rev cursor*/
+        "#161616", /* 258 -> bg */
+        "#f2f4f8", /* 259 -> fg */
 };
 
 /*
