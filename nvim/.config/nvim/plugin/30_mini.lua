@@ -248,38 +248,38 @@ end)
 -- It is not enabled by default because its effects are a matter of taste.
 -- Also scroll and resize have some unwanted side effects (see `:h mini.animate`).
 -- Uncomment next line (use `gcc`) to enable.
--- later(function()
---   local mouse_scrolled = false
---   for _, scroll in ipairs { 'Up', 'Down' } do
---     local key = '<ScrollWheel' .. scroll .. '>'
---     vim.keymap.set({ '', 'i' }, key, function()
---       mouse_scrolled = true
---       return key
---     end, { expr = true })
---   end
---   local minianimate = require 'mini.animate'
---   minianimate.setup {
---     cursor = {
---       enable = false,
---     },
---     scroll = {
---       enable = true,
---       timing = minianimate.gen_timing.linear { duration = 4, unit = 'step' },
---       subscroll = minianimate.gen_subscroll.equal {
---         predicate = function(total_scroll)
---           if mouse_scrolled then
---             mouse_scrolled = false
---             return false
---           end
---           return total_scroll > 1
---         end,
---       },
---     },
---     resize = { enable = false },
---     open = { enable = false },
---     close = { enable = false },
---   }
--- end)
+later(function()
+  local mouse_scrolled = false
+  for _, scroll in ipairs { 'Up', 'Down' } do
+    local key = '<ScrollWheel' .. scroll .. '>'
+    vim.keymap.set({ '', 'i' }, key, function()
+      mouse_scrolled = true
+      return key
+    end, { expr = true })
+  end
+  local minianimate = require 'mini.animate'
+  minianimate.setup {
+    cursor = {
+      enable = false,
+    },
+    scroll = {
+      enable = true,
+      timing = minianimate.gen_timing.linear { duration = 4, unit = 'step' },
+      subscroll = minianimate.gen_subscroll.equal {
+        predicate = function(total_scroll)
+          if mouse_scrolled then
+            mouse_scrolled = false
+            return false
+          end
+          return total_scroll > 1
+        end,
+      },
+    },
+    resize = { enable = false },
+    open = { enable = false },
+    close = { enable = false },
+  }
+end)
 
 -- Go forward/backward with square brackets. Implements consistent sets of mappings
 -- for selected targets (like buffers, diagnostic, quickfix list entries, etc.).
@@ -434,36 +434,34 @@ end)
 -- It also works with snippet candidates provided by LSP server. Best experience
 -- when paired with 'mini.snippets' (which is set up in this file).
 
---[[ Disable mini.completion because we are using blink
-later(function()
-  -- Customize post-processing of LSP responses for a better user experience.
-  -- Don't show 'Text' suggestions (usually noisy) and show snippets last.
-  local process_items_opts = { kind_priority = { Text = -1, Snippet = 99 } }
-  local process_items = function(items, base)
-    return MiniCompletion.default_process_items(items, base, process_items_opts)
-  end
-  require('mini.completion').setup {
-    lsp_completion = {
-      -- Without this config autocompletion is set up through `:h 'completefunc'`.
-      -- Although not needed, setting up through `:h 'omnifunc'` is cleaner
-      -- (sets up only when needed) and makes it possible to use `<C-u>`.
-      source_func = 'omnifunc',
-      auto_setup = false,
-      process_items = process_items,
-    },
-  }
-
-  -- Set 'omnifunc' for LSP completion only when needed.
-  local on_attach = function(ev)
-    vim.bo[ev.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
-  end
-  _G.Config.new_autocmd('LspAttach', nil, on_attach, "Set 'omnifunc'")
-
-  -- Advertise to servers that Neovim now supports certain set of completion and
-  -- signature features through 'mini.completion'.
-  vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
-end)
---]]
+-- later(function()
+--   -- Customize post-processing of LSP responses for a better user experience.
+--   -- Don't show 'Text' suggestions (usually noisy) and show snippets last.
+--   local process_items_opts = { kind_priority = { Text = -1, Snippet = 99 } }
+--   local process_items = function(items, base)
+--     return MiniCompletion.default_process_items(items, base, process_items_opts)
+--   end
+--   require('mini.completion').setup {
+--     lsp_completion = {
+--       -- Without this config autocompletion is set up through `:h 'completefunc'`.
+--       -- Although not needed, setting up through `:h 'omnifunc'` is cleaner
+--       -- (sets up only when needed) and makes it possible to use `<C-u>`.
+--       source_func = 'omnifunc',
+--       auto_setup = false,
+--       process_items = process_items,
+--     },
+--   }
+--
+--   -- Set 'omnifunc' for LSP completion only when needed.
+--   local on_attach = function(ev)
+--     vim.bo[ev.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
+--   end
+--   _G.Config.new_autocmd('LspAttach', nil, on_attach, "Set 'omnifunc'")
+--
+--   -- Advertise to servers that Neovim now supports certain set of completion and
+--   -- signature features through 'mini.completion'.
+--   vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
+-- end)
 
 -- Autohighlight word under cursor with a customizable delay.
 -- Word boundaries are defined based on `:h 'iskeyword'` option.
