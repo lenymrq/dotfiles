@@ -1,14 +1,14 @@
 [cursor]
-style = "beam"
+style = "block"
 vi_mode_style = "block"
 
 [window]
 padding = { x = 12, y = 12 }
-opacity = 1
+opacity = 0.9
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
-size = 16
+size = 14
 
 [keyboard]
 bindings = [
@@ -25,4 +25,4 @@ import = [
 ]
 
 [terminal]
-shell = "/bin/zsh"
+shell = "/bin/bash"
