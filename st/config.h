@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Hack Nerd Font Mono:pixelsize=20:antialias=true:autohint=true";
+static char *font = "JetBrainsMono Nerd Font Mono:pixelsize=18:antialias=true:autohint=true";
 #if FONT2_PATCH
 /* Spare fonts */
 static char *font2[] = {
@@ -165,7 +165,7 @@ unsigned int tabspaces = 8;
 
 #if ALPHA_PATCH
 /* bg opacity */
-float alpha = 0.80;
+float alpha = 1.00;
 #if ALPHA_GRADIENT_PATCH
 float grad_alpha = 0.54; //alpha value that'll change
 float stat_alpha = 0.46; //constant alpha value that'll get added to grad_alpha
@@ -187,62 +187,62 @@ char *xdndescchar = " !\"#$&'()*;<>?[\\]^`{|}~";
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* Cyberdream */
-        // /* 8 normal colors */
-        // "#16181a",
-        // "#ff6e5e",
-        // "#5eff6c",
-        // "#f1ff5e",
-        // "#5ea1ff",
-        // "#bd5eff",
-        // "#5ef1ff",
-        // "#ffffff",
-        //
-        // /* 8 bright colors */
-        // "#3c4048",
-        // "#ff6e5e",
-        // "#5eff6c",
-        // "#f1ff5e",
-        // "#5ea1ff",
-        // "#bd5eff",
-        // "#5ef1ff",
-        // "#ffffff",
-        //
-        // [255] = 0,
-        //
-        // /* more colors can be added after 255 to use with DefaultXX */
-        // "#ffffff", /* 256 -> cursor */
-        // "#3c4048", /* 257 -> rev cursor*/
-        // "#16181a", /* 258 -> bg */
-        // "#ffffff", /* 259 -> fg */
-
-	/* Carbonfox */
         /* 8 normal colors */
-        "#161616",
-        "#ee5396",
-        "#25be6a",
-        "#08bdba",
-        "#78a9ff",
-        "#be95ff",
-        "#33b1ff",
-        "#dfdfe0",
+        "#16181a",
+        "#ff6e5e",
+        "#5eff6c",
+        "#f1ff5e",
+        "#5ea1ff",
+        "#bd5eff",
+        "#5ef1ff",
+        "#ffffff",
 
         /* 8 bright colors */
-        "#484848",
-        "#f16da6",
-        "#46c880",
-        "#2dc7c4",
-        "#8cb6ff",
-        "#c8a5ff",
-        "#52bdff",
-        "#e4e4e5",
+        "#3c4048",
+        "#ff6e5e",
+        "#5eff6c",
+        "#f1ff5e",
+        "#5ea1ff",
+        "#bd5eff",
+        "#5ef1ff",
+        "#ffffff",
 
         [255] = 0,
 
         /* more colors can be added after 255 to use with DefaultXX */
-        "#b6b8bb", /* 256 -> cursor */
-        "#f2f4f8", /* 257 -> rev cursor*/
-        "#161616", /* 258 -> bg */
-        "#f2f4f8", /* 259 -> fg */
+        "#ffffff", /* 256 -> cursor */
+        "#3c4048", /* 257 -> rev cursor*/
+        "#16181a", /* 258 -> bg */
+        "#ffffff", /* 259 -> fg */
+
+	/* Carbonfox */
+        // /* 8 normal colors */
+        // "#161616",
+        // "#ee5396",
+        // "#25be6a",
+        // "#08bdba",
+        // "#78a9ff",
+        // "#be95ff",
+        // "#33b1ff",
+        // "#dfdfe0",
+        //
+        // /* 8 bright colors */
+        // "#484848",
+        // "#f16da6",
+        // "#46c880",
+        // "#2dc7c4",
+        // "#8cb6ff",
+        // "#c8a5ff",
+        // "#52bdff",
+        // "#e4e4e5",
+        //
+        // [255] = 0,
+        //
+        // /* more colors can be added after 255 to use with DefaultXX */
+        // "#b6b8bb", /* 256 -> cursor */
+        // "#f2f4f8", /* 257 -> rev cursor*/
+        // "#161616", /* 258 -> bg */
+        // "#f2f4f8", /* 259 -> fg */
 };
 
 /*
@@ -295,7 +295,7 @@ static Rune stcursor = 0x2603; /* snowman (U+2603) */
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 6;
+static unsigned int cursorshape = 2;
 #endif // BLINKING_CURSOR_PATCH
 
 /*
