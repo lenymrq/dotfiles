@@ -1,7 +1,7 @@
 return {
   settings = {
     basedpyright = {
-      typeCheckingMode = 'all',
+      typeCheckingMode = 'strict',
       analysis = {
         diagnosticSeverityOverrides = {
           reportMissingTypeStubs = 'none',
@@ -13,12 +13,14 @@ return {
           reportUnknownVariableType = 'none',
           -- Report unused
           reportUnusedCallResult = 'none',
-          reportUnusedImport = 'hint',
-          reportUnusedClass = 'hint',
-          reportUnusedFunction = 'hint',
-          reportUnusedVariable = 'hint',
+          reportUnusedImport = 'warning',
+          reportUnusedClass = 'warning',
+          reportUnusedFunction = 'warning',
+          reportUnusedVariable = 'warning',
           -- Report Any
           reportExplicitAny = 'none',
+          -- Report private usage
+          reportPrivateUsage = 'none',
         },
       },
     },

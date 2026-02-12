@@ -172,7 +172,7 @@ now(function()
   }
   add 'EdenEast/nightfox.nvim'
   require('nightfox').setup {
-    options = { transparent = true },
+    options = { transparent = false },
     groups = {
       all = {
         -- Floating windows
@@ -208,7 +208,7 @@ now(function()
     },
   }
 
-  vim.cmd.colorscheme 'carbonfox'
+  vim.cmd.colorscheme 'duskfox'
 end)
 
 now_if_args(function()
