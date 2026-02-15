@@ -57,12 +57,15 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 git_branch () {
-    branch=$(git branch --show-current 2>/dev/null) || return
+    local branch=$(git branch --show-current 2>/dev/null)
+    if [[ -z $branch ]]; then
+        branch=$(git rev-parse --short HEAD 2>/dev/null) || return
+    fi
     echo " ( $branch)"
 }
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\e[92m\]\u\[\e[0m\]@\[\e[96m\]\h\[\e[0m\]:\[\e[93m\]\w\[\e[0m\]\[\e[0m\]$(git_branch)\[\e[0m\]\n\\$ '
+    PS1='\[\e[32m\]\u\[\e[0m\]@\[\e[36m\]\h\[\e[0m\]:\[\e[33m\]\w\[\e[0m\]\[\e[0m\]$(git_branch)\[\e[0m\]\n\\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
