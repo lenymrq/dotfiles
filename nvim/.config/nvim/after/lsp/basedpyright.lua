@@ -21,6 +21,11 @@ return {
           reportExplicitAny = 'none',
           -- Report private usage
           reportPrivateUsage = 'none',
+          -- Report unnecessary
+          reportUnnecessaryIsInstance = 'hint',
+          reportUnnecessaryCast = 'hint',
+          reportUnnecessaryComparison = 'hint',
+          reportUnnecessaryContains = 'hint',
         },
       },
     },
