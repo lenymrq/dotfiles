@@ -1,69 +1,55 @@
-# Set up starship
-eval "$(starship init zsh)"
-
-# Reset the cursor shape to a bar, useful for NeoVim
-if [[ $TERM == "st-256color" ]] || [[ $TERM == "foot" ]]; then
-	precmd() { echo -ne '\e[5 q' }
-fi
-
-# Disable padding on Alacritty when launching NeoVim
-if [[ $TERM == "alacritty" ]]; then
-	precmd() {
-		alacritty msg config -r
-		echo -ne '\e[5 q'  # Restore cursor if using beam cursor
-	}
-	preexec() {
-		if [[ "$1" == nvim* ]]; then
-			alacritty msg config "window.padding.x=0"
-			alacritty msg config "window.padding.y=0"
-		fi
-	}
-fi
-
-setopt histignorealldups sharehistory
-
-# Use emacs keybindings
+# keybinds
 bindkey -e
-
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
-
-# Use modern completion system
-autoload -U compinit
-compinit
-
-eval "$(dircolors -b)"
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  # add colors to entries
-zstyle ':completion:*' menu select  # display cool menu
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'  # case-insensitive matching
-
-# Keybinds
 bindkey '^[[Z' reverse-menu-complete
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
-bindkey '^[[5D' backward-word
-bindkey '^[[5C' forward-word
 
-# Syntax highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# history
+HISTCONTROL="erasedups:ignoreboth"
+HISTSIZE=1000
+SAVEHIST=1000
 
-# Environment variables
-export PATH="$PATH:/opt/nvim/"
-export PATH="$PATH:/home/leny/.local/bin"
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 
-# Aliases
-# alias ls='lsd'
-# alias la='lsd -A'
-# alias l='lsd -AlF'
-alias ls='ls --color=auto'
+# options
+setopt prompt_subst
+
+WORDCHARS=${WORDCHARS/\/}
+WORDCHARS=${WORDCHARS/_}
+WORDCHARS=${WORDCHARS/-}
+WORDCHARS=${WORDCHARS/.}
+
+# misc
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# colors
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# completion
+autoload -U compinit
+compinit
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  # add colors to entries
+zstyle ':completion:*' menu select  # display menu
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'  # case-insensitive matching
+
+# aliases
+alias ll='ls -AlF'
 alias la='ls -A'
-alias l='ls -AlF'
+alias l='ls -l'
 
 alias bat='batcat'
 
-# Set up fzf key bindings and fuzzy completion
+# fzf
 function version_greater_equal() {
     printf '%s\n%s\n' "$2" "$1" | sort --check=quiet --version-sort
 }
@@ -75,32 +61,16 @@ else
     source /usr/share/doc/fzf/examples/completion.zsh
 fi
 
-# Foot terminal spawn new terminal in same cwd
-if [[ $TERM == "foot" ]]; then
-    function osc7-pwd() {
-	emulate -L zsh
-	setopt extendedglob
-	local LC_ALL=C
-	printf '\e]7;file://%s%s\e\' $HOST ${PWD//(#m)([^@-Za-z&-;_~])/%${(l:2::0:)$(([##16]#MATCH))}}
-    }
+# syntax highlighting
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-    function chpwd-osc7-pwd() {
-	(( ZSH_SUBSHELL )) || osc7-pwd
-    }
+# prompt
+autoload -Uz vcs_info
 
-    add-zsh-hook -Uz chpwd chpwd-osc7-pwd
-fi
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
 
-# Adjust word delimiters
-WORDCHARS=${WORDCHARS/\/}
-WORDCHARS=${WORDCHARS/_}
-WORDCHARS=${WORDCHARS/-}
-WORDCHARS=${WORDCHARS/.}
+zstyle ':vcs_info:git:*' formats '(git:%b)'
 
-# Fix escape sequences keybinds
-if [[ $TERM == "st-256color" ]]; then
-    bindkey -s $';2u' ' '
-    bindkey -s $';3u' ' '
-    bindkey $'7;2u' backward-delete-char
-    bindkey $'7;5u' backward-delete-char
-fi
+PROMPT='%F{green}%n%F{normal}@%F{cyan}%m%F{normal}:%F{yellow}%3~%F{normal} ${vcs_info_msg_0_:+${vcs_info_msg_0_}}
+$ '
