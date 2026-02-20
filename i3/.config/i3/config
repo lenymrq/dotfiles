@@ -226,10 +226,8 @@ bar {
         position bottom
         tray_output primary
         padding 2px 0
-        status_command py3status
+        status_command i3status
 }
-
-# gaps inner 12px
 
 # rules
 for_window [class="Blueman-*"] floating enable
@@ -238,8 +236,13 @@ for_window [class="Arandr"] floating enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="feh"] floating enable
 
+no_focus [window_role="pop-up"]
+
+assign [window_role="browser"] 2
+assign [class="Spotify"] 5
+
+# exec programs
 exec_always --no-startup-id setxkbmap us
 exec_always --no-startup-id feh --bg-fill ~/.local/share/backgrounds/background.jpg
-# exec_always --no-startup-id killall -q polybar; ~/.config/polybar/start.sh
 exec_always --no-startup-id killall --quiet picom; picom
 exec_always --no-startup-id killall --quiet unclutter; unclutter --timeout 1.0
