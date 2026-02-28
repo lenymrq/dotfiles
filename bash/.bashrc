@@ -75,12 +75,6 @@ else
 fi
 
 # prompt
-git_branch () {
-    local branch=$(git branch --show-current 2>/dev/null)
-    if [[ -z $branch ]]; then
-        branch=$(git rev-parse --short HEAD 2>/dev/null) || return
-    fi
-    echo " (git:$branch)"
-}
-
-PS1='\[\e[32m\]\u\[\e[0m\]@\[\e[36m\]\h\[\e[0m\]:\[\e[33m\]\w\[\e[0m\]\[\e[0m\]$(git_branch)\[\e[0m\]\n\\$ '
+export GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+PS1='\[\e[32m\]\u\[\e[0m\]@\[\e[36m\]\h\[\e[0m\]:\[\e[33m\]\w\[\e[0m\] $(__git_ps1 "[%s]")\[\e[0m\]\[\e[0m\]\n\\$ '
