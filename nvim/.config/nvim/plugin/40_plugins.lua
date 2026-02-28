@@ -165,51 +165,52 @@ end)
 -- Beautiful, usable, well maintained color schemes outside of 'mini.nvim' and
 -- have full support of its highlight groups. Use if you don't like 'miniwinter'
 -- enabled in 'plugin/30_mini.lua' or other suggested 'mini.hues' based ones.
-now(function()
-  add 'scottmckendry/cyberdream.nvim'
-  require('cyberdream').setup {
-    transparent = false,
-  }
-  add 'EdenEast/nightfox.nvim'
-  require('nightfox').setup {
-    options = { transparent = false },
-    groups = {
-      all = {
-        -- Floating windows
-        NormalFloat = { bg = 'none' },
-        FloatBorder = { bg = 'none' },
-
-        -- Tabline
-        MiniTablineCurrent = { fg = 'palette.fg1', bg = 'palette.bg1' },
-        MiniTablineVisible = { fg = 'palette.fg2', bg = 'palette.bg2' },
-        MiniTablineHidden = { fg = 'palette.fg3', bg = 'palette.bg3' },
-        MiniTablineModifiedCurrent = { fg = 'palette.bg1', bg = 'palette.cyan' },
-        MiniTablineModifiedVisible = { fg = 'palette.cyan', bg = 'palette.bg2' },
-        MiniTablineModifiedHidden = { fg = 'palette.cyan', bg = 'palette.bg3' },
-
-        -- Map
-        MiniMapNormal = { bg = 'palette.bg1' },
-
-        -- Diagnostic
-        DiagnosticVirtualTextError = { bg = 'none' },
-        DiagnosticVirtualTextWarn = { bg = 'none' },
-        DiagnosticVirtualTextInfo = { bg = 'none' },
-        DiagnosticVirtualTextHint = { bg = 'none' },
-        DiagnosticVirtualTextOk = { bg = 'none' },
-
-        -- Blink
-        BlinkCmpMenu = { bg = 'palette.bg2' },
-        BlinkCmpMenuSelection = { bg = 'palette.bg4' },
-        BlinkCmpMenuBorder = { bg = 'palette.bg2' },
-        BlinkCmpKind = { bg = 'palette.bg2' },
-        BlinkCmpDoc = { bg = 'palette.bg2' },
-        BlinkCmpDocBorder = { bg = 'palette.bg2' },
-      },
-    },
-  }
-
-  vim.cmd.colorscheme 'duskfox'
-end)
+-- now(function()
+--   add 'scottmckendry/cyberdream.nvim'
+--   require('cyberdream').setup {
+--     transparent = false,
+--   }
+--
+--   add 'EdenEast/nightfox.nvim'
+--   require('nightfox').setup {
+--     options = { transparent = false },
+--     groups = {
+--       all = {
+--         -- Floating windows
+--         NormalFloat = { bg = 'none' },
+--         FloatBorder = { bg = 'none' },
+--
+--         -- Tabline
+--         MiniTablineCurrent = { fg = 'palette.fg1', bg = 'palette.bg1' },
+--         MiniTablineVisible = { fg = 'palette.fg2', bg = 'palette.bg2' },
+--         MiniTablineHidden = { fg = 'palette.fg3', bg = 'palette.bg3' },
+--         MiniTablineModifiedCurrent = { fg = 'palette.bg1', bg = 'palette.cyan' },
+--         MiniTablineModifiedVisible = { fg = 'palette.cyan', bg = 'palette.bg2' },
+--         MiniTablineModifiedHidden = { fg = 'palette.cyan', bg = 'palette.bg3' },
+--
+--         -- Map
+--         MiniMapNormal = { bg = 'palette.bg1' },
+--
+--         -- Diagnostic
+--         DiagnosticVirtualTextError = { bg = 'none' },
+--         DiagnosticVirtualTextWarn = { bg = 'none' },
+--         DiagnosticVirtualTextInfo = { bg = 'none' },
+--         DiagnosticVirtualTextHint = { bg = 'none' },
+--         DiagnosticVirtualTextOk = { bg = 'none' },
+--
+--         -- Blink
+--         BlinkCmpMenu = { bg = 'palette.bg2' },
+--         BlinkCmpMenuSelection = { bg = 'palette.bg4' },
+--         BlinkCmpMenuBorder = { bg = 'palette.bg2' },
+--         BlinkCmpKind = { bg = 'palette.bg2' },
+--         BlinkCmpDoc = { bg = 'palette.bg2' },
+--         BlinkCmpDocBorder = { bg = 'palette.bg2' },
+--       },
+--     },
+--   }
+--
+--   vim.cmd.colorscheme 'retrobox'
+-- end)
 
 now_if_args(function()
   add {

@@ -49,7 +49,6 @@ _G.Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>v', desc = '+Visits' },
   { mode = 'x', keys = '<Leader>g', desc = '+Git' },
   { mode = 'x', keys = '<Leader>l', desc = '+Language' },
-  { mode = 'n', keys = '<Leader>op', desc = '+Path' },
 }
 
 -- Helpers for a more concise `<Leader>` mappings.
@@ -236,15 +235,10 @@ nmap_leader('vL', '<Cmd>lua MiniVisits.remove_label()<CR>', 'Remove label')
 nmap('<S-h>', vim.cmd.bprevious, 'Go to previous buffer')
 nmap('<S-l>', vim.cmd.bnext, 'Go to next buffer')
 
-nmap('<C-S-h>', '<C-w>H', 'Move to very left')
-nmap('<C-S-j>', '<C-w>J', 'Move to very bottom')
-nmap('<C-S-k>', '<C-w>K', 'Move to very top')
-nmap('<C-S-l>', '<C-w>L', 'Move to very right')
-
 -- Change CWD
-nmap_leader('opc', function()
+nmap_leader('op', function()
   vim.cmd.lcd '%:p:h'
 end, 'Change local CWD to current file location')
-nmap_leader('opC', function()
+nmap_leader('oP', function()
   vim.cmd.cd '%:p:h'
 end, 'Change global CWD to current file location')

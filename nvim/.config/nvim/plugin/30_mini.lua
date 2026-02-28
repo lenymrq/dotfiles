@@ -34,15 +34,66 @@ local now_if_args = _G.Config.now_if_args
 -- - `:h mini.nvim-color-schemes` - list of other color schemes
 -- - `:h MiniHues-examples` - how to define highlighting with 'mini.hues'
 -- - 'plugin/40_plugins.lua' honorable mentions - other good color schemes
+-- now(function() vim.cmd 'colorscheme miniwinter' end)
 now(function()
-  vim.cmd 'colorscheme miniwinter'
+  local gruvbox_dark_soft = {
+    base00 = '#32302f',
+    base01 = '#3c3836',
+    base02 = '#504945',
+    base03 = '#665c54',
+    base04 = '#bdae93',
+    base05 = '#d5c4a1',
+    base06 = '#ebdbb2',
+    base07 = '#fbf1c7',
+    base08 = '#fb4934',
+    base09 = '#fe8019',
+    base0A = '#fabd2f',
+    base0B = '#b8bb26',
+    base0C = '#8ec07c',
+    base0D = '#83a598',
+    base0E = '#d3869b',
+    base0F = '#d65d0e',
+  }
 
-  require('mini.colors').setup()
-  MiniColors.get_colorscheme():chan_add('saturation', -20, { filter = 'bg' }):apply()
-  -- MiniColors.get_colorscheme():chan_add('saturation', 20, { filter = 'fg' }):apply()
-  MiniColors.get_colorscheme():chan_add('temperature', -20, { filter = 'bg' }):apply()
-  -- MiniColors.get_colorscheme():chan_add('temperature', 20, { filter = 'fg' }):apply()
-  MiniColors.get_colorscheme():add_transparency():apply()
+  local gruvbox_dark_medium = {
+    base00 = '#282828',
+    base01 = '#3c3836',
+    base02 = '#504945',
+    base03 = '#665c54',
+    base04 = '#bdae93',
+    base05 = '#d5c4a1',
+    base06 = '#ebdbb2',
+    base07 = '#fbf1c7',
+    base08 = '#fb4934',
+    base09 = '#fe8019',
+    base0A = '#fabd2f',
+    base0B = '#b8bb26',
+    base0C = '#8ec07c',
+    base0D = '#83a598',
+    base0E = '#d3869b',
+    base0F = '#d65d0e',
+  }
+
+  local gruvbox_dark_hard = {
+    base00 = '#1d2021',
+    base01 = '#3c3836',
+    base02 = '#504945',
+    base03 = '#665c54',
+    base04 = '#bdae93',
+    base05 = '#d5c4a1',
+    base06 = '#ebdbb2',
+    base07 = '#fbf1c7',
+    base08 = '#fb4934',
+    base09 = '#fe8019',
+    base0A = '#fabd2f',
+    base0B = '#b8bb26',
+    base0C = '#8ec07c',
+    base0D = '#83a598',
+    base0E = '#d3869b',
+    base0F = '#d65d0e',
+  }
+
+  require('mini.base16').setup { palette = gruvbox_dark_soft }
 end)
 
 -- You can try these other 'mini.hues'-based color schemes (uncomment with `gcc`):
@@ -172,7 +223,13 @@ end)
 -- Tabline. Sets `:h 'tabline'` to show all listed buffers in a line at the top.
 -- Buffers are ordered as they were created. Navigate with `[b` and `]b`.
 now(function()
-  require('mini.tabline').setup()
+  local tabline = require 'mini.tabline'
+  tabline.setup {
+    format = function(buf_id, label)
+      local suffix = vim.bo[buf_id].modified and '+ ' or ''
+      return tabline.default_format(buf_id, label) .. suffix
+    end,
+  }
 end)
 
 -- Step two ===================================================================
@@ -675,9 +732,6 @@ later(function()
       .. '<Cmd>lua MiniMap.refresh({}, { lines = false, scrollbar = false })<CR>'
     vim.keymap.set('n', key, rhs)
   end
-
-  -- Open map by default
-  map.open()
 end)
 
 -- Move any selection in any direction. Example usage in Normal mode:
