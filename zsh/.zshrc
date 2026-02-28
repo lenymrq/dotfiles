@@ -62,7 +62,9 @@ else
 fi
 
 # syntax highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -x /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    # source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # prompt
 autoload -Uz vcs_info
