@@ -34,12 +34,12 @@ battery all {
 }
 
 cpu_usage {
-        format = "CPU: %usage"
+        format = "CPU %usage"
         max_threshold = 75
 }
 
 memory {
-        format = "RAM: %percentage_used"
+        format = "RAM %percentage_used"
         threshold_degraded = "50%"
         threshold_critical = "25%"
 }
@@ -49,6 +49,6 @@ tztime local {
 }
 
 volume master {
-        format = "VOL: %volume"
-        format_muted = "MUT: %volume"
+        format = "VOL %volume"
+        format_muted = "MUT %volume"
 }
