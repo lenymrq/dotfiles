@@ -82,4 +82,4 @@ fi
 # prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
-PS1='\[\e[32m\]\u\[\e[0m\]@\[\e[36m\]\h\[\e[0m\]:\[\e[33m\]\w\[\e[0m\] $(__git_ps1 "[%s]")\[\e[0m\]\[\e[0m\]\n\\$ '
+PS1='\[\e[32m\]\u\[\e[0m\] at \[\e[34m\]\w\[\e[0m\] $(__git_ps1 "on \[\e[35m\]%s\[\e[0m\]")\[\e[0m\]\n\[\e[33m\]❯\[\e[0m\] '
