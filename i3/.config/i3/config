@@ -208,7 +208,7 @@ smart_gaps on
 
 # borders
 default_border normal 4
-# hide_edge_borders smart_no_gaps
+hide_edge_borders smart_no_gaps
 
 # exec programs
 exec_always --no-startup-id killall --quiet nm-applet; nm-applet
