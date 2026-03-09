@@ -113,7 +113,7 @@ local gruvbox = {
   },
 }
 
-local palette = vim.o.background == 'light' and gruvbox.light.hard or gruvbox.dark.soft
+local palette = vim.o.background == 'light' and gruvbox.light.hard or gruvbox.dark.hard
 
 require('mini.base16').setup { palette = palette }
 
