@@ -82,4 +82,23 @@ fi
 # prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
-PS1='\[\e[32m\]\u\[\e[0m\] at \[\e[34m\]\w\[\e[0m\] $(__git_ps1 "on \[\e[35m\]%s\[\e[0m\]")\[\e[0m\]\n\[\e[33m\]❯\[\e[0m\] '
+PS1='\[\e[32m\]\w\[\e[0m\] $(__git_ps1 "on \[\e[35m\]%s\[\e[0m\]")\[\e[0m\]\n\[\e[33m\]❯\[\e[0m\] '
+
+# terminal specific
+if [[ "$TERM" == "foot" ]]; then
+    osc7_cwd() {
+        local strlen=${#PWD}
+        local encoded=""
+        local pos c o
+        for (( pos=0; pos<strlen; pos++ )); do
+            c=${PWD:$pos:1}
+            case "$c" in
+                [-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
+                * ) printf -v o '%%%02X' "'${c}" ;;
+            esac
+            encoded+="${o}"
+        done
+        printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
+    }
+    PROMPT_COMMAND=${PROMPT_COMMAND:+${PROMPT_COMMAND%;}; }osc7_cwd
+fi
