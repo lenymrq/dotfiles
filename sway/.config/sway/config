@@ -22,12 +22,11 @@ set $menu dmenu_path | wmenu -i -l 8 | xargs swaymsg exec --
 
 include /etc/sway/config-vars.d/*
 
-font pango:JetBrainsMono Nerd Font Mono 10
+font pango:monospace 10
 
 ### Output configuration
 #
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-    output * bg /home/lmarques/.local/share/backgrounds/background.jpg fill
+    output * bg ~/.local/share/backgrounds/background.jpg fill
 #
 # Example configuration:
 #
@@ -40,9 +39,9 @@ font pango:JetBrainsMono Nerd Font Mono 10
 # Example configuration:
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 'swaylock -f' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep 'swaylock -f'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -94,7 +93,7 @@ exec swayidle -w \
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
     # Lock screen
-    bindsym $mod+x exec swaylock -f -c 000000
+    bindsym $mod+x exec swaylock -f
 #
 # Media keys:
 #
@@ -245,6 +244,17 @@ mode "resize" {
     bindsym Up resize shrink height 10px
     bindsym Right resize grow width 10px
 
+    # Bigger step
+    bindsym Shift+$left resize shrink width 100px
+    bindsym Shift+$down resize grow height 100px
+    bindsym Shift+$up resize shrink height 100px
+    bindsym Shift+$right resize grow width 100px
+
+    bindsym Shift+Left resize shrink width 100px
+    bindsym Shift+Down resize grow height 100px
+    bindsym Shift+Up resize shrink height 100px
+    bindsym Shift+Right resize grow width 100px
+
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -255,32 +265,21 @@ bindsym $mod+r mode "resize"
 #
 # Status Bar:
 #
-# Read `man 5 sway-bar` for more information about this section.
 bar swaybar_command waybar
 # bar {
 #     position bottom
-#
-#     # When the status_command prints a new line to stdout, swaybar updates.
-#     # The default just shows the current date and time.
-#     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-#
-#     colors {
-#         statusline #ffffff
-#         background #323232
-#         inactive_workspace #32323200 #32323200 #5c5c5c
-#     }
 # }
 
 include /etc/sway/config.d/*
 
 #
-# Styling
+# Styling:
 #
 default_border normal 4
 hide_edge_borders smart_no_gaps
 
 #
-# Rules
+# Rules:
 #
 for_window [class="Blueman-*"] floating enable
 for_window [class="Pavucontrol"] floating enable
@@ -293,7 +292,7 @@ assign [window_role="browser"] 2
 assign [class="Spotify"] 5
 
 #
-# Auto start
+# Auto start:
 #
 exec_always --no-startup-id killall --quiet nm-applet; nm-applet
 exec_always --no-startup-id killall --quiet blueman-applet; blueman-applet
