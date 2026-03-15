@@ -1,108 +1,63 @@
+@import "latte.css";
+
 * {
-    font-family: JetBrainsMono Nerd Font, FontAwesome;
-    font-size: 12pt;
+  font-family: monospace;
+  font-size: 10pt;
 }
 
-window#waybar {
-    background-color: black;
-    color: white;
+#waybar {
+  background: @surface0;
+  color: @text;
+  margin: 5px 5px;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
-
-button {
-    border: none;
-    border-radius: 0;
+#workspaces {
+  border-radius: 0;
+  margin: 5px;
+  background-color: @base;
+  margin-left: 1rem;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: white;
-}
-
-#workspaces button:hover {
-    box-shadow: inherit;
-    text-shadow: inherit;
-    background: inherit;
-    border: inherit;
+  border-radius: inherit;
 }
 
 #workspaces button.focused {
-    background-color: gray;
+  color: @base;
+  background-color: @blue;
 }
 
-#workspaces button.urgent {
-    background-color: red;
-}
-
-#mode {
-    background-color: gray;
-}
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
 #mode,
-#idle_inhibitor,
 #scratchpad,
-#mpd {
-    padding: 0 10px;
-    color: white;
-    background-color: inherit;
+#window,
+#idle_inhibitor,
+#pulseaudio,
+#backlight,
+#battery,
+#clock,
+#tray {
+  color: @text;
+  background-color: @base;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+#idle_inhibitor.activated {
+  color: @blue;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
+#battery.charging, #battery.plugged {
+  color: @blue;
 }
 
-@keyframes blink {
-    to {
-        background-color: transparent;
-        color: white;
-    }
+#battery.warning:not(.charging) {
+  color: @red;
 }
 
-#battery.critical:not(.charging) {
-    background-color: red;
-    color: white;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+#pulseaudio.muted {
+  color: @yellow;
 }
 
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-label:focus {
-    background-color: black;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: red;
+#tray {
+  margin-right: 1rem;
 }

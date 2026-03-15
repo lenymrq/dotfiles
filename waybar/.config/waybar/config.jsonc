@@ -1,0 +1,58 @@
+{
+    "position": "bottom",
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "battery", "clock", "tray"],
+    "spacing": 5,
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "PAD {count}",
+        "show-empty": false,
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+
+
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "pulseaudio": {
+        "format": "VOL {volume}%",
+        "format-muted": "MUT {volume}%",
+        "format-bluetooth": "BLU {volume}%",
+        "format-muted": "MUT {volume}%"
+    },
+    "backlight": {
+        "format": "BRI {percent}%"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 10
+        },
+        "format": "BAT {capacity}%",
+        "format-full": "FUL {capacity}%",
+        "format-charging": "CHR {capacity}%",
+        "format-plugged": "PLU {capacity}%"
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "tray": {
+        "spacing": 10
+    }
+}
