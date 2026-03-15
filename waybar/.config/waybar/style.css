@@ -22,6 +22,10 @@
   border-radius: inherit;
 }
 
+#workspaces button.visible {
+  background-color: @overlay0;
+}
+
 #workspaces button.focused {
   color: @base;
   background-color: @blue;
