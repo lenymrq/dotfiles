@@ -124,13 +124,6 @@ return {
       MiniJump.stop_jumping()
     end, { expr = true, desc = 'Stop jumping' })
 
-    -- diff
-    require('mini.diff').setup {
-      view = {
-        style = 'sign',
-      },
-    }
-
     -- misc
     require('mini.misc').setup()
     MiniMisc.setup_auto_root()

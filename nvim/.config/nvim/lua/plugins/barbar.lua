@@ -28,14 +28,14 @@ return {
       desc = 'Switch to next buffer',
     },
     {
-      '<c-h>',
+      '<a-h>',
       '<cmd>BufferMovePrevious<cr>',
       noremap = true,
       silent = true,
       desc = 'Switch current buffer with previous',
     },
     {
-      '<c-l>',
+      '<a-l>',
       '<cmd>BufferMoveNext<cr>',
       noremap = true,
       silent = true,
