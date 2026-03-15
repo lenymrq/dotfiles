@@ -19,7 +19,9 @@
         "tooltip-format": "{app}: {title}"
     },
 
-
+    "sway/window": {
+        "all-outputs": true
+    },
 
     "idle_inhibitor": {
         "format": "{icon}",
