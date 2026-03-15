@@ -66,6 +66,11 @@ exec swayidle -w \
         xkb_layout us
     }
 
+    # Set cursor theme
+    seat * xcursor_theme Adwaita 64
+    # Automatically hide cursor
+    seat seat0 hide_cursor 500
+
 ### Key bindings
 #
 # Basics:
