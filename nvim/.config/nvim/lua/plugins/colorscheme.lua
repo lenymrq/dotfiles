@@ -14,8 +14,10 @@ return {
     },
     custom_highlights = function(colors)
       return {
-        Cursor = { bg = colors.blue, fg = colors.base },
-        CursorIM = { bg = colors.green, fg = colors.base },
+        iCursor = { bg = colors.green, fg = colors.base },
+        nCursor = { bg = colors.blue, fg = colors.base },
+        oCursor = { bg = colors.rosewater, fg = colors.base },
+        vCursor = { bg = colors.mauve, fg = colors.base },
       }
     end,
   },
@@ -24,9 +26,10 @@ return {
     vim.cmd.colorscheme 'catppuccin-nvim'
 
     vim.opt.guicursor = {
-      'n-v-c-sm:block-Cursor',
-      'i:block-CursorIM',
-      'r-cr-o:hor20-CursorIM',
+      'i:block-iCursor',
+      'n:block-nCursor',
+      'o-r:hor20-oCursor',
+      'v:block-vCursor',
     }
   end,
 }
