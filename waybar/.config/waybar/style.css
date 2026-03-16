@@ -1,34 +1,54 @@
-@import "latte.css";
-
 * {
   font-family: monospace;
   font-size: 10pt;
 }
 
 #waybar {
-  background: @surface0;
-  color: @text;
-  margin: 5px 5px;
+  background: #000000;
+  margin: 4px 4px;
+}
+
+button {
+  border: none;
+  border-radius: 0;
+}
+
+button:hover {
+  background: inherit;
 }
 
 #workspaces {
-  border-radius: 0;
-  margin: 5px;
-  background-color: @base;
+  margin: 4px;
   margin-left: 1rem;
+  border-radius: 0;
+  color: #ffffff;
+  background-color: transparent;
 }
 
 #workspaces button {
-  border-radius: inherit;
+  padding: 0.25rem 0.5rem;
+  color: #ffffff;
+  background-color: transparent;
+}
+
+#workspaces button:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 #workspaces button.visible {
-  background-color: @overlay0;
+  background-color: #222222;
 }
 
 #workspaces button.focused {
-  color: @base;
-  background-color: @blue;
+  background-color: #64727D;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 4px;
 }
 
 #mode,
@@ -37,35 +57,93 @@
 #idle_inhibitor,
 #pulseaudio,
 #backlight,
+#network,
+#cpu,
+#memory,
 #battery,
 #clock,
 #tray {
-  color: @text;
-  background-color: @base;
-  padding: 0.5rem 1rem;
-  margin: 5px 0;
+  color: #ffffff;
+  padding: 0.25rem 1rem;
+  margin: 4px 0;
+}
+
+#mode {
+  background-color: #64727D;
 }
 
 #waybar.empty #window {
   background: none;
 }
 
+#clock {
+  background-color: #64727D;
+}
+
+#idle_inhibitor {
+  background-color: #2d3436;
+}
+
 #idle_inhibitor.activated {
-  color: @blue;
+  background-color: #ecf0f1;
+  color: #2d3436;
+}
+
+#battery {
+  color: #000000;
+  background-color: #ffffff;
 }
 
 #battery.charging, #battery.plugged {
-  color: @blue;
+  color: #ffffff;
+  background-color: #26A65B;
 }
 
 #battery.warning:not(.charging) {
-  color: @red;
+  color: #eb4d4b;
+}
+
+
+#pulseaudio {
+  color: #000000;
+  background-color: #f1c40f;
 }
 
 #pulseaudio.muted {
-  color: @yellow;
+  color: #2a5c45;
+  background-color: #90b1b1;
+}
+
+#backlight {
+  background-color: #90b1b1;
+}
+
+#network {
+  background-color: #2980b9;
+}
+
+#network.disconnected {
+  background-color: #f53c3c;
+}
+
+#cpu {
+  color: #000000;
+  background-color: #2ecc71;
+}
+
+#memory {
+  background-color: #9b59b6;
 }
 
 #tray {
-  margin-right: 1rem;
+  background-color: #2980b9;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #eb4d4b;
 }
