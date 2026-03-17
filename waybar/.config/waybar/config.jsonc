@@ -1,9 +1,26 @@
 {
     "position": "bottom",
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "sway/window"],
+    "height": 24,
+    "spacing": 0,
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "sway/scratchpad",
+        "sway/window"
+    ],
     "modules-center": [],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "network", "cpu", "memory", "battery", "clock", "tray"],
-    "spacing": 4,
+    "modules-right": [
+        "idle_inhibitor",
+        "pulseaudio",
+        "backlight",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "battery",
+        "clock",
+        "tray"
+    ],
 
     "sway/workspaces": {
         "disable-scroll": true,
@@ -44,13 +61,19 @@
         "format-wifi": "WIFI {essid} ({signalStrength}%)",
         "format-ethernet": "ETH {ipaddr}/{cidr}",
         "format-linked": "ETH {ifname} (No IP)",
-        "format-disconnected": "Disconnected"
+        "format-disconnected": "Disconnected",
+        "tooltip-format": "{ifname} via {gwaddr}"
     },
     "cpu": {
-        "format": "CPU {usage}%"
+        "format": "CPU {usage}%",
+        "tooltip": true
     },
     "memory": {
         "format": "MEM {}%"
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "TEMP {temperatureC}°C"
     },
     "battery": {
         "states": {
