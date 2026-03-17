@@ -1,9 +1,8 @@
 return {
   'romgrk/barbar.nvim',
-  -- dependencies = {
-  --   'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-  --   'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
-  -- },
+  dependencies = {
+    'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+  },
   init = function()
     vim.g.barbar_auto_setup = false
   end,
@@ -28,14 +27,14 @@ return {
       desc = 'Switch to next buffer',
     },
     {
-      '<a-h>',
+      '<a-s-h>',
       '<cmd>BufferMovePrevious<cr>',
       noremap = true,
       silent = true,
       desc = 'Switch current buffer with previous',
     },
     {
-      '<a-l>',
+      '<a-s-l>',
       '<cmd>BufferMoveNext<cr>',
       noremap = true,
       silent = true,

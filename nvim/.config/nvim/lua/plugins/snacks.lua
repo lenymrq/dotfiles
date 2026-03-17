@@ -78,7 +78,7 @@ return {
       function()
         Snacks.picker.git_log_file()
       end,
-      desc = 'Git log lile',
+      desc = 'Git log file',
     },
     {
       '<leader>fl',

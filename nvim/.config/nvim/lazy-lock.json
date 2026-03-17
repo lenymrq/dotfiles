@@ -6,7 +6,7 @@
   "guess-indent.nvim": { "branch": "main", "commit": "84a4987ff36798c2fc1169cbaff67960aed9776f" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "mini.nvim": { "branch": "main", "commit": "9990c41f10f54f29a888d13024c9f765037bde23" },
-  "nvim-lspconfig": { "branch": "master", "commit": "4d0724be90b633ddce51b328a631060e6acd7d66" },
+  "nvim-lspconfig": { "branch": "master", "commit": "dc2f86d2b66a6e01a98c37cdadd3be3e90f8ab9a" },
   "snacks.nvim": { "branch": "main", "commit": "a049339328e2599ad6e85a69fa034ac501e921b2" },
   "todo-comments.nvim": { "branch": "main", "commit": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }
