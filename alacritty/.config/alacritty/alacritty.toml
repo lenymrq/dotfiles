@@ -3,8 +3,8 @@ style = "block"
 vi_mode_style = "block"
 
 [window]
-padding = { x = 12, y = 12 }
-opacity = 0.9
+padding = { x = 4, y = 4 }
+opacity = 1
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
@@ -21,7 +21,7 @@ WINIT_X11_SCALE_FACTOR = "1.0"
 
 [general]
 import = [
-  "~/.config/alacritty/carbonfox.toml"
+  "~/.config/alacritty/catppuccin-latte.toml"
 ]
 
 [terminal]
