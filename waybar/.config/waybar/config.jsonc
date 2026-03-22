@@ -37,6 +37,7 @@
     },
 
     "sway/window": {
+        "justify": "center",
         "all-outputs": true
     },
 
@@ -84,7 +85,7 @@
         "format": "BAT {capacity}%",
         "format-full": "FUL {capacity}%",
         "format-charging": "CHR {capacity}%",
-        "format-plugged": "PLU {capacity}%",
+        "format-plugged": "PLUG {capacity}%",
         "interval": 5
     },
     "clock": {
