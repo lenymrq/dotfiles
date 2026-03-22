@@ -86,6 +86,16 @@ PS1='\[\e[32m\]\w\[\e[0m\] $(__git_ps1 "on \[\e[35m\]%s\[\e[0m\]")\[\e[0m\]\n\[\
 
 # terminal specific
 if [[ "$TERM" == "foot" ]]; then
+    osc0_title() {
+        local curdir
+        if [[ "$PWD" == "$HOME" ]]; then
+            curdir='~'
+        else
+            curdir=${PWD##*/}
+        fi
+        printf "\033]0;%s\007" "foot: ${curdir}"
+    }
+
     osc7_cwd() {
         local strlen=${#PWD}
         local encoded=""
@@ -100,5 +110,7 @@ if [[ "$TERM" == "foot" ]]; then
         done
         printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
     }
+
+    PROMPT_COMMAND=${PROMPT_COMMAND:+${PROMPT_COMMAND%;}; }osc0_title
     PROMPT_COMMAND=${PROMPT_COMMAND:+${PROMPT_COMMAND%;}; }osc7_cwd
 fi
