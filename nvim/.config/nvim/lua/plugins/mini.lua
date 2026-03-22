@@ -38,11 +38,41 @@ return {
     -- comment
     require('mini.comment').setup()
 
+    -- diff
+    require('mini.diff').setup {
+      view = {
+        style = 'sign',
+        signs = { add = '┃', change = '┃', delete = '' },
+      },
+      delay = {
+        text_change = 50,
+      },
+    }
+    vim.keymap.set('n', '<leader>go', MiniDiff.toggle_overlay, { desc = 'Git diff overlay' })
+
     -- snippets
     require('mini.snippets').setup()
 
     -- completion
-    require('mini.completion').setup { delay = { completion = 0, info = 0, signature = 0 } }
+    local process_items_opts = { kind_priority = { Text = -1, Snippet = 99 } }
+    local process_items = function(items, base)
+      return MiniCompletion.default_process_items(items, base, process_items_opts)
+    end
+    require('mini.completion').setup {
+      lsp_completion = {
+        source_func = 'omnifunc',
+        auto_setup = false,
+        process_items = process_items,
+      },
+    }
+
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(ev)
+        vim.bo[ev.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
+      end,
+    })
+
+    vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
     vim.api.nvim_create_autocmd('BufEnter', {
       callback = function()
         if vim.bo.buftype == 'prompt' then
@@ -57,6 +87,69 @@ return {
     map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
     map_multistep('i', '<CR>', { 'pmenu_accept', 'minipairs_cr' })
     map_multistep('i', '<BS>', { 'minipairs_bs' })
+
+    -- clue
+    local leader_group_clues = {
+      { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
+      { mode = 'n', keys = '<Leader>e', desc = '+Explore/Edit' },
+      { mode = 'n', keys = '<Leader>f', desc = '+Find' },
+      { mode = 'n', keys = '<Leader>g', desc = '+Git' },
+      { mode = 'x', keys = '<Leader>g', desc = '+Git' },
+      { mode = 'n', keys = '<Leader>l', desc = '+Language' },
+      { mode = 'x', keys = '<Leader>l', desc = '+Language' },
+      { mode = 'n', keys = '<Leader>o', desc = '+Other' },
+      { mode = 'n', keys = '<Leader>s', desc = '+Surround' },
+    }
+
+    local miniclue = require 'mini.clue'
+    miniclue.setup {
+      clues = {
+        leader_group_clues,
+        miniclue.gen_clues.builtin_completion(),
+        miniclue.gen_clues.g(),
+        miniclue.gen_clues.marks(),
+        miniclue.gen_clues.registers(),
+        miniclue.gen_clues.square_brackets(),
+        miniclue.gen_clues.windows { submode_resize = true },
+        miniclue.gen_clues.z(),
+      },
+      triggers = {
+        { mode = { 'n', 'x' }, keys = '<leader>' }, -- leader triggers
+        { mode = 'n', keys = '\\' }, -- mini.basics
+        { mode = { 'n', 'x' }, keys = '[' }, -- mini.bracketed
+        { mode = { 'n', 'x' }, keys = ']' },
+        { mode = 'i', keys = '<c-x>' }, -- Built-in completion
+        { mode = { 'n', 'x' }, keys = 'g' }, -- `g` key
+        { mode = { 'n', 'x' }, keys = "'" }, -- Marks
+        { mode = { 'n', 'x' }, keys = '`' },
+        { mode = { 'n', 'x' }, keys = '"' }, -- Registers
+        { mode = { 'i', 'c' }, keys = '<c-r>' },
+        { mode = 'n', keys = '<c-w>' }, -- Window commands
+        { mode = { 'n', 'x' }, keys = 'z' }, -- `z` key
+      },
+      window = {
+        delay = 0,
+      },
+    }
+
+    -- extra
+    require('mini.extra').setup()
+
+    -- hipatterns
+    local hipatterns = require 'mini.hipatterns'
+    hipatterns.setup {
+      highlighters = {
+        -- Highlight a fixed set of common words. Will be highlighted in any place,
+        -- not like "only in comments".
+        fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+        hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
+        todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
+        note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+
+        -- Highlight hex color string (#aabbcc) with that color as a background
+        hex_color = hipatterns.gen_highlighter.hex_color { style = '#' },
+      },
+    }
 
     -- move
     require('mini.move').setup { options = { reindent_linewise = false } }

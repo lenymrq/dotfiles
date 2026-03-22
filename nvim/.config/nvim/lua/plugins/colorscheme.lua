@@ -8,6 +8,10 @@ return {
       light = 'latte',
       dark = 'mocha',
     },
+    float = {
+      transparent = true,
+      solid = false,
+    },
     dim_inactive = {
       enabled = true,
       percentage = 0.2,

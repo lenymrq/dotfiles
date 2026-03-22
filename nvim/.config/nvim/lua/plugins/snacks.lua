@@ -7,7 +7,6 @@ return {
     picker = { enabled = true },
     quickfile = { enabled = true },
     rename = { enabled = true },
-    statuscolumn = { enabled = true },
   },
   keys = {
     {
@@ -237,6 +236,13 @@ return {
       desc = 'Goto implementation',
     },
     {
+      '<leader>la',
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      desc = 'LSP Code Actions',
+    },
+    {
       '<leader>lt',
       function()
         Snacks.picker.lsp_type_definitions()
@@ -270,13 +276,6 @@ return {
         Snacks.picker.lsp_workspace_symbols()
       end,
       desc = 'LSP workspace symbols',
-    },
-    {
-      '<leader>cr',
-      function()
-        Snacks.rename.rename_file()
-      end,
-      desc = 'Rename file',
     },
   },
 }

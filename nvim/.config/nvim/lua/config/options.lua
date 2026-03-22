@@ -17,6 +17,7 @@ vim.o.linebreak = true
 vim.o.list = true
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.pumblend = 0
 vim.o.pumheight = 12
 vim.o.ruler = false
 vim.o.scrolloff = 10
@@ -26,7 +27,8 @@ vim.o.signcolumn = 'yes'
 vim.o.splitbelow = true
 vim.o.splitkeep = 'screen'
 vim.o.splitright = true
-vim.o.winborder = 'rounded'
+vim.o.winborder = 'single'
+vim.o.winblend = 0
 vim.o.wrap = false
 
 vim.o.cursorlineopt = 'screenline,number' -- Show cursor line per screen line
@@ -63,9 +65,9 @@ vim.o.completeopt = 'menuone,noselect,fuzzy,nosort'
 -- Diagnostics
 vim.diagnostic.config {
   severity_sort = true,
-  signs = { priority = 9999, severity = { min = 'WARN', max = 'ERROR' } },
+  signs = false,
   underline = { severity = { min = 'HINT', max = 'ERROR' } },
   virtual_lines = false,
-  virtual_text = { current_line = true },
+  virtual_text = true,
   update_in_insert = false,
 }
