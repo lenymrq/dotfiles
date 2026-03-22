@@ -21,7 +21,7 @@ WINIT_X11_SCALE_FACTOR = "1.0"
 
 [general]
 import = [
-  "~/.config/alacritty/catppuccin-latte.toml"
+  "~/.config/alacritty/catppuccin-mocha.toml"
 ]
 
 [terminal]
