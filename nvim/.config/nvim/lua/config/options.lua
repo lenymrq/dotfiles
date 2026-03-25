@@ -34,8 +34,8 @@ vim.o.wrap = false
 vim.o.cursorlineopt = 'screenline,number' -- Show cursor line per screen line
 
 -- UI symbols
-vim.o.fillchars = 'eob: ,fold:╌'
-vim.o.listchars = 'extends:…,nbsp:␣,precedes:…,tab:> '
+vim.opt.fillchars = { eob = ' ', fold = '╌' }
+vim.opt.listchars = { extends = '…', nbsp = '␣', precedes = '…', tab = '» ', trail = '.' }
 
 -- Folds
 vim.o.foldlevel = 10
