@@ -93,7 +93,7 @@ if [[ "$TERM" == "foot" ]]; then
         else
             curdir=${PWD##*/}
         fi
-        printf '\e]0;%s\e\\' "foot: ${curdir}"
+        printf '\e]0;%s\e\\' "${curdir}"
     }
 
     osc7_cwd() {
