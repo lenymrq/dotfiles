@@ -1,33 +1,21 @@
 @import "catppuccin-mocha.css";
 
-* {
-  font-family: monospace;
-  font-size: 10pt;
-}
-
+#window,
 #waybar,
 #workspaces,
 #workspaces button,
-#mode,
-#scratchpad,
-#window,
-#idle_inhibitor,
-#pulseaudio,
-#backlight,
-#network,
-#cpu,
-#memory,
-#temperature,
-#battery,
-#clock,
-#tray {
+label.module {
   all: unset;
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 12pt;
   color: @text;
+  background-color: @base;
   padding: 0.25rem 1rem;
 }
 
 #waybar {
-  background: transparent;
+  background: @base;
+  box-shadow: inset 0 -0.2rem transparent;
 }
 
 #workspaces {
@@ -36,6 +24,7 @@
   border-radius: 0;
   color: @text;
   background-color: transparent;
+  box-shadow: inset 0 -0.2rem transparent;
 }
 
 #workspaces button {
@@ -44,14 +33,15 @@
   padding: 0.25rem 0.5rem;
   color: @text;
   background-color: @base;
+  box-shadow: inset 0 -0.2rem transparent;
 }
 
 #workspaces button:hover {
-  background: inherit;
+  background: @surface0;
 }
 
 #workspaces button.visible {
-  background-color: @overlay0;
+  background-color: @surface2;
 }
 
 #workspaces button.focused {
@@ -65,101 +55,129 @@
 }
 
 #mode {
-  color: @base;
-  background-color: @rosewater;
+  box-shadow: inset 0 -0.2rem @red;
 }
 
 #window {
-  color: @text;
-  background: @base;
+  box-shadow: inset 0 0;
 }
 
 #waybar.empty #window {
   background: none;
 }
 
-#clock {
+label.module {
   color: @text;
   background-color: @base;
+  box-shadow: inset 0 -0.2rem @mauve;
 }
 
 #idle_inhibitor {
-  color: @text;
-  background-color: @overlay0;
+  color: @subtext0;
+  background-color: @surface0;
+  box-shadow: inset 0 -0.2rem @overlay0;
 }
 
 #idle_inhibitor.activated {
   color: @text;
-  background-color: @base;
+  background-color: alpha(@mauve, 0.2);
+  box-shadow: inset 0 -0.2rem @mauve;
 }
 
-#battery {
-  color: @base;
-  background-color: @pink;
+#hardware .module {
+  color: @text;
+  background-color: alpha(@green, 0.2);
+  box-shadow: inset 0 -0.2rem @green;
 }
 
-#battery.charging, #battery.plugged {
-  color: @base;
-  background-color: @blue;
+#hardware .critical {
+  color: @text;
+  background-color: alpha(@red, 0.2);
+  box-shadow: inset 0 -0.2rem @red;
 }
 
-#battery.warning:not(.charging) {
-  color: @base;
-  background-color: @yellow;
-}
-
-#battery.critical:not(.charging) {
-  color: @base;
-  background-color: @red;
-}
-
-#pulseaudio {
-  color: @base;
-  background-color: @teal;
+#hardware .warning {
+  color: @text;
+  background-color: alpha(@yellow, 0.2);
+  box-shadow: inset 0 -0.2rem @yellow;
 }
 
 #pulseaudio.muted {
-  color: @text;
-  background-color: @overlay0;
+  color: @subtext0;
+  background-color: @surface0;
+  box-shadow: inset 0 -0.2rem @overlay0;
 }
 
-#backlight {
-  color: @base;
-  background-color: @yellow;
+#backlight.low {
+  background-color: alpha(@red, 0.2);
+  box-shadow: inset 0 -0.2rem @red;
+}
+
+#backlight.medium {
+  background-color: alpha(@yellow, 0.2);
+  box-shadow: inset 0 -0.2rem @yellow;
+}
+
+#backlight.high {
+  background-color: alpha(@green, 0.2);
+  box-shadow: inset 0 -0.2rem @green;
+}
+
+#battery.charging, #battery.plugged {
+  background-color: alpha(@blue, 0.2);
+  box-shadow: inset 0 -0.2rem @blue;
+}
+
+#battery.warning:not(.charging) {
+  background-color: alpha(@yellow, 0.2);
+  box-shadow: inset 0 -0.2rem @yellow;
+}
+
+#battery.critical:not(.charging) {
+  background-color: alpha(@red, 0.2);
+  box-shadow: inset 0 -0.2rem @red;
+}
+
+#power-profiles-daemon.balanced {
+  background-color: alpha(@yellow, 0.2);
+  box-shadow: inset 0 -0.2rem @yellow;
+}
+
+#power-profiles-daemon.performance {
+  background-color: alpha(@red, 0.2);
+  box-shadow: inset 0 -0.2rem @red;
+}
+
+#power-profiles-daemon.power-saver {
+  background-color: alpha(@green, 0.2);
+  box-shadow: inset 0 -0.2rem @green;
 }
 
 #network {
-  color: @base;
-  background-color: @green;
+  background-color: @base;
+  box-shadow: inset 0 -0.2rem @mauve;
 }
 
 #network.disconnected {
-  color: @base;
-  background-color: @yellow;
+  background-color: alpha(@red, 0.2);
+  box-shadow: inset 0 -0.2rem @red;
 }
 
-#cpu {
-  color: @base;
-  background-color: @lavender;
+#network.disabled {
+  background-color: @surface0;
+  box-shadow: inset 0 -0.2rem @overlay0;
 }
 
-#memory {
-  color: @base;
-  background-color: @mauve;
-}
-
-#temperature {
-  color: @base;
-  background-color: @sky;
-}
-
-#temperature.critical {
-  color: @base;
-  background-color: @red;
+#clock {
+  background-color: @base;
+  box-shadow: inset 0 -0.2rem @mauve;
 }
 
 #tray {
   background-color: @base;
+  box-shadow: inset 0 -0.2rem transparent;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 #tray > .passive {
