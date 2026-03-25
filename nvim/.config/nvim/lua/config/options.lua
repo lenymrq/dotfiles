@@ -30,6 +30,7 @@ vim.o.splitright = true
 vim.o.winborder = 'single'
 vim.o.winblend = 0
 vim.o.wrap = false
+vim.o.title = true
 
 vim.o.cursorlineopt = 'screenline,number' -- Show cursor line per screen line
 
