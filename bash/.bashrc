@@ -73,11 +73,7 @@ function version_greater_equal () {
     printf '%s\n%s\n' "$2" "$1" | sort --check=quiet --version-sort
 }
 
-if version_greater_equal $(fzf --version) '0.48.0'; then
-    . <(fzf --bash)
-else
-    . /usr/share/doc/fzf/examples/key-bindings.bash
-fi
+. <(fzf --bash)
 
 # prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -87,13 +83,8 @@ PS1='\[\e[32m\]\w\[\e[0m\] $(__git_ps1 "on \[\e[35m\]%s\[\e[0m\]")\[\e[0m\]\n\[\
 # terminal specific
 if [[ "$TERM" == "foot" ]]; then
     osc0_title() {
-        local curdir
-        if [[ "$PWD" == "$HOME" ]]; then
-            curdir='~'
-        else
-            curdir=${PWD##*/}
-        fi
-        printf '\e]0;%s\e\\' "${curdir}"
+        local path="~${PWD/#$HOME}"
+        printf '\e]0;%s\e\\' "${path}"
     }
 
     osc7_cwd() {
