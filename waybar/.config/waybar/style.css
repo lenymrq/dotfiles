@@ -1,0 +1,184 @@
+@define-color base black;
+@define-color text white;
+@define-color surface0 #222;
+@define-color subtext0 #aaa;
+@define-color overlay0 #555;
+@define-color accent magenta;
+@define-color other blue;
+@define-color good green;
+@define-color warning yellow;
+@define-color critical red;
+
+#window,
+#waybar,
+#workspaces,
+#workspaces button,
+label.module {
+  all: unset;
+  font-family: GoMono Nerd Font;
+  font-size: 12pt;
+  color: @text;
+  background-color: @base;
+  box-shadow: none;
+  padding: 0.25rem 1rem;
+}
+
+#workspaces {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+#workspaces button {
+  border: none;
+  border-radius: 0;
+  padding: 0.25rem 0.5rem;
+}
+
+#workspaces button:hover {
+  background: @surface0;
+}
+
+#workspaces button.visible {
+  background-color: alpha(@accent, 0.2);
+  box-shadow: inset 0 -0.2rem @accent;
+}
+
+#workspaces button.focused {
+  color: @base;
+  background-color: @accent;
+}
+
+#workspaces button.urgent {
+  color: @base;
+  background-color: @critical;
+}
+
+#mode {
+  box-shadow: inset 0 -0.2rem @critical;
+}
+
+#window {
+  box-shadow: inset 0 0;
+}
+
+#waybar.empty #window {
+  background: none;
+}
+
+label.module {
+  color: @text;
+  background-color: alpha(@accent, 0.2);
+  box-shadow: inset 0 -0.2rem @accent;
+}
+
+#idle_inhibitor {
+  color: @subtext0;
+  background-color: @surface0;
+  box-shadow: inset 0 -0.2rem @overlay0;
+}
+
+#idle_inhibitor.activated {
+  color: @text;
+  background-color: alpha(@accent, 0.2);
+  box-shadow: inset 0 -0.2rem @accent;
+}
+
+#hardware .module {
+  color: @text;
+  background-color: alpha(@good, 0.2);
+  box-shadow: inset 0 -0.2rem @good;
+}
+
+#hardware .critical {
+  color: @text;
+  background-color: alpha(@critical, 0.2);
+  box-shadow: inset 0 -0.2rem @critical;
+}
+
+#hardware .warning {
+  color: @text;
+  background-color: alpha(@warning, 0.2);
+  box-shadow: inset 0 -0.2rem @warning;
+}
+
+#pulseaudio.muted {
+  color: @subtext0;
+  background-color: @surface0;
+  box-shadow: inset 0 -0.2rem @overlay0;
+}
+
+#backlight.low {
+  background-color: alpha(@critical, 0.2);
+  box-shadow: inset 0 -0.2rem @critical;
+}
+
+#backlight.medium {
+  background-color: alpha(@warning, 0.2);
+  box-shadow: inset 0 -0.2rem @warning;
+}
+
+#backlight.high {
+  background-color: alpha(@good, 0.2);
+  box-shadow: inset 0 -0.2rem @good;
+}
+
+#battery.charging, #battery.plugged {
+  background-color: alpha(@other, 0.2);
+  box-shadow: inset 0 -0.2rem @other;
+}
+
+#battery.warning:not(.charging) {
+  background-color: alpha(@warning, 0.2);
+  box-shadow: inset 0 -0.2rem @warning;
+}
+
+#battery.critical:not(.charging) {
+  background-color: alpha(@critical, 0.2);
+  box-shadow: inset 0 -0.2rem @critical;
+}
+
+#power-profiles-daemon.balanced {
+  background-color: alpha(@warning, 0.2);
+  box-shadow: inset 0 -0.2rem @warning;
+}
+
+#power-profiles-daemon.performance {
+  background-color: alpha(@critical, 0.2);
+  box-shadow: inset 0 -0.2rem @critical;
+}
+
+#power-profiles-daemon.power-saver {
+  background-color: alpha(@good, 0.2);
+  box-shadow: inset 0 -0.2rem @good;
+}
+
+#network.disconnected {
+  background-color: alpha(@critical, 0.2);
+  box-shadow: inset 0 -0.2rem @critical;
+}
+
+#network.disabled {
+  background-color: @surface0;
+  box-shadow: inset 0 -0.2rem @overlay0;
+}
+
+#tray {
+  background-color: @base;
+  box-shadow: inset 0 -0.2rem transparent;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  background-color: @critical;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+    padding-left: 0;
+}

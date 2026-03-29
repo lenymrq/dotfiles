@@ -1,0 +1,141 @@
+{
+    "position": "bottom",
+    "height": 24,
+    "spacing": 0,
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "sway/scratchpad",
+        "sway/window"
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "idle_inhibitor",
+        "group/hardware",
+        "power-profiles-daemon",
+        "network",
+        "clock",
+        "tray"
+    ],
+
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "pulseaudio",
+            "backlight",
+            "cpu",
+            "memory",
+            "temperature",
+            "battery"
+        ]
+    },
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": [""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "sway/window": {
+        "all-outputs": true
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon} ",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": false
+    },
+    "pulseaudio": {
+        "states": {
+            "warning": 50,
+            "critical": 20
+        },
+        "format": "{icon}  {volume}% {format_source}",
+        "format-muted": "  {volume}% {format_source}",
+        "format-source": "󰍬 {volume}%",
+        "format-source-muted": "󰍭 {volume}%",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        "states": {
+            "low": 0,
+            "medium": 30,
+            "high": 60
+        },
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "tooltip": false
+    },
+    "network": {
+        "format-wifi": "{icon}  {essid} ({signalStrength}%)",
+        "format-ethernet": "  {ipaddr}/{cidr}",
+        "format-linked": "  {ifname} (No IP)",
+        "format-disconnected": "󰤮  Disconnected",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{essid} ({gwaddr})",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+    },
+    "cpu": {
+        "states": {
+            "warning": 50,
+            "critical": 80
+        },
+        "format": "  {usage}%",
+        "tooltip": true
+    },
+    "memory": {
+        "states": {
+            "warning": 50,
+            "critical": 80
+        },
+        "format": "  {}%"
+    },
+    "temperature": {
+        "format": "{icon} {temperatureC}°C",
+        "warning-threshold": 50,
+        "critical-threshold": 80,
+        "format-icons": ["", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}  {capacity}%",
+        "format-full": "{icon}  {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "interval": 5,
+        "format-icons": ["", "", "", "", ""]
+    },
+    "power-profiles-daemon": {
+      "format": "<span font=\"JetBrainsMono Nerd Font Mono 14\">{icon}</span>",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+          "default": "",
+          "performance": "",
+          "balanced": "",
+          "power-saver": ""
+      }
+    },
+    "clock": {
+        "format": "  {:%H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "  {:%Y-%m-%d}"
+    },
+    "tray": {
+        "spacing": 10
+    }
+}

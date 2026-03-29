@@ -1,0 +1,7 @@
+[general]
+mode=viewer
+size=fullscreen
+decoration=yes
+
+[viewer]
+window=#000000ff
