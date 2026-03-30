@@ -1,13 +1,34 @@
-@define-color base black;
-@define-color text white;
-@define-color surface0 #222;
-@define-color subtext0 #aaa;
-@define-color overlay0 #555;
-@define-color accent magenta;
-@define-color other blue;
-@define-color good green;
-@define-color warning yellow;
-@define-color critical red;
+@define-color bg #000000;
+@define-color fg #ffffff;
+
+@define-color bd-better #3300ff;
+@define-color bg-better #0a0033;
+@define-color fg-better #ffffff;
+
+@define-color bd-good #33db00;
+@define-color bg-good #0a2c00;
+@define-color fg-good #ffffff;
+
+@define-color bd-warning #e5a445;
+@define-color bg-warning #2e210e;
+@define-color fg-warning #ffffff;
+
+@define-color bd-critical #bc0000;
+@define-color bg-critical #260000;
+@define-color fg-critical #ffffff;
+
+@define-color bd-inactive #333333;
+@define-color bg-inactive #222222;
+@define-color fg-inactive #888888;
+
+@define-color bd-active #333333;
+@define-color bg-active #5f677a;
+
+@define-color bd-focus #4c7899;
+@define-color bg-focus #285577;
+
+@define-color bd-urgent #2f343a;
+@define-color bg-urgent #900000;
 
 #window,
 #waybar,
@@ -17,155 +38,169 @@ label.module {
   all: unset;
   font-family: GoMono Nerd Font;
   font-size: 12pt;
-  color: @text;
-  background-color: @base;
-  box-shadow: none;
-  padding: 0.25rem 1rem;
+  border: 1px solid;
+  border-radius: 0;
+  border-color: @bd-inactive;
+  background-color: @bg;
+  color: @fg;
+  padding: 0.25rem 0.75rem;
+}
+
+#waybar {
+  border: none;
 }
 
 #workspaces {
   padding: 0;
-  border: none;
-  border-radius: 0;
 }
 
 #workspaces button {
-  border: none;
-  border-radius: 0;
   padding: 0.25rem 0.5rem;
-}
-
-#workspaces button:hover {
-  background: @surface0;
+  border: 1px solid;
+  border-color: #333;
+  background-color: #222;
+  color: #888;
 }
 
 #workspaces button.visible {
-  background-color: alpha(@accent, 0.2);
-  box-shadow: inset 0 -0.2rem @accent;
+  border-color: @bd-active;
+  background-color: @bg-active;
+  color: @fg;
 }
 
 #workspaces button.focused {
-  color: @base;
-  background-color: @accent;
+  border-color: @bd-focus;
+  background-color: @bg-focus;
+  color: @fg;
 }
 
 #workspaces button.urgent {
-  color: @base;
-  background-color: @critical;
+  border-color: @bd-urgent;
+  background-color: @bg-urgent;
+  color: @fg;
+}
+
+#workspaces button:hover {
+  border-color: @bd-active;
+  background-color: @bg-active;
+  color: @fg;
 }
 
 #mode {
-  box-shadow: inset 0 -0.2rem @critical;
-}
-
-#window {
-  box-shadow: inset 0 0;
+  border-color: @bd-active;
+  background-color: @bg-active;
+  color: @fg;
 }
 
 #waybar.empty #window {
+  border: none;
   background: none;
 }
 
-label.module {
-  color: @text;
-  background-color: alpha(@accent, 0.2);
-  box-shadow: inset 0 -0.2rem @accent;
-}
-
 #idle_inhibitor {
-  color: @subtext0;
-  background-color: @surface0;
-  box-shadow: inset 0 -0.2rem @overlay0;
+  border-color: @bd-inactive;
+  background-color: @bg-inactive;
+  color: @fg-inactive;
 }
 
 #idle_inhibitor.activated {
-  color: @text;
-  background-color: alpha(@accent, 0.2);
-  box-shadow: inset 0 -0.2rem @accent;
+  border-color: @bd-focus;
+  background-color: @bg-focus;
+  color: @fg;
 }
 
 #hardware .module {
-  color: @text;
-  background-color: alpha(@good, 0.2);
-  box-shadow: inset 0 -0.2rem @good;
+  background-color: @bg-good;
+  color: @fg-good;
+  box-shadow: inset 0 -0.2rem @bd-good;
 }
 
 #hardware .critical {
-  color: @text;
-  background-color: alpha(@critical, 0.2);
-  box-shadow: inset 0 -0.2rem @critical;
+  background-color: @bg-critical;
+  color: @fg-critical;
+  box-shadow: inset 0 -0.2rem @bd-critical;
 }
 
 #hardware .warning {
-  color: @text;
-  background-color: alpha(@warning, 0.2);
-  box-shadow: inset 0 -0.2rem @warning;
+  background-color: @bg-warning;
+  color: @fg-warning;
+  box-shadow: inset 0 -0.2rem @bd-warning;
 }
 
 #pulseaudio.muted {
-  color: @subtext0;
-  background-color: @surface0;
-  box-shadow: inset 0 -0.2rem @overlay0;
+  border-color: @bd-inactive;
+  background-color: @bg-inactive;
+  color: @fg-inactive;
+  box-shadow: none;
 }
 
 #backlight.low {
-  background-color: alpha(@critical, 0.2);
-  box-shadow: inset 0 -0.2rem @critical;
+  background-color: @bg-critical;
+  color: @fg-critical;
+  box-shadow: inset 0 -0.2rem @bd-critical;
 }
 
 #backlight.medium {
-  background-color: alpha(@warning, 0.2);
-  box-shadow: inset 0 -0.2rem @warning;
+  background-color: @bg-warning;
+  color: @fg-warning;
+  box-shadow: inset 0 -0.2rem @bd-warning;
 }
 
 #backlight.high {
-  background-color: alpha(@good, 0.2);
-  box-shadow: inset 0 -0.2rem @good;
+  background-color: @bg-good;
+  color: @fg-good;
+  box-shadow: inset 0 -0.2rem @bd-good;
 }
 
 #battery.charging, #battery.plugged {
-  background-color: alpha(@other, 0.2);
-  box-shadow: inset 0 -0.2rem @other;
+  background-color: @bg-better;
+  color: @fg-better;
+  box-shadow: inset 0 -0.2rem @bd-better;
 }
 
 #battery.warning:not(.charging) {
-  background-color: alpha(@warning, 0.2);
-  box-shadow: inset 0 -0.2rem @warning;
+  background-color: @bg-warning;
+  color: @fg-warning;
+  box-shadow: inset 0 -0.2rem @bd-warning;
 }
 
 #battery.critical:not(.charging) {
-  background-color: alpha(@critical, 0.2);
-  box-shadow: inset 0 -0.2rem @critical;
+  background-color: @bg-critical;
+  color: @fg-critical;
+  box-shadow: inset 0 -0.2rem @bd-critical;
 }
 
 #power-profiles-daemon.balanced {
-  background-color: alpha(@warning, 0.2);
-  box-shadow: inset 0 -0.2rem @warning;
+  background-color: @bg-warning;
+  color: @fg-warning;
+  box-shadow: inset 0 -0.2rem @bd-warning;
 }
 
 #power-profiles-daemon.performance {
-  background-color: alpha(@critical, 0.2);
-  box-shadow: inset 0 -0.2rem @critical;
+  background-color: @bg-critical;
+  color: @fg-critical;
+  box-shadow: inset 0 -0.2rem @bd-critical;
 }
 
 #power-profiles-daemon.power-saver {
-  background-color: alpha(@good, 0.2);
-  box-shadow: inset 0 -0.2rem @good;
+  background-color: @bg-good;
+  color: @fg-good;
+  box-shadow: inset 0 -0.2rem @bd-good;
 }
 
 #network.disconnected {
-  background-color: alpha(@critical, 0.2);
-  box-shadow: inset 0 -0.2rem @critical;
+  border-color: @bd-inactive;
+  background-color: @bg-inactive;
+  color: @fg-inactive;
 }
 
 #network.disabled {
-  background-color: @surface0;
-  box-shadow: inset 0 -0.2rem @overlay0;
+  border-color: @bd-inactive;
+  background-color: @bg-inactive;
+  color: @fg-inactive;
 }
 
 #tray {
-  background-color: @base;
-  box-shadow: inset 0 -0.2rem transparent;
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -176,6 +211,16 @@ label.module {
 
 #tray > .needs-attention {
   background-color: @critical;
+}
+
+#custom-power {
+  padding-right: 1rem;
+}
+
+#custom-power:hover {
+  border-color: @bd-active;
+  background-color: @bg-active;
+  color: @fg;
 }
 
 .modules-left > widget:first-child > #workspaces {
