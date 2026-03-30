@@ -303,5 +303,5 @@ for_window [app_id="swayimg"] fullscreen disable, floating enable, resize set 12
 no_focus [window_role="pop-up"]
 
 assign [app_id="firefox*"] 2
+assign [app_id="vesktop"] 4
 assign [app_id="spotify"] 5
-assign [app_id="WebCord"] 4
