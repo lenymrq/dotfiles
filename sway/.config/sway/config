@@ -84,11 +84,11 @@ font pango:JetBrainsMono Nerd Font Mono 9
 #
     set $screenshot_out $(xdg-user-dir PICTURES)/screenshots/screenshot-$(date +"%Y%m%d-%H%M%S").png
     mode "screenshot" {
-        bindsym a exec grimshot copy area; mode "default"
-        bindsym Shift+a exec grimshot save area $screenshot_out; mode "default"
+        bindsym a exec grimshot copy area && notify-send 'Screenshot copied successfully.'; mode "default"
+        bindsym Shift+a exec grimshot save area $screenshot_out && notify-send 'Screenshot saved successfully.'; mode "default"
 
-        bindsym s exec grimshot copy screen; mode "default"
-        bindsym Shift+s exec grimshot save screen $screenshot_out; mode "default"
+        bindsym s exec grimshot copy screen && notify-send 'Screenshot copied successfully.'; mode "default"
+        bindsym Shift+s exec grimshot save screen $screenshot_out && notify-send 'Screenshot saved successfully.'; mode "default"
 
         bindsym escape mode "default"
     }
@@ -265,10 +265,10 @@ hide_edge_borders smart_no_gaps
 #
 # Rules:
 #
-for_window [app_id="blueman-*"] floating enable
-for_window [app_id="pavucontrol"] floating enable
-for_window [app_id="pcmanfm"] floating enable, move position center, resize set 1280 800
-for_window [app_id="swayimg"] fullscreen disable, floating enable, resize set 1280 800
+for_window [app_id="blueman-*"] floating enable, resize set 600 800, move position center
+for_window [app_id="pavucontrol"] floating enable, resize set 800 800, move position center
+for_window [app_id="pcmanfm"] floating enable, resize set 1200 800, move position center
+for_window [app_id="swayimg"] fullscreen disable, resize set 1200 800, floating enable
 
 no_focus [window_role="pop-up"]
 
