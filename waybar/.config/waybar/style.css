@@ -37,8 +37,8 @@
 label.module,
 #tray {
   all: unset;
-  font-family: JetBrainsMono Nerd Font;
-  font-size: 10pt;
+  font-family: JetBrainsMono Nerd Font Mono;
+  font-size: 12pt;
   border: 1px solid;
   border-radius: 0;
   border-color: @bd-inactive;
@@ -99,6 +99,18 @@ label.module,
   box-shadow: none;
 }
 
+#scratchpad {
+  border-color: @bd-inactive;
+  background-color: @bg-inactive;
+  color: @fg-inactive;
+}
+
+#mode {
+  border-color: @bd-active;
+  background-color: @bg-active;
+  color: @fg;
+}
+
 #waybar.empty #window {
   border: none;
   background: none;
@@ -145,7 +157,7 @@ label.module,
   border-color: @bd-inactive;
   background-color: @bg-inactive;
   color: @fg-inactive;
-  box-shadow: none;
+  box-shadow: inset 0 -0.2rem @bd-inactive;
 }
 
 #bluetooth.on {

@@ -66,7 +66,7 @@
     },
 
     "idle_inhibitor": {
-        "format": "{icon} ",
+        "format": "{icon}",
         "format-icons": {
             "activated": "",
             "deactivated": ""
@@ -78,8 +78,8 @@
             "warning": 50,
             "critical": 20
         },
-        "format": "{icon}  {volume}% {format_source}",
-        "format-muted": "  {volume}% {format_source}",
+        "format": "{icon} {volume}% {format_source}",
+        "format-muted": " {volume}% {format_source}",
         "format-source": "󰍬 {volume}%",
         "format-source-muted": "󰍭 {volume}%",
         "format-icons": ["", "", ""],
@@ -87,6 +87,7 @@
         "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
     },
     "bluetooth": {
+        "format": " {status}",
         "tooltip": false
     },
     "backlight": {
@@ -101,9 +102,9 @@
     },
     "network": {
         "format": "{ifname}",
-        "format-wifi": "{icon}  {essid} ({signalStrength}%)",
-        "format-ethernet": "  {ifname}",
-        "format-disconnected": "󰤮  Disconnected",
+        "format-wifi": "{icon} {essid} ({signalStrength}%)",
+        "format-ethernet": " {ifname}",
+        "format-disconnected": "󰤮 Disconnected",
         "tooltip-format": "{ifname} via {gwaddr}",
         "tooltip-format-wifi": "{essid} ({gwaddr})",
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
@@ -113,7 +114,7 @@
             "warning": 50,
             "critical": 80
         },
-        "format": "  {usage}%",
+        "format": " {usage}%",
         "tooltip": true
     },
     "memory": {
@@ -121,7 +122,7 @@
             "warning": 50,
             "critical": 80
         },
-        "format": "  {}%"
+        "format": " {}%"
     },
     "temperature": {
         "format": "{icon} {temperatureC}°C",
@@ -134,7 +135,7 @@
             "warning": 30,
             "critical": 20
         },
-        "format": "{icon}  {capacity}%",
+        "format": "{icon} {capacity}%",
         "format-full": "{icon}  {capacity}%",
         "format-charging": "  {capacity}%",
         "format-plugged": "  {capacity}%",
@@ -142,7 +143,7 @@
         "format-icons": ["", "", "", "", ""]
     },
     "power-profiles-daemon": {
-      "format": "<span font=\"JetBrainsMono Nerd Font Mono 14\">{icon}</span>",
+      "format": "{icon}",
       "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
       "tooltip": true,
       "format-icons": {
@@ -153,7 +154,7 @@
       }
     },
     "clock": {
-        "format": "  {:%H:%M}",
+        "format": " {:%H:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "  {:%Y-%m-%d}"
     },
@@ -161,7 +162,7 @@
         "spacing": 10
     },
     "custom/power": {
-        "format" : "<span font=\"JetBrainsMono Nerd Font Mono 14\">⏻</span>",
+        "format" : "⏻",
         "tooltip": false,
         "menu": "on-click",
         "menu-file": "~/.config/waybar/custom/power-menu.xml",
