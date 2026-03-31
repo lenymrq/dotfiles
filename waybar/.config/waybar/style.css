@@ -34,10 +34,11 @@
 #waybar,
 #workspaces,
 #workspaces button,
-label.module {
+label.module,
+#tray {
   all: unset;
-  font-family: GoMono Nerd Font;
-  font-size: 12pt;
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 10pt;
   border: 1px solid;
   border-radius: 0;
   border-color: @bd-inactive;
@@ -48,18 +49,26 @@ label.module {
 
 #waybar {
   border: none;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 #workspaces {
   padding: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 #workspaces button {
   padding: 0.25rem 0.5rem;
   border: 1px solid;
-  border-color: #333;
-  background-color: #222;
-  color: #888;
+  border-radius: 0;
+  border-color: @bd-inactive;
+  background-color: @bg-inactive;
+  color: @fg-inactive;
+  box-shadow: none;
 }
 
 #workspaces button.visible {
@@ -86,10 +95,8 @@ label.module {
   color: @fg;
 }
 
-#mode {
-  border-color: @bd-active;
-  background-color: @bg-active;
-  color: @fg;
+#sway .module {
+  box-shadow: none;
 }
 
 #waybar.empty #window {
@@ -97,16 +104,23 @@ label.module {
   background: none;
 }
 
+label.module,
+#tray {
+  box-shadow: inset 0 -0.2rem @bd-inactive;
+}
+
 #idle_inhibitor {
   border-color: @bd-inactive;
   background-color: @bg-inactive;
   color: @fg-inactive;
+  box-shadow: inset 0 -0.2rem @bd-inactive;
 }
 
 #idle_inhibitor.activated {
   border-color: @bd-focus;
   background-color: @bg-focus;
   color: @fg;
+  box-shadow: inset 0 -0.2rem @bd-focus;
 }
 
 #hardware .module {
@@ -132,6 +146,26 @@ label.module {
   background-color: @bg-inactive;
   color: @fg-inactive;
   box-shadow: none;
+}
+
+#bluetooth.on {
+  background-color: @bg-good;
+  color: @fg-good;
+  box-shadow: inset 0 -0.2rem @bd-good;
+}
+
+#bluetooth.off,
+#bluetooth.disabled {
+  border-color: @bd-inactive;
+  background-color: @bg-inactive;
+  color: @fg-inactive;
+  box-shadow: inset 0 -0.2rem @bd-inactive;
+}
+
+#bluetooth.connected {
+  background-color: @bg-better;
+  color: @fg-better;
+  box-shadow: inset 0 -0.2rem @bd-better;
 }
 
 #backlight.low {
@@ -192,12 +226,14 @@ label.module {
   border-color: @bd-inactive;
   background-color: @bg-inactive;
   color: @fg-inactive;
+  box-shadow: inset 0 -0.2rem @bd-inactive;
 }
 
 #network.disabled {
   border-color: @bd-inactive;
   background-color: @bg-inactive;
   color: @fg-inactive;
+  box-shadow: inset 0 -0.2rem @bd-inactive;
 }
 
 #tray {
@@ -210,20 +246,7 @@ label.module {
 }
 
 #tray > .needs-attention {
-  background-color: @critical;
-}
-
-#custom-power {
-  padding-right: 1rem;
-}
-
-#custom-power:hover {
-  border-color: @bd-active;
-  background-color: @bg-active;
-  color: @fg;
-}
-
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-    padding-left: 0;
+  border-color: @bd-critical;
+  background-color: @bg-critical;
+  color: @fd-critical;
 }
