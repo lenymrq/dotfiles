@@ -1,49 +1,12 @@
-return {
-  'romgrk/barbar.nvim',
-  init = function()
-    vim.g.barbar_auto_setup = false
-  end,
-  event = 'BufEnter',
-  opts = {
-    animation = false,
-    auto_hide = false,
-  },
-  keys = {
-    {
-      '<s-h>',
-      '<cmd>BufferPrevious<cr>',
-      noremap = true,
-      silent = true,
-      desc = 'Switch to previous buffer',
-    },
-    {
-      '<s-l>',
-      '<cmd>BufferNext<cr>',
-      noremap = true,
-      silent = true,
-      desc = 'Switch to next buffer',
-    },
-    {
-      '<a-s-h>',
-      '<cmd>BufferMovePrevious<cr>',
-      noremap = true,
-      silent = true,
-      desc = 'Switch current buffer with previous',
-    },
-    {
-      '<a-s-l>',
-      '<cmd>BufferMoveNext<cr>',
-      noremap = true,
-      silent = true,
-      desc = 'Switch current buffer with next',
-    },
-    {
-      '<leader>bp',
-      '<cmd>BufferPick<cr>',
-      noremap = true,
-      silent = true,
-      desc = 'Pick buffer',
-    },
-  },
-  version = '^1.0.0',
+vim.pack.add { 'https://github.com/romgrk/barbar.nvim' }
+
+require('barbar').setup {
+  animation = false,
+  auto_hide = true,
 }
+
+vim.keymap.set('n', '<s-h>', '<cmd>BufferPrevious<cr>', { desc = 'Go to previous buffer in barbar' })
+vim.keymap.set('n', '<s-l>', '<cmd>BufferNext<cr>', { desc = 'Go to next buffer in barbar' })
+
+vim.keymap.set('n', '<a-s-h>', '<cmd>BufferMovePrevious<cr>', { desc = 'Switch current buffer with next in barbar' })
+vim.keymap.set('n', '<a-s-l>', '<cmd>BufferMoveNext<cr>', { desc = 'Switch current buffer with previous in barbar' })

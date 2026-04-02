@@ -1,10 +1,7 @@
-return {
-  'NMAC427/guess-indent.nvim',
-  lazy = false,
-  opts = {
-    on_tab_options = {
-      ['expandtab'] = false,
-      ['shiftwidth'] = 0,
-    },
+vim.pack.add { 'https://www.github.com/NMAC427/guess-indent.nvim' }
+require('guess-indent').setup {
+  on_tab_options = {
+    ['expandtab'] = false,
+    ['shiftwidth'] = 0,
   },
 }

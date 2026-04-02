@@ -4,6 +4,7 @@ return {
       typeCheckingMode = 'strict',
       analysis = {
         diagnosticSeverityOverrides = {
+          enableTypeIgnoreComments = true,
           reportMissingTypeStubs = 'none',
           -- Report unknown
           reportUnknownArgumentType = 'none',
