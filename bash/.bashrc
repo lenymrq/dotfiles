@@ -13,7 +13,7 @@ esac
 HISTCONTROL="erasedups:ignoreboth"
 
 # don't put common commands in history
-HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
+HISTIGNORE="&:[ ]*:exit:ls:ll:la:l:bg:fg:history:clear"
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
