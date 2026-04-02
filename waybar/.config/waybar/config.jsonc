@@ -62,7 +62,7 @@
     },
     "sway/window": {
         "max-length": 64,
-        "all-outputs": true
+        "all-outputs": false
     },
 
     "idle_inhibitor": {
@@ -136,9 +136,9 @@
             "critical": 20
         },
         "format": "{icon} {capacity}%",
-        "format-full": "{icon}  {capacity}%",
-        "format-charging": "  {capacity}%",
-        "format-plugged": "  {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
         "interval": 5,
         "format-icons": ["", "", "", "", ""]
     },
@@ -156,7 +156,7 @@
     "clock": {
         "format": " {:%H:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "  {:%Y-%m-%d}"
+        "format-alt": " {:%Y-%m-%d}"
     },
     "tray": {
         "spacing": 10
