@@ -19,7 +19,7 @@ vim.o.listchars = 'tab:> ,nbsp:␣,extends:>,precedes:<'
 vim.o.number = true
 vim.o.pumblend = 0
 vim.o.pumheight = 12
-vim.o.relativenumber = false
+vim.o.relativenumber = true
 vim.o.scrolloff = 10
 vim.o.showmode = true
 vim.o.signcolumn = 'yes'
@@ -120,16 +120,4 @@ vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
 vim.lsp.enable 'basedpyright'
 vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'clangd'
--- Further configuration is done in after/lsp
-
--- ###########
--- # Plugins #
--- ###########
-require 'plugins.builtins'
-require 'plugins.colorscheme'
-require 'plugins.snacks'
-require 'plugins.mini'
-require 'plugins.conform'
-require 'plugins.guess-indent'
-require 'plugins.treesitter'
-require 'plugins.barbar'
+-- Further configuration is done in /lsp

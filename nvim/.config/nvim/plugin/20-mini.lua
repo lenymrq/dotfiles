@@ -11,6 +11,7 @@ local process_items = function(items, base)
   return MiniCompletion.default_process_items(items, base, process_items_opts)
 end
 require('mini.completion').setup {
+  delay = { completion = 0, info = 0, signature = 0 },
   lsp_completion = {
     source_func = 'omnifunc',
     auto_setup = false,

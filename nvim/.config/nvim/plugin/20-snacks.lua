@@ -28,7 +28,6 @@ vim.keymap.set('n', '<leader>fg', Snacks.picker.grep, { desc = 'Grep' })
 vim.keymap.set('n', '<leader>fq', Snacks.picker.qflist, { desc = 'Quickfix' })
 vim.keymap.set('n', '<leader>fr', Snacks.picker.resume, { desc = 'Resume' })
 vim.keymap.set('n', '<leader>ft', Snacks.picker.treesitter, { desc = 'Treesitter' })
-vim.keymap.set('n', '<leader>fn', Snacks.picker.notifications, { desc = 'Notifications' })
 
 vim.keymap.set('n', '<leader>gS', function()
   Snacks.picker.git_stash {
