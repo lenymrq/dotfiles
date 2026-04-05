@@ -15,7 +15,7 @@ set $lock swaylock --daemonize
 
 include /etc/sway/config-vars.d/*
 
-font pango:JetBrainsMono Nerd Font Mono 9
+font pango:monospace 10
 
 ### Output configuration
 #
@@ -246,7 +246,8 @@ bindsym $mod+m mode "move"
 # Status Bar:
 #
 bar {
-    swaybar_command waybar
+    status_command i3status -c ~/.config/i3status/i3status.conf
+    position bottom
 }
 
 include /etc/sway/config.d/*
