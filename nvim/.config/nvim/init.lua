@@ -32,13 +32,7 @@ vim.o.winborder = 'single'
 vim.o.wrap = false
 
 -- UI2
-vim.o.cmdheight = 0
-require('vim._core.ui2').enable {
-  enable = true,
-  msg = {
-    targets = 'msg',
-  },
-}
+require('vim._core.ui2').enable { enable = true }
 
 -- Folds
 vim.o.foldlevel = 10
@@ -115,9 +109,8 @@ vim.keymap.set('n', '\\w', '<cmd>setlocal wrap!<cr>', { desc = 'Toggle search hi
 -- #######
 -- # LSP #
 -- #######
-vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
+vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' } -- Further configuration is done in /lsp
 
 vim.lsp.enable 'basedpyright'
 vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'clangd'
--- Further configuration is done in /lsp
