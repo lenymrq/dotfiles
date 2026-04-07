@@ -1,5 +1,4 @@
 vim.pack.add {
-  'https://www.github.com/wtfox/jellybeans.nvim',
   { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' },
 }
 

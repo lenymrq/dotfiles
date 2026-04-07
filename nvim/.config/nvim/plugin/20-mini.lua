@@ -5,6 +5,7 @@ MiniIcons.mock_nvim_web_devicons()
 MiniIcons.tweak_lsp_kind()
 
 require('mini.notify').setup()
+vim.keymap.set('n', '<leader>nh', MiniNotify.show_history, { desc = 'History' })
 
 local process_items_opts = { kind_priority = { Text = -1, Snippet = 99 } }
 local process_items = function(items, base)
@@ -44,6 +45,8 @@ MiniMisc.setup_termbg_sync()
 MiniMisc.setup_restore_cursor()
 vim.keymap.set('n', '<leader>oz', MiniMisc.zoom, { desc = 'Zoom current buffer' })
 
+require('mini.extra').setup()
+
 local ai = require 'mini.ai'
 ai.setup {
   custom_textobjects = {
@@ -59,12 +62,13 @@ vim.keymap.set('n', '<leader>bD', function()
 end, { desc = 'Force remove buffer' })
 
 local leader_group_clues = {
-  { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
-  { mode = 'n', keys = '<Leader>e', desc = '+Explore/Edit' },
-  { mode = 'n', keys = '<Leader>f', desc = '+Find' },
-  { mode = 'n', keys = '<Leader>g', desc = '+Git' },
-  { mode = 'n', keys = '<Leader>o', desc = '+Other' },
-  { mode = 'n', keys = '<Leader>s', desc = '+Surround' },
+  { mode = 'n', keys = '<leader>b', desc = '+Buffer' },
+  { mode = 'n', keys = '<leader>e', desc = '+Explore' },
+  { mode = 'n', keys = '<leader>f', desc = '+Find' },
+  { mode = 'n', keys = '<leader>g', desc = '+Git' },
+  { mode = 'n', keys = '<leader>n', desc = '+Notifications' },
+  { mode = 'n', keys = '<leader>o', desc = '+Other' },
+  { mode = 'n', keys = '<leader>s', desc = '+Surround' },
 }
 local miniclue = require 'mini.clue'
 miniclue.setup {
@@ -127,22 +131,101 @@ require('mini.indentscope').setup {
 }
 
 require('mini.jump').setup { delay = { highlight = 0 } }
-vim.keymap.set({ 'n', 'x', 'o' }, '<Esc>', function()
+vim.keymap.set({ 'n', 'x', 'o' }, '<esc>', function()
   if not MiniJump.state.jumping then
-    return '<Esc>'
+    return '<esc>'
   end
   MiniJump.stop_jumping()
 end, { expr = true, desc = 'Stop jumping' })
 
 local map_multistep = require('mini.keymap').map_multistep
-map_multistep('i', '<Tab>', { 'pmenu_next' })
-map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
-map_multistep('i', '<CR>', { 'pmenu_accept', 'minipairs_cr' })
-map_multistep('i', '<BS>', { 'minipairs_bs' })
+map_multistep('i', '<tab>', { 'pmenu_next' })
+map_multistep('i', '<s-tab>', { 'pmenu_prev' })
+map_multistep('i', '<cr>', { 'pmenu_accept', 'minipairs_cr' })
+map_multistep('i', '<bs>', { 'minipairs_bs' })
 
 require('mini.move').setup { options = { reindent_linewise = false } }
 
 require('mini.pairs').setup()
+
+require('mini.pick').setup {
+  mappings = {
+    caret_left = '<a-h>',
+    caret_right = '<a-l>',
+
+    choose = '<cr>',
+    choose_in_split = '',
+    choose_in_tabpage = '',
+    choose_in_vsplit = '',
+    choose_marked = '<c-cr>',
+
+    delete_char = '<bs>',
+    delete_char_right = '<del>',
+    delete_left = '<a-bs>',
+    delete_word = '',
+
+    mark = '<c-space>',
+    mark_all = '<c-a>',
+
+    move_down = '<a-j>',
+    move_start = '<c-g>',
+    move_up = '<a-k>',
+
+    paste = '<c-p>',
+
+    refine = '',
+    refine_marked = '',
+
+    scroll_down = '<c-j>',
+    scroll_left = '<c-h>',
+    scroll_right = '<c-l>',
+    scroll_up = '<c-k>',
+
+    stop = '<esc>',
+
+    toggle_info = '<s-tab>',
+    toggle_preview = '<tab>',
+  },
+}
+vim.keymap.set('n', '<leader>fD', function()
+  MiniExtra.pickers.diagnostic { scope = 'current', sort_by = 'severity' }
+end, { desc = 'Buffer diagnostics' })
+vim.keymap.set('n', '<leader>fb', MiniPick.builtin.buffers, { desc = 'Open buffers' })
+vim.keymap.set('n', '<leader>fd', MiniExtra.pickers.diagnostic, { desc = 'Diagnostics' })
+vim.keymap.set('n', '<leader>fe', MiniExtra.pickers.explorer, { desc = 'Explorer' })
+vim.keymap.set('n', '<leader>ff', MiniPick.builtin.files, { desc = 'Files' })
+vim.keymap.set('n', '<leader>fg', MiniPick.builtin.grep_live, { desc = 'Grep' })
+vim.keymap.set('n', '<leader>fq', function()
+  MiniExtra.pickers.list { scope = 'quickfix' }
+end, { desc = 'Quickfix' })
+vim.keymap.set('n', '<leader>ft', MiniExtra.pickers.treesitter, { desc = 'Treesitter' })
+vim.keymap.set('n', '<leader>fr', MiniPick.builtin.resume, { desc = 'Resume' })
+
+vim.keymap.set('n', '<leader>gb', MiniExtra.pickers.git_branches, { desc = 'Branch' })
+vim.keymap.set('n', '<leader>gh', MiniExtra.pickers.git_hunks, { desc = 'Hunks' })
+vim.keymap.set('n', '<leader>gf', MiniExtra.pickers.git_files, { desc = 'Files' })
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(_)
+    vim.keymap.set('n', 'grr', function()
+      MiniPick.builtin.lsp { scope = 'references' }
+    end, { desc = 'References' })
+    vim.keymap.set('n', 'grd', function()
+      MiniExtra.pickers.lsp { scope = 'definition' }
+    end, { desc = 'Definitions' })
+    vim.keymap.set('n', 'grD', function()
+      MiniExtra.pickers.lsp { scope = 'declaration' }
+    end, { desc = 'Declarations' })
+    vim.keymap.set('n', 'grt', function()
+      MiniExtra.pickers.lsp { scope = 'type_definition' }
+    end, { desc = 'Type definitions' })
+    vim.keymap.set('n', 'gri', function()
+      MiniExtra.pickers.lsp { scope = 'implementation' }
+    end, { desc = 'Implementations' })
+    vim.keymap.set('n', 'grs', function()
+      MiniExtra.pickers.lsp { scope = 'workspace_symbol_live' }
+    end, { desc = 'Symbols' })
+  end,
+})
 
 local latex_patterns = { 'latex/**/*.json', '**/latex.json' }
 local lang_patterns = {
