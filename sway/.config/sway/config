@@ -246,6 +246,17 @@ bindsym $mod+m mode "move"
 # Status Bar:
 #
 bar {
+    colors {
+        background #000000
+        statusline #ffffff
+        separator #777777
+
+        focused_workspace  #ffffff #ffffff #000000
+        active_workspace   #777777 #777777 #ffffff
+        inactive_workspace #000000 #000000 #777777
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff
+    }
     status_command i3status -c ~/.config/i3status/i3status.conf
     position bottom
 }
@@ -255,12 +266,26 @@ include /etc/sway/config.d/*
 #
 # Styling:
 #
+
+#
+# Colors:
+#
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #ffffff #ffffff #000000 #000000   #ffffff
+client.focused_inactive #777777 #777777 #ffffff #777777   #777777
+client.unfocused        #000000 #000000 #777777 #000000   #000000
+client.urgent           #900000 #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
 gaps inner 12
 gaps outer -12
 smart_gaps on
 
 default_border normal 0
-default_floating_border normal 1
+default_floating_border normal 0
 hide_edge_borders smart_no_gaps
 
 #
