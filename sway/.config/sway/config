@@ -40,7 +40,7 @@ font pango:monospace 10
     }
 
     # Set cursor theme
-    seat * xcursor_theme Adwaita 32
+    seat * xcursor_theme Adwaita 24
 
 ### Key bindings
 #
