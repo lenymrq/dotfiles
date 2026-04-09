@@ -19,7 +19,7 @@ font pango:monospace 10
 
 ### Output configuration
 #
-    output * bg ~/Pictures/backgrounds/background.png fill
+    output * bg ~/Pictures/backgrounds/background fill
 
 ### Idle configuration
 #
