@@ -19,6 +19,15 @@ require('catppuccin').setup {
     enabled = not transparent,
     percentage = 0.2,
   },
+  lsp_styles = {
+    underlines = {
+      errors = { 'undercurl' },
+      hints = { 'undercurl' },
+      warnings = { 'undercurl' },
+      information = { 'undercurl' },
+      ok = { 'undercurl' },
+    },
+  },
   custom_highlights = function(colors)
     return {
       cCursor = { bg = colors.lavender, fg = colors.base },

@@ -114,6 +114,8 @@ require('mini.diff').setup {
 }
 vim.keymap.set('n', '<leader>go', MiniDiff.toggle_overlay, { desc = 'Overlay' })
 
+require('mini.git').setup()
+
 require('mini.hipatterns').setup {
   highlighters = {
     fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
@@ -195,6 +197,7 @@ vim.keymap.set('n', '<leader>fd', MiniExtra.pickers.diagnostic, { desc = 'Diagno
 vim.keymap.set('n', '<leader>fe', MiniExtra.pickers.explorer, { desc = 'Explorer' })
 vim.keymap.set('n', '<leader>ff', MiniPick.builtin.files, { desc = 'Files' })
 vim.keymap.set('n', '<leader>fg', MiniPick.builtin.grep_live, { desc = 'Grep' })
+vim.keymap.set('n', '<leader>fh', MiniExtra.pickers.hl_groups, { desc = 'Highlight groups' })
 vim.keymap.set('n', '<leader>fq', function()
   MiniExtra.pickers.list { scope = 'quickfix' }
 end, { desc = 'Quickfix' })

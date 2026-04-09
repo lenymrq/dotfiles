@@ -15,7 +15,7 @@ vim.o.cursorline = true
 vim.o.colorcolumn = '+1'
 vim.o.linebreak = true
 vim.o.list = true
-vim.o.listchars = 'tab:> ,nbsp:␣,extends:>,precedes:<'
+vim.o.listchars = 'tab:» ,nbsp:␣,extends:>,precedes:<'
 vim.o.number = true
 vim.o.pumblend = 0
 vim.o.pumheight = 12
@@ -105,6 +105,13 @@ vim.keymap.set('x', 'gp', '"+P', { desc = 'Paste from system clipboard' })
 -- Toggle keymaps
 vim.keymap.set('n', '\\h', '<cmd>let v:hlsearch = 1 - v:hlsearch<cr>', { desc = 'Toggle search highlight' })
 vim.keymap.set('n', '\\w', '<cmd>setlocal wrap!<cr>', { desc = 'Toggle search highlight' })
+vim.keymap.set('n', '\\d', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = 'Toggle diagnostic' })
+vim.keymap.set('n', '\\v', function()
+  local new_config = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config { virtual_lines = new_config }
+end, { desc = 'Toggle diagnostic virtual lines' })
 
 -- #######
 -- # LSP #
