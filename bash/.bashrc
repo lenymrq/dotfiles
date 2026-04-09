@@ -44,7 +44,14 @@ parse_git_ref() {
     git rev-parse --short HEAD 2>/dev/null
 }
 
-PS1='\[\e[32m\]\w\[\e[0m\] $(parse_git_ref)\n\[\e[33m\]❯\[\e[0m\] '
+git_ref_prompt() {
+    local ref
+    ref=$(parse_git_ref) || return
+    [ -z "$ref" ] && return
+    printf " 󰘬 %s" "$ref"
+}
+
+PS1='\[\e[32m\]\w\[\e[0m\]$(git_ref_prompt)\[\e[33m\]>\[\e[0m\] '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
