@@ -51,7 +51,7 @@ git_ref_prompt() {
     printf " 󰘬 %s" "$ref"
 }
 
-PS1='\[\e[32m\]\w\[\e[0m\]$(git_ref_prompt)\[\e[33m\]>\[\e[0m\] '
+PS1='\[\e[32m\]\w\[\e[0m\]$(git_ref_prompt)\[\e[0m\]>\[\e[0m\] '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
