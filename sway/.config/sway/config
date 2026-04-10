@@ -291,6 +291,8 @@ hide_edge_borders smart_no_gaps
 #
 # Rules:
 #
+for_window [window_type="dialog"] floating enable
+for_window [window_role="dialog"] floating enable
 for_window [app_id="blueman-*"] floating enable, resize set 600 800, move position center
 for_window [app_id="pavucontrol"] floating enable, resize set 800 800, move position center
 for_window [app_id="pcmanfm"] floating enable, resize set 1200 800, move position center
