@@ -42,6 +42,7 @@ return {
       analysis = {
         autoSearchPaths = true,
         diagnosticMode = 'openFilesOnly',
+        typeCheckingMode = 'recommended',
         -- https://docs.basedpyright.com/latest/configuration/language-server-settings/
         -- Explicitly setting `basedpyright.analysis.useLibraryCodeForTypes` is **discouraged** by the official docs.
         -- Because it will override per-project configurations like `pyproject.toml`.
