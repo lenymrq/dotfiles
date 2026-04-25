@@ -272,7 +272,7 @@ include /etc/sway/config.d/*
 #
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #ffffff #ffffff #000000 #000000   #ffffff
+client.focused          #ffff00 #ffff00 #000000 #000000   #ffff00
 client.focused_inactive #777777 #777777 #ffffff #777777   #777777
 client.unfocused        #000000 #000000 #777777 #000000   #000000
 client.urgent           #900000 #900000 #ffffff #900000   #900000
@@ -284,8 +284,8 @@ gaps inner 12
 gaps outer -12
 smart_gaps on
 
-default_border normal 0
-default_floating_border normal 0
+default_border pixel 4
+default_floating_border pixel 4
 hide_edge_borders smart_no_gaps
 
 #
@@ -296,7 +296,9 @@ for_window [window_role="dialog"] floating enable
 for_window [app_id="blueman-*"] floating enable, resize set 600 800, move position center
 for_window [app_id="pavucontrol"] floating enable, resize set 800 800, move position center
 for_window [app_id="pcmanfm"] floating enable, resize set 1200 800, move position center
-for_window [app_id="swayimg"] fullscreen disable, resize set 1200 800, floating enable
+for_window [app_id="swayimg"] fullscreen disable, resize set 1200 800, floating enable, move position center
+for_window [app_id="nwg-look"] floating enable, resize set 1200 800, move position center
+for_window [app_id="nwg-displays"] floating enable, resize set 1200 800, move position center
 
 no_focus [window_role="pop-up"]
 
