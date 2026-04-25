@@ -19,9 +19,9 @@ vim.o.listchars = 'tab:» ,nbsp:␣,extends:>,precedes:<'
 vim.o.number = true
 vim.o.pumblend = 0
 vim.o.pumheight = 12
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 vim.o.scrolloff = 10
-vim.o.showmode = true
+vim.o.showmode = false
 vim.o.signcolumn = 'yes'
 vim.o.splitbelow = true
 vim.o.splitkeep = 'screen'
@@ -116,6 +116,44 @@ end, { desc = 'Toggle diagnostic virtual lines' })
 -- #######
 -- # LSP #
 -- #######
-vim.lsp.enable 'basedpyright'
+vim.lsp.enable 'ty'
+vim.lsp.enable 'ruff'
 vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'clangd'
+
+-- ###################
+-- # Builtin plugins #
+-- ###################
+vim.cmd.packadd 'nohlsearch'
+
+vim.cmd.packadd 'nvim.difftool'
+
+vim.cmd.packadd 'nvim.undotree'
+vim.keymap.set('n', '<leader>u', require('undotree').open, { desc = 'Open undo tree' })
+
+-- #########
+-- # Utils #
+-- #########
+_G.Config = {}
+
+vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
+
+local misc = require 'mini.misc'
+
+Config.now = function(f)
+  misc.safely('now', f)
+end
+
+Config.later = function(f)
+  misc.safely('later', f)
+end
+
+Config.now_if_args = vim.fn.argc(-1) > 0 and Config.now or Config.later
+
+Config.on_event = function(ev, f)
+  misc.safely('event:' .. ev, f)
+end
+
+Config.on_filetype = function(ft, f)
+  misc.safely('filetype:' .. ft, f)
+end
