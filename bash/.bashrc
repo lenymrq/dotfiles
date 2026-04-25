@@ -48,7 +48,7 @@ git_ref_prompt() {
     local ref
     ref=$(parse_git_ref) || return
     [ -z "$ref" ] && return
-    printf " 󰘬 %s" "$ref"
+    printf " (%s)" "$ref"
 }
 
 PS1='\[\e[32m\]\w\[\e[0m\]$(git_ref_prompt)\[\e[0m\]>\[\e[0m\] '
@@ -130,5 +130,5 @@ osc7_cwd() {
 PROMPT_COMMAND=${PROMPT_COMMAND:+${PROMPT_COMMAND%;}; }osc0_title
 PROMPT_COMMAND=${PROMPT_COMMAND:+${PROMPT_COMMAND%;}; }osc7_cwd
 
-# fzf
-. <(fzf --bash)
+alias historyf='print -z $(history -n 1 | fzy --prompt="search history> ")'
+alias cdf='cd $(fdfind --type directory --max-depth 1 | fzy --prompt="cd into> ")'
