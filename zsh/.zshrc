@@ -34,7 +34,7 @@ fi
 
 setopt prompt_subst
 
-PROMPT='%F{blue}%f%K{blue} %n %K{magenta}%F{blue}%f %~ %k%F{magenta}%f'$'\n'' %F{%(?.default.red)}%#%f '
+PROMPT='%F{blue}%n%f %F{magenta}%~%f'$'\n''%F{%(?.default.red)}%#%f '
 RPROMPT='$(git_prompt)'
 
 # Completion
