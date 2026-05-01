@@ -251,7 +251,7 @@ bar {
         statusline #ffffff
         separator #777777
 
-        focused_workspace  #ffffff #ffffff #000000
+        focused_workspace  #ffff00 #ffff00 #000000
         active_workspace   #777777 #777777 #ffffff
         inactive_workspace #000000 #000000 #777777
         urgent_workspace   #2f343a #900000 #ffffff
@@ -280,8 +280,8 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
 
-gaps inner 12
-gaps outer -12
+# gaps inner 12
+# gaps outer -12
 smart_gaps on
 
 default_border pixel 4
