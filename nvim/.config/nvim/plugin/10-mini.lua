@@ -3,6 +3,18 @@ local now, now_if_args, later = Config.now, Config.now_if_args, Config.later
 vim.pack.add { 'https://www.github.com/nvim-mini/mini.nvim' }
 
 now(function()
+  vim.cmd.colorscheme 'minischeme'
+  vim.opt.guicursor = {
+    'c:block-MiniStatuslineModeCommand',
+    'i:block-MiniStatuslineModeInsert',
+    'n:block-MiniStatuslineModeNormal',
+    'o:block-MiniStatuslineModeOther',
+    'r:block-MiniStatuslineModeReplace',
+    'v:block-MiniStatuslineModeVisual',
+  }
+end)
+
+now(function()
   require('mini.icons').setup()
   later(MiniIcons.mock_nvim_web_devicons)
   later(MiniIcons.tweak_lsp_kind)
@@ -247,7 +259,8 @@ later(function()
   vim.keymap.set('n', '<leader>fe', MiniExtra.pickers.explorer, { desc = 'Explorer' })
   vim.keymap.set('n', '<leader>ff', MiniPick.builtin.files, { desc = 'Files' })
   vim.keymap.set('n', '<leader>fg', MiniPick.builtin.grep_live, { desc = 'Grep' })
-  vim.keymap.set('n', '<leader>fh', MiniExtra.pickers.hl_groups, { desc = 'Highlight groups' })
+  vim.keymap.set('n', '<leader>fh', MiniPick.builtin.help, { desc = 'Help' })
+  vim.keymap.set('n', '<leader>fH', MiniExtra.pickers.hl_groups, { desc = 'Highlight groups' })
   vim.keymap.set('n', '<leader>fq', function()
     MiniExtra.pickers.list { scope = 'quickfix' }
   end, { desc = 'Quickfix' })
@@ -260,7 +273,7 @@ later(function()
   vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(_)
       vim.keymap.set('n', 'grr', function()
-        MiniPick.builtin.lsp { scope = 'references' }
+        MiniExtra.pickers.lsp { scope = 'references' }
       end, { desc = 'References' })
       vim.keymap.set('n', 'grd', function()
         MiniExtra.pickers.lsp { scope = 'definition' }

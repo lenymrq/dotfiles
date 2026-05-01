@@ -116,8 +116,9 @@ end, { desc = 'Toggle diagnostic virtual lines' })
 -- #######
 -- # LSP #
 -- #######
-vim.lsp.enable 'ty'
-vim.lsp.enable 'ruff'
+-- vim.lsp.enable 'ty'
+-- vim.lsp.enable 'ruff'
+vim.lsp.enable 'basedpyright'
 vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'clangd'
 
