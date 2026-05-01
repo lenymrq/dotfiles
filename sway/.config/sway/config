@@ -15,8 +15,6 @@ set $lock swaylock --daemonize
 
 include /etc/sway/config-vars.d/*
 
-font pango:monospace 10
-
 ### Output configuration
 #
     output * bg ~/Pictures/backgrounds/background fill
@@ -246,6 +244,7 @@ bindsym $mod+m mode "move"
 # Status Bar:
 #
 bar {
+    font pango:terminus 8
     colors {
         background #000000
         statusline #ffffff
