@@ -10,12 +10,32 @@ SAVEHIST=1000
 
 bindkey -e
 
+# Dircolors
+if [[ -x /usr/bin/dircolors ]]; then
+    if [[ -r ~/.dircolors ]]; then
+        eval "$(dircolors -b ~/.dircolors)"
+    else
+        eval "$(dircolors -b)"
+    fi
+
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+
+    export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+fi
+
 # Prompt
-setopt prompt_subst
 . ~/.zsh/git-prompt.zsh
-PROMPT='%K{blue} %n %k%K{magenta} %~ %k '
+
+setopt prompt_subst
+
+PROMPT='%F{blue}%f%K{blue} %n %K{magenta}%F{blue}%f %~ %k%F{magenta}%f'$'\n'' %F{%(?.default.red)}%#%f '
 RPROMPT='$(git_prompt)'
-setopt TRANSIENT_RPROMPT
 
 # Completion
 autoload -Uz compinit
@@ -51,24 +71,6 @@ autoload -U select-word-style
 select-word-style bash
 
 # Aliases
-if [[ -x /usr/bin/dircolors ]]; then
-    if [[ -r ~/.dircolors ]]; then
-        eval "$(dircolors -b ~/.dircolors)"
-    else
-        eval "$(dircolors -b)"
-    fi
-
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-
-    export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-fi
-
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
@@ -77,10 +79,6 @@ alias l='ls -CF'
 if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
-
-# fzy aliases
-alias historyf='print -z $(history -r -n 1 | fzy --prompt="search history> ")'
-alias cdf='cd $(fdfind --type directory --hidden --max-depth 1 | fzy --prompt="cd into> ")'
 
 # Hooks
 function osc7-pwd() {
@@ -93,4 +91,10 @@ function osc7-pwd() {
 function chpwd-osc7-pwd() {
     (( ZSH_SUBSHELL )) || osc7-pwd
 }
-chpwd_functions+=( chpwd-osc7-pwd )
+
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd chpwd-osc7-pwd
+
+# fzf
+export FZF_DEFAULT_OPTS='--border --layout=reverse'
+FZF_ALT_C_COMMAND= FZF_CTRL_T_COMMAND= . <(fzf --zsh)
