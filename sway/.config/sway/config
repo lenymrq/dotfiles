@@ -210,35 +210,17 @@ mode "resize" {
     bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
-
 #
-# Moving containers:
+# Notifications:
 #
-mode "move" {
-    bindsym $left move left 10px
-    bindsym $down move down 10px
-    bindsym $up move up 10px
-    bindsym $right move right 10px
-
-    bindsym Left move left 10px
-    bindsym Down move down 10px
-    bindsym Up move up 10px
-    bindsym Right move right 10px
-
-    bindsym Shift+$left move left 100px
-    bindsym Shift+$down move down 100px
-    bindsym Shift+$up move up 100px
-    bindsym Shift+$right move right 100px
-
-    bindsym Shift+Left move left 100px
-    bindsym Shift+Down move down 100px
-    bindsym Shift+Up move up 100px
-    bindsym Shift+Right move right 100px
+mode "notifications" {
+    bindsym a exec --no-startup-id fnottctl actions $(fnottctl list | fuzzel --dmenu | cut -d':' -f1); mode "default"
+    bindsym d exec --no-startup-id fnottctl dismiss; mode "default"
 
     bindsym Escape mode "default"
-    bindsym $mod+m mode "default"
+    bindsym $mod+n mode "default"
 }
-bindsym $mod+m mode "move"
+bindsym $mod+n mode "notifications"
 
 #
 # Status Bar:
