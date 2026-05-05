@@ -232,7 +232,7 @@ bar {
         statusline #ffffff
         separator #777777
 
-        focused_workspace  #ffff00 #ffff00 #000000
+        focused_workspace  #ffff00 #000000 #ffffff
         active_workspace   #777777 #777777 #ffffff
         inactive_workspace #000000 #000000 #777777
         urgent_workspace   #2f343a #900000 #ffffff
@@ -253,7 +253,7 @@ include /etc/sway/config.d/*
 #
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #ffff00 #ffff00 #000000 #000000   #ffff00
+client.focused          #ffff00 #000000 #ffffff #000000   #ffff00
 client.focused_inactive #777777 #777777 #ffffff #777777   #777777
 client.unfocused        #000000 #000000 #777777 #000000   #000000
 client.urgent           #900000 #900000 #ffffff #900000   #900000
