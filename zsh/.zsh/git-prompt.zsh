@@ -2,7 +2,6 @@ autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' get-unapplied true
 zstyle ':vcs_info:*' formats '[%F{blue}%b%f]-%F{red}%u%f%F{green}%c%f'
 zstyle ':vcs_info:*' actionformats '[%F{blue}%b%f|%F{yellow}%a%f]-%F{red}%u%f%F{green}%c%f'
 
