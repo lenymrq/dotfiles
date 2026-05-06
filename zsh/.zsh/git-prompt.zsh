@@ -2,8 +2,8 @@ autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:*' formats '[%F{blue}%b%f]-%F{red}%u%f%F{green}%c%f%m'
-zstyle ':vcs_info:*' actionformats '[%F{blue}%b%f|%F{yellow}%a%f]-%F{red}%u%f%F{green}%c%f%m'
+zstyle ':vcs_info:*' formats '[%F{blue}%b%f]:%F{red}%u%f%F{green}%c%f%m'
+zstyle ':vcs_info:*' actionformats '[%F{blue}%b%f|%F{yellow}%a%f]:%F{red}%u%f%F{green}%c%f%m'
 
 # Display untracked files
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
@@ -33,7 +33,9 @@ function +vi-git-st() {
     (( $ahead )) && gitstatus+=( "+${ahead}" )
     (( $behind )) && gitstatus+=( "-${behind}" )
 
+    hook_com[misc]+=%F{cyan}
     hook_com[misc]+=${(j:/:)gitstatus}
+    hook_com[misc]+=%f
 }
 
 
