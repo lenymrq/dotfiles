@@ -4,6 +4,7 @@ later(function()
   vim.pack.add { 'https://www.github.com/stevearc/conform.nvim' }
   require('conform').setup {
     formatters_by_ft = {
+      json = { 'jq' },
       lua = { 'stylua' },
       python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
       yaml = { 'yamlfmt' },
