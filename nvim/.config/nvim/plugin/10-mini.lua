@@ -3,18 +3,6 @@ local now, now_if_args, later = Config.now, Config.now_if_args, Config.later
 vim.pack.add { 'https://www.github.com/nvim-mini/mini.nvim' }
 
 now(function()
-  vim.cmd.colorscheme 'minischeme'
-  vim.opt.guicursor = {
-    'c:block-MiniStatuslineModeCommand',
-    'i:block-MiniStatuslineModeInsert',
-    'n:block-MiniStatuslineModeNormal',
-    'o:block-MiniStatuslineModeOther',
-    'r:block-MiniStatuslineModeReplace',
-    'v:block-MiniStatuslineModeVisual',
-  }
-end)
-
-now(function()
   require('mini.icons').setup()
   later(MiniIcons.mock_nvim_web_devicons)
   later(MiniIcons.tweak_lsp_kind)
@@ -71,7 +59,7 @@ end)
 
 now_if_args(function()
   require('mini.misc').setup()
-  MiniMisc.setup_auto_root()
+  -- MiniMisc.setup_auto_root()
   MiniMisc.setup_termbg_sync()
   MiniMisc.setup_restore_cursor()
   vim.keymap.set('n', '<leader>oz', MiniMisc.zoom, { desc = 'Zoom current buffer' })
@@ -138,7 +126,7 @@ later(function()
       { mode = { 'n', 'x' }, keys = 'z' }, -- `z` key
     },
     window = {
-      delay = 0,
+      delay = 500,
     },
   }
 end)
@@ -178,10 +166,10 @@ end)
 later(function()
   require('mini.indentscope').setup {
     symbol = '▏',
-    draw = {
-      delay = 0,
-      animation = require('mini.indentscope').gen_animation.none(),
-    },
+    -- draw = {
+    --   delay = 0,
+    --   animation = require('mini.indentscope').gen_animation.none(),
+    -- },
   }
 end)
 
@@ -212,45 +200,7 @@ later(function()
 end)
 
 later(function()
-  require('mini.pick').setup {
-    mappings = {
-      caret_left = '<a-h>',
-      caret_right = '<a-l>',
-
-      choose = '<cr>',
-      choose_in_split = '',
-      choose_in_tabpage = '',
-      choose_in_vsplit = '',
-      choose_marked = '<c-cr>',
-
-      delete_char = '<bs>',
-      delete_char_right = '<del>',
-      delete_left = '<a-bs>',
-      delete_word = '',
-
-      mark = '<c-space>',
-      mark_all = '<c-a>',
-
-      move_down = '<a-j>',
-      move_start = '<c-g>',
-      move_up = '<a-k>',
-
-      paste = '<c-p>',
-
-      refine = '',
-      refine_marked = '',
-
-      scroll_down = '<c-j>',
-      scroll_left = '<c-h>',
-      scroll_right = '<c-l>',
-      scroll_up = '<c-k>',
-
-      stop = '<esc>',
-
-      toggle_info = '<s-tab>',
-      toggle_preview = '<tab>',
-    },
-  }
+  require('mini.pick').setup()
   vim.keymap.set('n', '<leader>fD', function()
     MiniExtra.pickers.diagnostic { scope = 'current', sort_by = 'severity' }
   end, { desc = 'Buffer diagnostics' })
@@ -295,19 +245,11 @@ later(function()
 end)
 
 later(function()
-  local latex_patterns = { 'latex/**/*.json', '**/latex.json' }
-  local lang_patterns = {
-    tex = latex_patterns,
-    plaintex = latex_patterns,
-    markdown_inline = { 'markdown.json' },
-  }
-
   local snippets = require 'mini.snippets'
-  local config_path = vim.fn.stdpath 'config'
   snippets.setup {
     snippets = {
-      snippets.gen_loader.from_file(config_path .. '/snippets/global.json'),
-      snippets.gen_loader.from_lang { lang_patterns = lang_patterns },
+      snippets.gen_loader.from_file(vim.fn.stdpath 'config' .. '/snippets/global.json'),
+      snippets.gen_loader.from_lang(),
     },
   }
 
