@@ -14,10 +14,9 @@ now_if_args(function()
   require('nvim-treesitter').setup()
 
   local highlight = function(bufnr, lang)
-    if not vim.treesitter.language.add(lang) then
-      return vim.notify(string.format('Treesitter cannot load parser for language: %s', lang), vim.log.levels.INFO, { title = 'Treesitter' })
+    if vim.treesitter.language.add(lang) then
+      vim.treesitter.start(bufnr, lang)
     end
-    vim.treesitter.start(bufnr)
   end
 
   vim.api.nvim_create_autocmd('FileType', {
@@ -27,11 +26,6 @@ now_if_args(function()
       local buf = args.buf
 
       if bt ~= '' then
-        return
-      end
-
-      local ok, treesitter = pcall(require, 'nvim-treesitter')
-      if not ok then
         return
       end
 
@@ -52,6 +46,8 @@ now_if_args(function()
       end
 
       -- Highlights
+      local treesitter = require 'nvim-treesitter'
+
       if vim.list_contains(treesitter.get_installed(), ft) then
         highlight(buf, ft)
       elseif vim.list_contains(treesitter.get_available(), ft) then
