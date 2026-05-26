@@ -81,19 +81,21 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 
 # Hooks
-function osc7-pwd() {
-    emulate -L zsh # also sets localoptions for us
-    setopt extendedglob
-    local LC_ALL=C
-    printf '\e]7;file://%s%s\e\' $HOST ${PWD//(#m)([^@-Za-z&-;_~])/%${(l:2::0:)$(([##16]#MATCH))}}
-}
+if [[ "$TERM" == 'foot' ]]; then
+    function osc7-pwd() {
+        emulate -L zsh # also sets localoptions for us
+        setopt extendedglob
+        local LC_ALL=C
+        printf '\e]7;file://%s%s\e\' $HOST ${PWD//(#m)([^@-Za-z&-;_~])/%${(l:2::0:)$(([##16]#MATCH))}}
+    }
 
-function chpwd-osc7-pwd() {
-    (( ZSH_SUBSHELL )) || osc7-pwd
-}
+    function chpwd-osc7-pwd() {
+        (( ZSH_SUBSHELL )) || osc7-pwd
+    }
 
-autoload -Uz add-zsh-hook
-add-zsh-hook chpwd chpwd-osc7-pwd
+    autoload -Uz add-zsh-hook
+    add-zsh-hook chpwd chpwd-osc7-pwd
+fi
 
 # fzf
 export FZF_DEFAULT_OPTS='--border --layout=reverse'
