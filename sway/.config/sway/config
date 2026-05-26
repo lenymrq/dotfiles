@@ -15,7 +15,7 @@ set $lock swaylock --daemonize
 
 include /etc/sway/config-vars.d/*
 
-font pango:Terminus 8
+font pango:terminus 8
 
 ### Output configuration
 #
@@ -239,7 +239,6 @@ bindsym $mod+n mode "notifications"
 # Status Bar:
 #
 bar {
-    font pango:terminus 8
     # colors {
     #     background #000000
     #     statusline #ffffff
