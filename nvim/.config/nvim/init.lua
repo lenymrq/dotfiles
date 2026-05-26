@@ -32,6 +32,15 @@ vim.o.winblend = 0
 vim.o.winborder = 'single'
 vim.o.wrap = false
 
+vim.opt.guicursor = {
+  'c:block-MiniStatuslineModeCommand',
+  'i:block-MiniStatuslineModeInsert',
+  'n:block-MiniStatuslineModeNormal',
+  'o:block-MiniStatuslineModeOther',
+  'r:block-MiniStatuslineModeReplace',
+  'v:block-MiniStatuslineModeVisual',
+}
+
 -- UI2
 require('vim._core.ui2').enable { enable = true }
 
@@ -122,6 +131,7 @@ end, { desc = 'Toggle diagnostic virtual lines' })
 vim.lsp.enable 'basedpyright'
 vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'clangd'
+vim.lsp.enable 'tinymist'
 
 -- ###################
 -- # Builtin plugins #

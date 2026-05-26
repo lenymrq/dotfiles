@@ -3,6 +3,13 @@ local now, now_if_args, later = Config.now, Config.now_if_args, Config.later
 vim.pack.add { 'https://www.github.com/nvim-mini/mini.nvim' }
 
 now(function()
+  local base16 = require 'mini.base16'
+  base16.setup {
+    palette = base16.mini_palette('#1A1A1A', '#E5E5E5', 100),
+  }
+end)
+
+now(function()
   require('mini.icons').setup()
   later(MiniIcons.mock_nvim_web_devicons)
   later(MiniIcons.tweak_lsp_kind)
@@ -163,15 +170,15 @@ later(function()
   }
 end)
 
-later(function()
-  require('mini.indentscope').setup {
-    symbol = '▏',
-    -- draw = {
-    --   delay = 0,
-    --   animation = require('mini.indentscope').gen_animation.none(),
-    -- },
-  }
-end)
+-- later(function()
+--   require('mini.indentscope').setup {
+--     symbol = '▏',
+--     draw = {
+--       delay = 0,
+--       animation = require('mini.indentscope').gen_animation.none(),
+--     },
+--   }
+-- end)
 
 later(function()
   require('mini.jump').setup { delay = { highlight = 0 } }
@@ -187,17 +194,17 @@ later(function()
   local map_multistep = require('mini.keymap').map_multistep
   map_multistep('i', '<tab>', { 'pmenu_next' })
   map_multistep('i', '<s-tab>', { 'pmenu_prev' })
-  map_multistep('i', '<cr>', { 'pmenu_accept', 'minipairs_cr' })
-  map_multistep('i', '<bs>', { 'minipairs_bs' })
+  -- map_multistep('i', '<cr>', { 'pmenu_accept', 'minipairs_cr' })
+  -- map_multistep('i', '<bs>', { 'minipairs_bs' })
 end)
 
 later(function()
   require('mini.move').setup { options = { reindent_linewise = false } }
 end)
 
-later(function()
-  require('mini.pairs').setup()
-end)
+-- later(function()
+--   require('mini.pairs').setup()
+-- end)
 
 later(function()
   require('mini.pick').setup()
