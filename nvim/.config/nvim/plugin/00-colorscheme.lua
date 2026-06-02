@@ -1,13 +1,5 @@
--- local now = Config.now
---
--- now(function()
---   vim.pack.add { 'https://github.com/catppuccin/nvim' }
---
---   require('catppuccin').setup {
---     no_italic = true,
---     color_overrides = {
---       mocha = {},
---     },
---   }
---   vim.cmd.colorscheme 'catppuccin'
--- end)
+local now = Config.now
+
+now(function()
+  vim.cmd.colorscheme 'lescheme'
+end)

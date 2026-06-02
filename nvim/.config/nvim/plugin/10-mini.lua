@@ -3,13 +3,6 @@ local now, now_if_args, later = Config.now, Config.now_if_args, Config.later
 vim.pack.add { 'https://www.github.com/nvim-mini/mini.nvim' }
 
 now(function()
-  local base16 = require 'mini.base16'
-  base16.setup {
-    palette = base16.mini_palette('#1A1A1A', '#E5E5E5', 100),
-  }
-end)
-
-now(function()
   require('mini.icons').setup()
   later(MiniIcons.mock_nvim_web_devicons)
   later(MiniIcons.tweak_lsp_kind)
