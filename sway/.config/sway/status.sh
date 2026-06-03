@@ -10,8 +10,8 @@ while true; do
     TIME=$(date +'%X')
 
     printf '['
-    printf '{"full_text":"%s %s%%"},' $BATTERY_STATUS $BATTERY_CAPACITY
-    printf '{"full_text":"%s %s"}' $TIME $DATE
+    printf '{"full_text":"%s %s%%"},' "$BATTERY_STATUS" "$BATTERY_CAPACITY"
+    printf '{"full_text":"%s %s"}' "$TIME" "$DATE"
     printf '],\n'
 
     sleep 1
