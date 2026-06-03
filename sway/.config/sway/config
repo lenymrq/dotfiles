@@ -5,8 +5,7 @@ set $down j
 set $up k
 set $right l
 
-set $termserver foot --server
-set $term footclient
+set $term foot
 
 set $font Terminus
 set $font-size 8
@@ -23,7 +22,6 @@ exec_always swayidle -w \
     timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
     before-sleep $lock
 
-bindsym $mod+Shift+Return exec $termserver
 bindsym $mod+Return exec $term
 
 bindsym $mod+Shift+q kill
@@ -45,6 +43,16 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
+
+bindsym $mod+Control+$left focus output left
+bindsym $mod+Control+$down focus output down
+bindsym $mod+Control+$up focus output up
+bindsym $mod+Control+$right focus output right
+
+bindsym $mod+Control+Shift+$left move workspace to output left
+bindsym $mod+Control+Shift+$down move workspace to output down
+bindsym $mod+Control+Shift+$up move workspace to output up
+bindsym $mod+Control+Shift+$right move workspace to output right
 
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -93,6 +101,11 @@ mode "resize" {
     bindsym $up resize shrink height 10px
     bindsym $right resize grow width 10px
 
+    bindsym Shift+$left resize shrink width 100px
+    bindsym Shift+$down resize grow height 100px
+    bindsym Shift+$up resize shrink height 100px
+    bindsym Shift+$right resize grow width 100px
+
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
 }
@@ -112,17 +125,9 @@ bindsym XF86AudioNext exec swayosd-client --playerctl next
 bindsym Print exec grim
 bindsym $mod+Shift+s exec grim
 
-# mode "notification" {
-#     bindsym d exec fnottctl dismiss; mode "default"
-#     bindsym x exec fnottctl dismiss all; mode "default"
-#
-#     bindsym Escape mode "default"
-#     bindsym $mod+n mode "default"
-# }
-# bindsym $mod+n mode "notification"
-bindsym $mod+n exec swaync-client --toggle-panel
+bindsym $mod+n exec swaync-client --toggle-panel --skip-wait
 
-bindsym $mod+Tab exec theme-switch
+bindsym $mod+Tab exec ~/.local/bin/theme-switch
 
 bindsym $mod+x exec $lock
 
@@ -136,8 +141,8 @@ gaps inner 12
 gaps outer -12
 
 include /etc/sway/config.d/*
+include ~/.config/sway/outputs
+include ~/.config/sway/workspaces
 
 exec swayosd-server
 exec swaync
-
-exec foot --server
