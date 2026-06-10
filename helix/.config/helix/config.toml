@@ -1,0 +1,17 @@
+theme = "gruber-darker"
+
+[editor]
+auto-pairs = false
+line-number = "relative"
+
+[editor.soft-wrap]
+enable = true
+
+[keys.normal]
+X = ["extend_line_above"]
+
+[keys.insert]
+A-h = "move_char_left"
+A-j = "move_line_down"
+A-k = "move_line_up"
+A-l = "move_char_right"
