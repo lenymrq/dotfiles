@@ -142,7 +142,7 @@ mode "notification" {
 }
 bindsym $mod+n mode "notification"
 
-bindsym $mod+Tab exec ~/.local/bin/theme-switch
+bindsym $mod+Tab exec ~/.config/sway/theme-switch.sh
 
 bindsym $mod+x exec $lock
 
