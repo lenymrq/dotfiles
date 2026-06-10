@@ -111,31 +111,42 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume 10
-bindsym XF86AudioLowerVolume exec  swayosd-client --output-volume -10
-bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
-bindsym XF86AudioMicMute exec swayosd-client --input-volume mute-toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
 
-bindsym XF86MonBrightnessUp exec swayosd-client --brightness +10
-bindsym XF86MonBrightnessDown exec swayosd-client --brightness -10
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym XF86AudioPlay exec swayosd-client --playerctl play-pause
-bindsym XF86AudioNext exec swayosd-client --playerctl next
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
-bindsym Print exec grim
-bindsym $mod+Shift+s exec grim
+set $screenshot_out $(xdg-user-dir PICTURES)/screenshots/screenshot-$(date +"%Y%m%d-%H%M%S").png
+mode "screenshot" {
+    bindsym a exec grimshot copy area && notify-send 'Screenshot copied successfully.'; mode "default"
+    bindsym Shift+a exec grimshot save area $screenshot_out && notify-send 'Screenshot saved successfully.'; mode "default"
 
-bindsym $mod+n exec swaync-client --toggle-panel --skip-wait
+    bindsym s exec grimshot copy screen && notify-send 'Screenshot copied successfully.'; mode "default"
+    bindsym Shift+s exec grimshot save screen $screenshot_out && notify-send 'Screenshot saved successfully.'; mode "default"
+
+    bindsym $mod+Shift+s mode "default"
+    bindsym escape mode "default"
+}
+bindsym $mod+Shift+s mode "screenshot"
+
+mode "notification" {
+    bindsym d exec fnottctl dismiss
+    bindsym x exec fnottctl dismiss all; mode "default"
+
+    bindsym $mod+n mode "default"
+    bindsym escape mode "default"
+}
+bindsym $mod+n mode "notification"
 
 bindsym $mod+Tab exec ~/.local/bin/theme-switch
 
 bindsym $mod+x exec $lock
 
-bar {
-    position bottom
-
-    status_command exec ~/.config/sway/status.sh
-}
+bar swaybar_command waybar
 
 gaps inner 12
 gaps outer -12
@@ -143,6 +154,3 @@ gaps outer -12
 include /etc/sway/config.d/*
 include ~/.config/sway/outputs
 include ~/.config/sway/workspaces
-
-exec swayosd-server
-exec swaync
