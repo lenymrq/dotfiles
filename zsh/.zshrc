@@ -81,6 +81,8 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 
 # Hooks
+autoload -Uz add-zsh-hook
+
 if [[ "$TERM" == 'foot' ]]; then
     function osc7-pwd() {
         emulate -L zsh # also sets localoptions for us
@@ -93,10 +95,21 @@ if [[ "$TERM" == 'foot' ]]; then
         (( ZSH_SUBSHELL )) || osc7-pwd
     }
 
-    autoload -Uz add-zsh-hook
     add-zsh-hook chpwd chpwd-osc7-pwd
 fi
+
+function osc0-title() {
+    print -Pn '\e]0;$TERM: %~\e\'
+}
+
+function chpwd-osc0-title() {
+    (( ZSH_SUBSHELL )) || osc0-title
+}
+
+add-zsh-hook chpwd chpwd-osc0-title
 
 # fzf
 export FZF_DEFAULT_OPTS='--border --layout=reverse'
 FZF_ALT_C_COMMAND= FZF_CTRL_T_COMMAND= . <(fzf --zsh)
+
+chpwd-osc0-title
